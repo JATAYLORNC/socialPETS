@@ -26,12 +26,12 @@ const NavbarLogout = (props) => (
           </li>
           <li className="nav-item dropdown">
             <Link className="nav-link dropdown-toggle text-dark menuText" role="button" data-toggle="dropdown"  to="/Profile" id="saved">Profile</Link>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               <Link className="dropdown-item" to="/createProfile">Create New Profile</Link>
-              <div class="dropdown-divider"></div>
-              <Link class="dropdown-item" to="/profile">Mary Jane</Link>
-              <Link class="dropdown-item" to="/profile">Lollipop</Link>
-              <Link class="dropdown-item" to="/profile">Max</Link>
+              <div className="dropdown-divider"></div>
+              <Link className="dropdown-item" to="/profile">Mary Jane</Link>
+              <Link className="dropdown-item" to="/profile">Lollipop</Link>
+              <Link className="dropdown-item" to="/profile">Max</Link>
             </div>
           </li>
         </ul>
