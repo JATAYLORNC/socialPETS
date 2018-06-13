@@ -1,27 +1,63 @@
 import express from "express";
 import bodyParser from "body-parser";
-import mongoose from "mongoose";
+import morgan from "morgan";
+import session from "express-session";
+const MongoStore = require('connect-mongo')(session);
+import dbConnection from "./db";
+import passport from "./passport";
+import "dotenv/config";
+import path from "path";
+import db from "./db/models";
 
 // Initialize Express
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
-// Configure middleware
+// ======Middleware======
 
-// Use body-parser for handling form submissions
+app.use(morgan("dev"));
+
 app.use(bodyParser.urlencoded({ extended: true }));
-// Use express.static to serve the public folder as a static directory
-app.use(express.static("public"));
+app.use(bodyParser.json());
 
-// Require all models
-import db from "./models";
+// Import all models
+// import models from "./models";
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/socialPETS";
+app.use(
+	session({
+		secret: process.env.APP_SECRET || 'Shh, Colin is a super-hero!',
+		store: new MongoStore({ mongooseConnection: dbConnection }),
+		resave: false,
+		saveUninitialized: false
+	})
+)
 
-// Connect to the Mongo DB
-mongoose.connect(MONGODB_URI);
+// ======Passport======
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Express app Routing
+app.use("/auth", require("./routes/auth"));
+
+// ====== Error handler ====
+app.use((err, req, res, next) => {
+	console.log('====== ERROR =======')
+	console.error(err.stack)
+	res.status(500)
+})
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  console.log(`YOU ARE IN THE PRODUCTION ENV`);
+  app.use(express.static("client/build"));
+}
+// Send every other request to the React app
+// Define any API routes before this runs
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 // Start the server
 app.listen(PORT, function() {
-  console.log("App running on port " + PORT + "!");
+  console.log(`App running on port ${PORT} !`);
 });

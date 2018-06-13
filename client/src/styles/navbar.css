@@ -1,0 +1,20 @@
+#brand {
+  font-size: 3rem;
+}
+#search {
+  width: 85%;
+}
+
+.menuText {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.menuButton {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+#myNavbar {
+  background-color: #7FFF0D
+}
