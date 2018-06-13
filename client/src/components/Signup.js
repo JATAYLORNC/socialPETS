@@ -29,7 +29,7 @@ class Signup extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault();
     axios
-			.post('/auth/signup', {
+			.post('/api/signup', {
         firstname: this.state.firstname,
         lastname: this.state.lastname,
 				email: this.state.email,

@@ -5,6 +5,7 @@ import session from "express-session";
 const MongoStore = require('connect-mongo')(session);
 import dbConnection from "./db";
 import passport from "./passport";
+const routes = require("./routes");
 import "dotenv/config";
 import path from "path";
 import db from "./db/models";
@@ -37,13 +38,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Express app Routing
-app.use("/auth", require("./routes/auth"));
+app.use(routes);
 
 // ====== Error handler ====
 app.use((err, req, res, next) => {
-	console.log('====== ERROR =======')
-	console.error(err.stack)
-	res.status(500)
+	console.log('====== ERROR =======');
+	console.error(err.stack);
+	res.status(500);
 })
 
 // Serve up static assets (usually on heroku)
@@ -51,11 +52,6 @@ if (process.env.NODE_ENV === "production") {
   console.log(`YOU ARE IN THE PRODUCTION ENV`);
   app.use(express.static("client/build"));
 }
-// Send every other request to the React app
-// Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
 
 // Start the server
 app.listen(PORT, function() {

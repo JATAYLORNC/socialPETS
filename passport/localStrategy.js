@@ -2,11 +2,11 @@ import User from "../db/models/User";
 const LocalStrategy = require('passport-local').Strategy
 
 const strategy = new LocalStrategy(
-	{
-		email: 'email' // not necessary, DEFAULT
-	},
+{usernameField: "email"},
 	(email, password, done) => {
-		User.findOne({ 'local.email': email }, (err, userMatch) => {
+		console.log(email, password);
+		User.findOne({ 'email': email }, (err, userMatch) => {
+			console.log(userMatch);
 			if (err) {
 				return done(err)
 			}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import axios from "axios";
+import API from "./utils/API";
 import NavbarLogin from "./components/NavbarLogin";
 import NavbarLogout from "./components/NavbarLogout";
 import Signup from "./components/Signup";
@@ -13,14 +13,15 @@ class App extends React.Component {
 		}
 
 	componentDidMount= () => {
-		axios.get('/auth/user').then(response => {
-			console.log(response.data)
+		API.getUser().then(response => {
+			console.log(response.data);
 			if (!!response.data.user) {
 				console.log('THERE IS A USER')
 				this.setState({
 					loggedIn: true,
 					user: response.data.user
-				})
+				});
+				console.log(`loggedIn: ${this.state.loggedIn}`);
 			} else {
 				this.setState({
 					loggedIn: false,
@@ -32,33 +33,27 @@ class App extends React.Component {
 	}
 
 	_logout = (event) => {
-		event.preventDefault()
-		console.log('logging out')
-		axios.post('/auth/logout').then(response => {
-			console.log(response.data)
+		event.preventDefault();
+
+		API.logout().then(response => {
 			if (response.status === 200) {
 				this.setState({
 					loggedIn: false,
 					user: null
-				})
+				});
 			}
 		})
 	}
 
-	_login = (username, password)=> {
-		axios
-			.post('/auth/login', {
-				username,
-				password
-			})
+	_login = (email, password) => {
+		API.login(email, password)
 			.then(response => {
-				console.log(response)
 				if (response.status === 200) {
 					// update the state
 					this.setState({
 						loggedIn: true,
 						user: response.data.user
-					})
+					});
 				}
 			})
   }
@@ -66,16 +61,11 @@ class App extends React.Component {
   renderPage = () => {
     if (this.state.loggedIn) {
       return (
-        <Router>
-          <div>
-            <Route exact path="/" 
-            render={() => ( 
+        <Router>          
             <div>
-              <NavbarLogout Logout={this._logout} />
-              <Home />
+              <NavbarLogout _logout={this._logout} />
+              <Route exact path="/" component={Home} />
             </div>
-            )} />
-          </div>
         </Router>
       )
     } else {

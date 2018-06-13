@@ -63,7 +63,7 @@ class Login extends React.Component {
                 />
               </td>
               <td className="form-group-btn">
-                <button className="btn btn-sm btn-dark" onClick={this.props._login}>Log In</button>
+                <button className="btn btn-sm btn-dark" onClick={ () => this.props._login(this.state.email, this.state.password)}>Log In</button>
               </td>
             </tr>
           </tbody>
