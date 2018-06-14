@@ -21,18 +21,19 @@ const NavbarLogout = (props) => (
       </div>
       <div className="col-sm-4 collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav d-flex justify-content-start align-items-center">
-          <li className="nav-item">
-            <Link className="nav-link text-dark menuText" to="/Home" id="home">Home</Link>
+          <li className="nav-item mr-2">
+            <Link className="nav-link text-dark menuText" to="/home" id="home">Home</Link>
           </li>
-          <li className="nav-item dropdown">
+          <li className="nav-item dropdown mr-2">
             <Link className="nav-link dropdown-toggle text-dark menuText" role="button" data-toggle="dropdown"  to="/Profile" id="saved">Profile</Link>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <Link className="dropdown-item" to="/createProfile">Create New Profile</Link>
-              <div className="dropdown-divider"></div>
               <Link className="dropdown-item" to="/profile">Mary Jane</Link>
               <Link className="dropdown-item" to="/profile">Lollipop</Link>
               <Link className="dropdown-item" to="/profile">Max</Link>
             </div>
+          </li>
+          <li>
+            <Link className="nav-link text-dark menuText" to="/addpet" id="addpet">Add A Pet</Link>
           </li>
         </ul>
       </div>
