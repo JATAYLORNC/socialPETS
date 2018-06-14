@@ -1,13 +1,13 @@
-import mongoose from "mongoose";
+var mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
-const Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-import bcrypt from "bcryptjs";
+var bcrypt = require("bcryptjs");
 
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
-const UserSchema = new Schema({
+var UserSchema = new Schema({
   firstname: {
     type: String,
     required: false
@@ -38,7 +38,7 @@ UserSchema.methods = {
 	checkPassword: function(inputPassword) {
 		return bcrypt.compareSync(inputPassword, this.password);
 	},
-	hashPassword: plainTextPassword => {
+	hashPassword: function(plainTextPassword) {
 		return bcrypt.hashSync(plainTextPassword, 10);
 	}
 }
@@ -46,18 +46,18 @@ UserSchema.methods = {
 // Define hooks for pre-saving
 UserSchema.pre('save', function(next) {
 	if (!this.password) {
-		console.log('=======NO PASSWORD PROVIDED=======')
-		next()
+		console.log('=======NO PASSWORD PROVIDED=======');
+		next();;
 	} else {
-		this.password = this.hashPassword(this.password)
+		this.password = this.hashPassword(this.password);
 		next()
 	}
-	// this.password = this.hashPassword(this.password)
-	// next()
+	// this.password = this.hashPassword(this.password);
+	// next();
 })
 
 // This creates our model from the above schema, using mongoose's model method
-const User = mongoose.model("User", UserSchema);
+var User = mongoose.model("User", UserSchema);
 
 // Export the Article model
-export default User;
+module.exports = User;
