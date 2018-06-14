@@ -1,6 +1,6 @@
-const router = require("express").Router();
-const passport = require("../../passport");
-const authController = require("../../controllers/authController");
+var router = require("express").Router();
+var passport = require("../../passport");
+var authController = require("../../controllers/authController");
 
   // // this route is just used to get the user basic info
   // router.get("/user", (req, res) => {

@@ -62,10 +62,11 @@ class App extends React.Component {
     if (this.state.loggedIn) {
       return (
         <Router>          
-            <div>
-              <NavbarLogout _logout={this._logout} />
-              <Route exact path="/" component={Home} />
-            </div>
+					<div>
+						<NavbarLogout _logout={this._logout} />
+						<Route exact path="/" component={Home} />
+						<Route exact path="/login" component={Home} />
+					</div>
         </Router>
       )
     } else {

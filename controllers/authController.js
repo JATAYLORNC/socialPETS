@@ -1,4 +1,4 @@
-const db = require("../db/models");
+var db = require("../db/models");
 
 // Defining methods for the booksController
 module.exports = {
@@ -11,7 +11,6 @@ module.exports = {
   // },
 
   getUser: function(req, res) {
-    console.log("getUser route hit");
     console.log('===== user!!======');
     console.log(req.user);
     if (req.user) {
@@ -24,26 +23,23 @@ module.exports = {
   signup: function(req, res) {
     const { firstname, lastname, email, password } = req.body;
     db.User
-      .findOne({ 'email': email }, (err, userMatch) => {
+      .findOne({ 'email': email }, function(err, userMatch) {
       if (userMatch) {
         return res.json({
-          error: `Sorry, already a user with the email: ${email}`
+          error: "Sorry, already a user with the email: " + email
         });
       }
-      const newUser = new User({
+      var newUser = new User({
         'firstname': firstname,
         'lastname': lastname,
         'email': email,
         'password': password
       });
       console.log(newUser);
-      newUser.save().then((savedUser) => {
+      newUser.save(function(savedUser) {
         console.log(savedUser);
         return res.json(savedUser);
-      })
-      .catch(err => {
-        console.log(err);
-      })
+      });
     });
   },
 
@@ -52,17 +48,16 @@ module.exports = {
     console.log(req);
     
     passport.authenticate('local'),
-      (req, res) => {
-        console.log('logged in', req.user);
-        const user = JSON.parse(JSON.stringify(req.user)); // hack
-        const cleanUser = Object.assign({}, user);
-        if (cleanUser) {
-          console.log(`Deleting ${cleanUser.password}`);
-          delete cleanUser.password;
-        }
-        res.json({ user: cleanUser });
+    function(req, res) {
+      console.log('logged in', req.user);
+      var user = JSON.parse(JSON.stringify(req.user)); // hack
+      const cleanUser = Object.assign({}, user);
+      if (cleanUser) {
+        console.log("Deleting " + cleanUser.password);
+        delete cleanUser.password;
       }
-
+      res.json({ user: cleanUser });
+    }
   },
 
   logout: function(req, res) {
