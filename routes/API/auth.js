@@ -13,21 +13,25 @@ var authController = require("../../controllers/authController");
   //   }
   // });
 
-  // router.post(
-  //   "/login",
-    
-  //   passport.authenticate('local'),
-  //   (req, res) => {
-  //     console.log('logged in', req.user);
-  //     const user = JSON.parse(JSON.stringify(req.user)); // hack
-  //     const cleanUser = Object.assign({}, user);
-  //     if (cleanUser) {
-  //       console.log(`Deleting ${cleanUser.password}`);
-  //       delete cleanUser.password;
-  //     }
-  //     res.json({ user: cleanUser });
-  //   }
-  // );
+  router.post(
+    '/login',
+    function(req, res, next) {
+      console.log(req.body)
+      console.log('================')
+      next()
+    },
+    passport.authenticate('local'),
+    (req, res) => {
+      console.log('POST to /login')
+      const user = JSON.parse(JSON.stringify(req.user)) // hack
+      const cleanUser = Object.assign({}, user)
+      if (cleanUser.local) {
+        console.log(`Deleting ${cleanUser.local.password}`)
+        delete cleanUser.local.password
+      }
+      res.json({ user: cleanUser })
+    }
+  )
 
   // router.post("/logout", (req, res) => {
   //   if (req.user) {
@@ -43,9 +47,9 @@ var authController = require("../../controllers/authController");
     .route("/user")
     .get(authController.getUser);
 
-  router
-    .route("/login")
-    .post(authController.login);
+  // router
+  //   .route("/login")
+  //   .post(authController.login);
 
   router
     .route("/logout")

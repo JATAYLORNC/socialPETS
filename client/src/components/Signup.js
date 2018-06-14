@@ -41,7 +41,7 @@ class Signup extends React.Component {
 					console.log('Signup was successful')
 					this.setState({
 						redirectTo: '/login'
-					})
+					});
 				} else {
 					console.log('Sign-up error');
 				}
@@ -57,7 +57,7 @@ class Signup extends React.Component {
 		}
 		return (
 			<form className="SignupForm mb-5">
-				<h1 className="text-center pt-5 pb-5">Signup form</h1>
+				<h1 className="text-center pt-5 pb-5">Signup Form</h1>
         <div className="row">
           <div className="col-md-4"></div>
           <div className="col-md-4">

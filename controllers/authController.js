@@ -46,18 +46,20 @@ module.exports = {
   login: function(req, res) {
 
     console.log('===== login!!======');
-    
+    console.log(req.body);    
+
     passport.authenticate('local'),
-    function(req, res) {
-      console.log('logged in', req.user);
-      var user = JSON.parse(JSON.stringify(req.user)); // hack
-      const cleanUser = Object.assign({}, user);
-      if (cleanUser) {
-        console.log("Deleting " + cleanUser.password);
-        delete cleanUser.password;
-      }
-      res.json({ user: cleanUser });
+
+    console.log(req.body);
+    console.log('logged in', req.user);
+    var user = JSON.parse(JSON.stringify(req.user)); // hack
+    const cleanUser = Object.assign({}, user);
+    if (cleanUser) {
+      console.log("Deleting " + cleanUser.password);
+      delete cleanUser.password;
     }
+    res.json({ user: cleanUser });
+
   },
 
   logout: function(req, res) {

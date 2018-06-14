@@ -5,6 +5,7 @@ import NavbarLogin from "./components/NavbarLogin";
 import NavbarLogout from "./components/NavbarLogout";
 import Signup from "./components/Signup";
 import Home from "./components/Home";
+import AddPet from "./components/AddPet";
 
 class App extends React.Component {
 	state = {
@@ -65,7 +66,9 @@ class App extends React.Component {
 					<div>
 						<NavbarLogout _logout={this._logout} />
 						<Route exact path="/" component={Home} />
+						<Route exact path="/home" component={Home} />
 						<Route exact path="/login" component={Home} />
+						<Route exact path="/addpet" component={AddPet} />
 					</div>
         </Router>
       )
@@ -83,13 +86,9 @@ class App extends React.Component {
 
 	render() {
 		return (
-
-
       <div>
       {this.renderPage()}
       </div>
-
-
 		);
 	}
 }
