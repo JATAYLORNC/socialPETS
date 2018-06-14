@@ -1,5 +1,4 @@
 var router = require("express").Router();
-var passport = require("../../passport");
 var authController = require("../../controllers/authController");
 
   // // this route is just used to get the user basic info
