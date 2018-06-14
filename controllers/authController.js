@@ -1,4 +1,4 @@
-var db = require("../db/models");
+var User = require("../db/models/User");
 var passport = require("../passport");
 
 // Defining methods for the booksController
@@ -22,7 +22,7 @@ module.exports = {
 
   signup: function(req, res) {
     const { firstname, lastname, email, password } = req.body;
-    db.User
+    User
       .findOne({ 'email': email }, function(err, userMatch) {
       if (userMatch) {
         return res.json({
