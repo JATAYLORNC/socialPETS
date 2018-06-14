@@ -1,4 +1,5 @@
 var db = require("../db/models");
+var passport = require("../passport");
 
 // Defining methods for the booksController
 module.exports = {
@@ -12,7 +13,6 @@ module.exports = {
 
   getUser: function(req, res) {
     console.log('===== user!!======');
-    console.log(req.user);
     if (req.user) {
       return res.json({ user: req.user });
     } else {
@@ -45,7 +45,7 @@ module.exports = {
 
   login: function(req, res) {
 
-    console.log(req);
+    console.log('===== login!!======');
     
     passport.authenticate('local'),
     function(req, res) {
@@ -61,13 +61,16 @@ module.exports = {
   },
 
   logout: function(req, res) {
-        if (req.user) {
-          req.session.destroy();
-          res.clearCookie('connect.sid'); // clean up!
-          return res.json({ msg: 'logging you out' });
-        } else {
-          return res.json({ msg: 'no user to log out!' });
-        }
+
+    console.log('===== logout!!======');
+
+    if (req.user) {
+      req.session.destroy();
+      res.clearCookie('connect.sid'); // clean up!
+      return res.json({ msg: 'logging you out' });
+    } else {
+      return res.json({ msg: 'no user to log out!' });
+    }
   }
 
   // findById: function(req, res) {

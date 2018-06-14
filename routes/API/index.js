@@ -2,6 +2,6 @@ var router = require("express").Router();
 var authRoutes = require("./auth");
 
 // Book routes
-router.use("/auth", authRoutes);
+router.use(authRoutes);
 
 module.exports = router;
