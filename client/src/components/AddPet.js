@@ -46,6 +46,7 @@ class AddPet extends React.Component {
         favoriteActivities: this.state.favoriteActivities,
         favoriteToys: this.state.favoriteToys,
         specialTalent:  this.state.specialTalent,
+        // _id: props._id
 			})
 			.then(response => {
 				if (!response.data.errmsg) {
