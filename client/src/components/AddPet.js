@@ -114,6 +114,7 @@ class AddPet extends React.Component {
                   type="text"
                   name="age"
                   className="form-control"
+                  id="ageSize"
                   placeholder="2"
                   value={this.state.age}
                   onChange={this.handleInputChange}

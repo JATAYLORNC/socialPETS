@@ -1,5 +1,7 @@
 #ageInput {
   padding-right: 2rem;
+  /*width: 50px;*/
+  
 }
 
 #sizeInput {
@@ -12,4 +14,8 @@
 
 #rescueInput {
   padding-left: 0.4rem;
+}
+
+#ageSize{
+	width: 50px;
 }
