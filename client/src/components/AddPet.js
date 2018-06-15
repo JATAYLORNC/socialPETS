@@ -16,8 +16,6 @@ class AddPet extends React.Component {
     favoriteActivities: "",
     favoriteToys: "",
     rescue: "",
-    showAnimal: "",
-    animalActor: "",
     specialTalent: "",
     redirectTo: null
   };
@@ -125,15 +123,15 @@ class AddPet extends React.Component {
               <div className="form-group col-md-2" id="genderInput">
                 <label htmlFor="gender">Gender: </label>
                 <div>
-                  <div class="form-check form-check-inline">
+                  <div className="form-check form-check-inline">
                     <input className="form-check-input mt-2" type="radio" name="gender" value="M" onChange={this.handleInputChange} id="male" />
-                    <label className="form-check-label mt-2" for="gender">
+                    <label className="form-check-label mt-2" htmlFor="gender">
                       M
                     </label>
                   </div>
                   <div className="form-group form-check-inline">
                     <input className="form-check-input mt-2" type="radio" name="gender" value="F" onChange={this.handleInputChange} id="female" />
-                    <label className="form-check-label mt-2" for="gender">
+                    <label className="form-check-label mt-2" htmlFor="gender">
                       F
                     </label>
                   </div>
@@ -153,15 +151,15 @@ class AddPet extends React.Component {
               <div className="form-group col-md-2" id="rescueInput">
                 <label htmlFor="rescue">Rescue Pet?</label>
                 <div>
-                  <div class="form-check form-check-inline">
-                    <input className="form-check-input mt-2" type="radio" name="rescue" value="Y" onChange={this.handleInputChange} id="male" />
-                    <label className="form-check-label mt-2" for="rescue">
+                  <div className="form-check form-check-inline">
+                    <input className="form-check-input mt-2" type="radio" name="rescue" value="true" onChange={this.handleInputChange} id="male" />
+                    <label className="form-check-label mt-2" htmlFor="rescue">
                       Y
                     </label>
                   </div>
                   <div className="form-group form-check-inline">
-                    <input className="form-check-input mt-2" type="radio" name="rescue" value="N" onChange={this.handleInputChange} id="female" />
-                    <label className="form-check-label mt-2" for="rescue">
+                    <input className="form-check-input mt-2" type="radio" name="rescue" value="false" onChange={this.handleInputChange} id="female" />
+                    <label className="form-check-label mt-2" htmlFor="rescue">
                       N
                     </label>
                   </div>
@@ -204,7 +202,7 @@ class AddPet extends React.Component {
                   name="specialTalent"
                   className="form-control"
                   placeholder="Stealing socks, Fielding balls"
-                  value={this.state.favoriteActivities}
+                  value={this.state.specialTalent}
                   onChange={this.handleInputChange}
                 />
               </div>
