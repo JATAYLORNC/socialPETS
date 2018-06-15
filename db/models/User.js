@@ -1,13 +1,13 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var bcrypt = require("bcryptjs");
+import bcrypt from "bcryptjs";
 
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
-var UserSchema = new Schema({
+const UserSchema = new Schema({
   firstname: {
     type: String,
     required: false
@@ -46,18 +46,16 @@ UserSchema.methods = {
 // Define hooks for pre-saving
 UserSchema.pre('save', function(next) {
 	if (!this.password) {
-		console.log('=======NO PASSWORD PROVIDED=======');
+		console.log(`=======NO PASSWORD PROVIDED=======`);
 		next();;
 	} else {
 		this.password = this.hashPassword(this.password);
 		next()
 	}
-	// this.password = this.hashPassword(this.password);
-	// next();
-})
+});
 
 // This creates our model from the above schema, using mongoose's model method
-var User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
-// Export the Article model
-module.exports = User;
+// Export the User model
+export default User;

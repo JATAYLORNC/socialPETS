@@ -1,23 +1,23 @@
-var passport = require("passport");
-var LocalStrategy = require("./localStrategy");
-var User = require("../db/models/User");
+import passport from "passport";
+import LocalStrategy from "./localStrategy";
+import User from "../db/models/User";
 
-passport.serializeUser(function(user, done) {
-	console.log('=== serialize ... called ===');
+passport.serializeUser((user, done) => {
+	console.log(`=== serialize ... called ===`);
 	console.log(user); // the whole raw user object!
-	console.log('---------');
+	console.log(`---------`);
 	done(null, { _id: user._id });
 });
 
-passport.deserializeUser(function(id, done) {
-	console.log('DEserialize ... called')
+passport.deserializeUser((id, done) => {
+	console.log(`DEserialize ... called`)
 	User.findOne(
 		{ _id: id },
 		'email',
-		function(err, user) {
-			console.log('======= DESERILAIZE USER CALLED ======');
+		(err, user) => {
+			console.log(`======= DESERIALIZE USER CALLED ======`);
 			console.log(user);
-			console.log('--------------');
+			console.log(`--------------`);
 			done(null, user);
 		}
 	);
@@ -26,4 +26,4 @@ passport.deserializeUser(function(id, done) {
 // ==== Register Strategies ====
 passport.use(LocalStrategy);
 
-module.exports = passport;
+export default passport;

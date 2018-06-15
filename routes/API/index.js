@@ -1,6 +1,6 @@
-var router = require("express").Router();
-var authRoutes = require("./auth");
-var petRoutes = require("./pet");
+const router = require("express").Router();
+import authRoutes from "./auth";
+import petRoutes from "./pet";
 
 // Auth routes
 router.use(authRoutes);
@@ -8,4 +8,4 @@ router.use(authRoutes);
 //Api routes
 router.use(petRoutes);
 
-module.exports = router;
+export default router;

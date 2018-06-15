@@ -1,10 +1,10 @@
-var User = require("../db/models/User");
-var Pet = require("../db/models/Pet");
-var Post = require("../db/models/Post");
-var Comment = require("../db/models/Comment");
+import User from "../db/models/User";
+import Pet from "../db/models/Pet";
+import Post from "../db/models/Post";
+import Comment from "../db/models/Comment";
 
 // Defining methods for the apiController
-module.exports = {
+export default {
   // findAll: function(req, res) {
   //   db.Book
   //     .find(req.query)
@@ -13,7 +13,7 @@ module.exports = {
   //     .catch(err => res.status(422).json(err));
   // },
 
-  addPet: function(req, res) {
+  addPet: (req, res) => {
       Pet
         .create(req.body)
         .then(dbModel => res.json(dbModel))
