@@ -1,0 +1,11 @@
+.text{
+	width: 400px;
+	height: 200px;
+	background: white;
+	font-size: 20px;
+}
+
+.box{
+	text-align: center;
+	border-color: blue 5px;
+}
