@@ -7,6 +7,7 @@ import Signup from "./components/Signup";
 import Home from "./components/Home";
 import AddPet from "./components/AddPet";
 
+
 class App extends React.Component {
 	state = {
 			loggedIn: false,
