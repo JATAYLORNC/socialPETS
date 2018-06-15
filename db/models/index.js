@@ -1,9 +1,9 @@
-var User = require("./User");
-var Pet = require("./Pet");
+import User from "./User";
+import Pet from "./Pet";
 
 // Exporting an object containing all of our models
 
-module.exports = {
+export default {
   User: User,
   Pet: Pet
 };

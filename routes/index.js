@@ -1,6 +1,6 @@
-var path = require("path");
-var router = require("express").Router();
-var apiRoutes = require("./api");
+import path from "path";
+const router = require("express").Router();
+import apiRoutes from "./api";
 
 // API Routes
 router.use("/api", apiRoutes);
@@ -10,4 +10,4 @@ router.use(function(req, res) {
   res.sendFile(path.join(__dirname, "../client/public/index.html"));
 });
 
-module.exports = router;
+export default router;

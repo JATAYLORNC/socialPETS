@@ -1,11 +1,11 @@
-var User = require("../db/models/User");
-var passport = require("../passport");
+import User from "../db/models/User";
+import passport from "../passport";
 
 // Defining methods for the authController
-module.exports = {
+export default {
 
-  getUser: function(req, res) {
-    console.log('===== user!!======');
+  getUser: (req, res) => {
+    console.log(`===== user!!======`);
     if (req.user) {
       return res.json({ user: req.user });
     } else {
@@ -13,43 +13,43 @@ module.exports = {
     }
   },
 
-  signup: function(req, res) {
+  signup: (req, res) => {
     const { firstname, lastname, email, password } = req.body;
     User
-      .findOne({ 'email': email }, function(err, userMatch) {
+      .findOne({ 'email': email }, (err, userMatch) => {
       if (userMatch) {
         return res.json({
-          error: "Sorry, already a user with the email: " + email
+          error: `Sorry, already a user with the email: ${email}`
         });
       }
-      var newUser = new User({
+      const newUser = new User({
         'firstname': firstname,
         'lastname': lastname,
         'email': email,
         'password': password
       });
       console.log(newUser);
-      newUser.save(function(savedUser) {
+      newUser.save((savedUser) => {
         console.log(savedUser);
         return res.json(savedUser);
       });
     });
   },
 
-  login: function(req, res) {
-    console.log('logged in', req.user);
-    var user = JSON.parse(JSON.stringify(req.user)); // hack
+  login: (req, res) => {
+    console.log(`logged in`, req.user);
+    const user = JSON.parse(JSON.stringify(req.user)); // hack
     const cleanUser = Object.assign({}, user);
     if (cleanUser) {
-      console.log("Deleting " + cleanUser.password);
+      console.log(`Deleting ${cleanUser.password}`);
       delete cleanUser.password;
     }
     res.json({ user: cleanUser });
   },
 
-  logout: function(req, res) {
+  logout: (req, res) => {
 
-    console.log('===== logout!!======');
+    console.log(`===== logout!!======`);
 
     if (req.user) {
       req.session.destroy();

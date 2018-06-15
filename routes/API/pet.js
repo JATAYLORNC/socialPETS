@@ -1,8 +1,8 @@
-var router = require("express").Router();
-var petController = require("../../controllers/petController");
+const router = require("express").Router();
+import petController from "../../controllers/petController";
 
   router
     .route("/addpet")
     .post(petController.addPet);
 
-  module.exports = router;
+  export default router;

@@ -1,11 +1,11 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new NoteSchema object
 // This is similar to a Sequelize model
-var PetSchema = new Schema({
+const PetSchema = new Schema({
   // `body` is of type String
   name: {
     type: String,
@@ -32,7 +32,7 @@ var PetSchema = new Schema({
   {timestamps: true});
 
 // This creates our model from the above schema, using mongoose's model method
-var Pet = mongoose.model("Pet", PetSchema);
+const Pet = mongoose.model("Pet", PetSchema);
 
-// Export the Note model
-module.exports = Pet;
+// Export the Pet model
+export default Pet;

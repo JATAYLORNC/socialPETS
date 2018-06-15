@@ -1,13 +1,13 @@
-var router = require("express").Router();
-var passport = require("../../passport");
-var authController = require("../../controllers/authController");
+const router = require("express").Router();
+import passport from "../../passport";
+import authController from "../../controllers/authController";
 
   router.post(
     '/login',
-    function(req, res, next) {
-      console.log(req.body)
-      console.log('================')
-      next()
+    (req, res, next) => {
+      console.log(req.body);
+      console.log(`================`);
+      next();
     },
     passport.authenticate('local'),
     authController.login
@@ -25,4 +25,4 @@ var authController = require("../../controllers/authController");
     .route("/signup")
     .post(authController.signup);
 
-  module.exports = router;
+  export default router;
