@@ -49,6 +49,7 @@ class App extends React.Component {
 	_login = (email, password) => {
 		API.login(email, password)
 			.then(response => {
+				console.log(response.data.user);
 				if (response.status === 200) {
 					// update the state
 					this.setState({
@@ -68,7 +69,7 @@ class App extends React.Component {
 						<Route exact path="/" component={Home} />
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/login" component={Home} />
-						<Route exact path="/addpet" component={AddPet} />
+						<Route exact path="/addpet" component={AddPet} _id={this.state.user._id} />
 					</div>
         </Router>
       )

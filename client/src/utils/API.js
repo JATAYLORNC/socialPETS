@@ -15,5 +15,8 @@ export default {
   // Deletes the book with the given id
   getUser: function(id) {
     return axios.get('/api/user');
+  },
+  addPet: function(name, type, breed, age, gender, size, rescue, favoriteActivities, favoriteToys, specialTalent) {
+    return axios.post('/api/addpet');
   }
 };
