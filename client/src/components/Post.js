@@ -6,8 +6,8 @@ class Post extends Component {
 
 handleSubmit = () => {
     console.log("handleSubmit fired");
-{/*upload videos or files*/}
-{/*axios POST route*/}
+// {/*upload videos or files*/}
+// {/*axios POST route*/}
 
 }
 
