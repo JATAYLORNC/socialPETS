@@ -20,10 +20,10 @@ render() {
     					
                         <form className="form">
                             <div className="form-group">
-                                <label for="makePost">Make a Post</label>
+                                <label htmlFor="makePost">Make a Post</label>
                                    
                                     <ul className="nav">
-                                        <li class="nav-item" idName="upload" >
+                                        <li className="nav-item" idName="upload" >
                                            
                                             <div className="file">Upload Image or Video
                                                 <input type="file" id="getFile" />

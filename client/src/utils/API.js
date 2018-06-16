@@ -16,7 +16,10 @@ export default {
   getUser: (id) => {
     return axios.get('/api/user');
   },
-  addPet: (name, type, breed, age, gender, size, rescue, favoriteActivities, favoriteToys, specialTalent) => {
-    return axios.post('/api/addpet');
-  }
+  addPet: (petData) => {
+    return axios.post('/api/addpet', petData);
+  },
+  addUserPet: (id, pet_id) => {
+    return axios.post(`/api/user/${id}`, pet_id);
+  },
 };

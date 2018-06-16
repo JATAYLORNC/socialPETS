@@ -5,4 +5,8 @@ import petController from "../../controllers/petController";
     .route("/addpet")
     .post(petController.addPet);
 
+  router
+    .route("/user/:id")
+    .post(petController.addUserPet)
+
   export default router;
