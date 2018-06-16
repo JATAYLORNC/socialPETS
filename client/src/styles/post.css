@@ -9,3 +9,25 @@
 	text-align: center;
 	border-color: blue 5px;
 }
+
+.nav{
+	
+	color: white;
+	border-color: yellow;
+	font-size: 15px;
+}
+
+#image{
+	text-align: center;
+	color: white;
+}
+
+#getFile{
+	background: red;
+}
+
+.file{
+	font-size: 13px;
+	color: black;
+
+}
