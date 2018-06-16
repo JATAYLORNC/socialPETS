@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import API from "../utils/API";
 import "../styles/addpet.css";
 import { Redirect } from 'react-router-dom'
 
