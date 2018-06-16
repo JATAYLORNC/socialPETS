@@ -36,7 +36,7 @@ render() {
                                     <div>
                                         <textarea className="text"  name="Text1" cols="40" rows="5" placeholder="What's on your mind?"></textarea>
                                     </div>
-                                    <
+                                    
                             </div>
  
                             <button type="submit" className="btn btn-primary" onClick={this.handleSubmit} >Submit</button>
