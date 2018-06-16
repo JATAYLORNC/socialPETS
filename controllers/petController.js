@@ -14,11 +14,17 @@ export default {
   // },
 
   addPet: (req, res) => {
-      Pet
-        .create(req.body)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-    },
+    Pet
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
+  addUserPet: (req, res) => {
+    User.findOneAndUpdate({ _id: req.params.id }, {$push: req.body})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
 
     // addPet: function(req, res) {
     //   let user_id = req.body._id;

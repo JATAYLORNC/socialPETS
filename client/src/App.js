@@ -70,7 +70,7 @@ class App extends React.Component {
 						<Route exact path="/" component={Home} />
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/login" component={Home} />
-						<Route exact path="/addpet" component={AddPet} _id={this.state.user._id} />
+						<Route exact path="/addpet" render={() => <AddPet  _id={this.state.user._id} />} />
 					</div>
         </Router>
       )
