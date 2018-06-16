@@ -34,32 +34,38 @@ class AddPet extends React.Component {
   // When the form is submitted, prevent the default event and alert the username and password
   handleFormSubmit = event => {
     event.preventDefault();
-    axios
-			.post('/api/addpet', {
-        name: this.state.name,
-        type: this.state.type,
-        breed: this.state.breed,
-        age: this.state.age,
-        gender: this.state.gender,
-        size: this.state.size,
-        rescue: this.state.rescue,
-        favoriteActivities: this.state.favoriteActivities,
-        favoriteToys: this.state.favoriteToys,
-        specialTalent:  this.state.specialTalent,
-        // _id: props._id
-			})
-			.then(response => {
-				if (!response.data.errmsg) {
-					this.setState({
-						redirectTo: '/home'
-					})
-				} else {
-					console.log('An error occurred in adding the pet');
-				}
-			}).catch(error => {
-        console.log("Add Pet Error: ");
-        console.log(error);
-      });
+    API.AddPet(
+      this.state.name,
+      this.state.type,
+      this.state.breed,
+      this.state.age,
+      this.state.gender,
+      this.state.size,
+      this.state.rescue,
+      this.state.favoriteActivities,
+      this.state.favoriteToys,
+      this.state.specialTalent
+    )
+    .then(response => {
+      console.log(response.data);
+
+
+
+
+
+
+
+      if (!response.data.errmsg) {
+        this.setState({
+          redirectTo: '/home'
+        })
+      } else {
+        console.log('An error occurred in adding the pet');
+      }
+    }).catch(error => {
+      console.log("Add Pet Error: ");
+      console.log(error);
+    });
   };
 
   render() {
