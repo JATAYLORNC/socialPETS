@@ -7,12 +7,12 @@ const Schema = mongoose.Schema;
 // This is similar to a Sequelize model
 const PostSchema = new Schema({
   // `body` is of type String
-    PetId: {
+    posts: String,
+    comment: [{
         type: Schema.Types.ObjectId,
-        ref: "Pet"
-    },
-    Posts: String,
-
+        ref: "Comment"
+    }],
+    
     //images from firebase
 
  },

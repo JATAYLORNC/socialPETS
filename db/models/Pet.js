@@ -23,11 +23,12 @@ const PetSchema = new Schema({
   favoriteActivities: [String],
   favoriteToys: [String],
   specialTalent: String,
-  Posts: [{
+  posts: [{
     type: Schema.Types.ObjectId,
-    ref: "Posts"
+    ref: "Post"
   }],
   friendsId: [Number],
+  pendingFriendsId: [Number],
 },
   {timestamps: true});
 
