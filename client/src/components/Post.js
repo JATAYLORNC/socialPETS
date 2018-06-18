@@ -23,7 +23,7 @@ render() {
                                 <label htmlFor="makePost">Make a Post</label>
                                    
                                     <ul className="nav">
-                                        <li className="nav-item" idName="upload" >
+                                        <li className="nav-item" id="upload" >
                                            
                                             <div className="file">Upload Image or Video
                                                 <input type="file" id="getFile" />

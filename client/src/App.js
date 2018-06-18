@@ -24,11 +24,12 @@ class App extends React.Component {
 					user: response.data.user
 				});
 				console.log(`loggedIn: ${this.state.loggedIn}`);
+				console.log(`${this.state.user.Pet[0].name}`);
 			} else {
 				this.setState({
 					loggedIn: false,
 					user: null
-				})
+				});
 			}
 		})
 		.catch(err => console.dir(err));
@@ -66,7 +67,7 @@ class App extends React.Component {
       return (
         <Router>          
 					<div>
-						<NavbarLogout _logout={this._logout} />
+						<NavbarLogout _logout={this._logout} user={this.state.user} />
 						<Route exact path="/" component={Home} />
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/login" component={Home} />
