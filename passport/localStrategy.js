@@ -4,7 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const strategy = new LocalStrategy(
 {usernameField: "email"},
 	(email, password, done) => {
-		User.findOne({ 'email': email }, function(err, userMatch) {
+		User.findOne({ 'email': email }).populate('Pet').exec((err, userMatch) => {
 			if (err) {
 				return done(err)
 			}
@@ -17,6 +17,6 @@ const strategy = new LocalStrategy(
 			return done(null, userMatch)
 		})
 	}
-)
+);
 
 export default strategy;

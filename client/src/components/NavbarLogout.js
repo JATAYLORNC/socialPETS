@@ -27,9 +27,7 @@ const NavbarLogout = (props) => (
           <li className="nav-item dropdown mr-2">
             <Link className="nav-link dropdown-toggle text-dark menuText" role="button" data-toggle="dropdown"  to="/Profile" id="saved">Profile</Link>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <Link className="dropdown-item" to="/profile">Mary Jane</Link>
-              <Link className="dropdown-item" to="/profile">Lollipop</Link>
-              <Link className="dropdown-item" to="/profile">Max</Link>
+            {props.user.Pet.map((pet) => <Link key={pet._id.toString()} className="dropdown-item" to={`/profile/${pet._id}`} >{pet.name}</Link>)}
             </div>
           </li>
           <li>
