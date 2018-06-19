@@ -15,12 +15,13 @@ render() {
 
     return (
 
-    			<div>
+    			<div className="w-100 ml-2 mr-2">
     				<div className="box">
     					
                         <form className="form">
+                        <h1 className="pb-2" >Make a Post</h1>
                             <div className="form-group">
-                                <label htmlFor="makePost">Make a Post</label>
+                                
                                    
                                     <ul className="nav">
                                         <li className="nav-item" id="upload" >
@@ -34,7 +35,7 @@ render() {
                                     </ul>
 
                                     <div>
-                                        <textarea className="text"  name="Text1" cols="40" rows="5" placeholder="What's on your mind?"></textarea>
+                                        <textarea className="text w-100"  name="Text1" placeholder="What's on your mind?"></textarea>
                                     </div>
                                     
                             </div>

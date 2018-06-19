@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import session from "express-session";
-const MongoStore = require('connect-mongo')(session);
+// const MongoStore = require('connect-mongo')(session);
 import dbConnection from "./db";
 import passport from "./passport";
 import routes from "./routes";
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(
 	session({
 		secret: process.env.APP_SECRET || 'Shh, Colin is a super-hero!',
-		store: new MongoStore({ mongooseConnection: dbConnection }),
+		// store: new MongoStore({ mongooseConnection: dbConnection }),
 		resave: false,
 		saveUninitialized: false
 	})
