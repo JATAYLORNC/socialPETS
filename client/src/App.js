@@ -14,27 +14,27 @@ class App extends React.Component {
     user: null
   };
 
-  componentDidMount = () => {
-    API.getUser()
-      .then(response => {
-        console.log(response.data);
-        if (!!response.data.user) {
-          console.log("THERE IS A USER");
-          this.setState({
-            loggedIn: true,
-            user: response.data.user
-          });
-          console.log(`loggedIn: ${this.state.loggedIn}`);
-          console.log(`${this.state.user.Pet[0].name}`);
-        } else {
-          this.setState({
-            loggedIn: false,
-            user: null
-          });
-        }
-      })
-      .catch(err => console.dir(err));
-  };
+  // componentDidMount = () => {
+  //   API.getUser()
+  //     .then(response => {
+  //       console.log(response.data);
+  //       if (!!response.data.user) {
+  //         console.log("THERE IS A USER");
+  //         this.setState({
+  //           loggedIn: true,
+  //           user: response.data.user
+  //         });
+  //         console.log(`loggedIn: ${this.state.loggedIn}`);
+  //         console.log(`${this.state.user.Pet[0].name}`);
+  //       } else {
+  //         this.setState({
+  //           loggedIn: false,
+  //           user: null
+  //         });
+  //       }
+  //     })
+  //     .catch(err => console.dir(err));
+  // };
 
   _logout = event => {
     event.preventDefault();
