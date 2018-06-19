@@ -1,0 +1,29 @@
+.Card {
+  background-color: white;
+}
+
+.cardHeader {
+  height: 50px;
+}
+
+.responseBar, .likeBar {
+  height: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 1px solid #C9FFB3;
+  border-bottom: 1px solid #C9FFB3;
+}
+
+.textBox {
+  background-color: #C9FFB3;
+  border-radius: 25px;
+}
+
+.petImage {
+  min-width: 33px;
+  min-height: 33px;
+}
+
+.comments {
+  padding-top: 24px;
+}

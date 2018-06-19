@@ -51,7 +51,6 @@ class App extends React.Component {
 
   _login = (email, password) => {
     API.login(email, password).then(response => {
-      console.log(response.data.user);
       if (response.status === 200) {
         // update the state
         this.setState({
@@ -73,7 +72,7 @@ class App extends React.Component {
             <Route exact path="/login" component={Home} />
             <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id} />} />
             {this.state.user.Pet.map(pet => (
-              <Route exact path={`/profile/${pet._id}`} render={() => <PetProfile _id={pet._id} name={pet.name} />} />
+              <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} />} />
             ))}
           </div>
         </Router>
@@ -84,6 +83,7 @@ class App extends React.Component {
           <div>
             <NavbarLogin _login={this._login} />
             <Route exact path="/" component={Signup} />
+            <Route exact path="/home" component={Signup} />
           </div>
         </Router>
       );

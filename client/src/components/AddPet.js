@@ -44,8 +44,8 @@ class AddPet extends React.Component {
       rescue: this.state.rescue,
       favoriteActivities: this.state.favoriteActivities,
       favoriteToys: this.state.favoriteToys,
-      specialTalent: this.state.specialTalent}
-    )
+      specialTalent: this.state.specialTalent
+    })
     .then(response => {
       console.log(this);
       API.addUserPet(this.props._id, {Pet: response.data._id})

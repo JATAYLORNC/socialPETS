@@ -31,21 +31,34 @@ class PetProfile extends React.Component {
               </div>
             </div>
           </div>
+          <div className="col-sm-3" />
+        </div>
           {/* <!-- POST component --> */}
-          <div className="row">
-            <div className="col-sm-12">
-              <Post />
+        <div className="row">
+          <div className="col-sm-3" />
+          <div className="col-sm-6">
+            <div className="row w-100">
+              <div className="col-sm-12">
+                <Post />
+              </div>
             </div>
           </div>
-
-          {/* <!-- social activity CARDS --> */}
-          <div className="row">
-            <div className="col-sm-12">{/* <Card /> */}</div>
-          </div>
-
-          {/* <!-- right column --> */}
-          <div className="col-md-3" />
+          <div className="col-sm-3" />
         </div>
+
+        {/* <!-- social activity CARDS --> */}
+        <div className="row">
+        <div className="col-sm-3" />
+          <div className="col-sm-6">
+            <div className="row">
+              <div className="col-sm-12"><Card /></div>
+            </div>
+          </div>
+          <div className="col-sm-3" />
+        </div>
+
+        {/* <!-- right column --> */}
+        <div className="col-md-3" />
       </div>
     );
   }

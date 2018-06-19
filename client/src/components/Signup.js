@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import API from "../utils/API";
 import { Redirect } from 'react-router-dom'
 
 class Signup extends React.Component {
@@ -28,8 +28,7 @@ class Signup extends React.Component {
   // When the form is submitted, prevent the default event and alert the username and password
   handleFormSubmit = event => {
     event.preventDefault();
-    axios
-			.post('/api/signup', {
+   API.signup({
         firstname: this.state.firstname,
         lastname: this.state.lastname,
 				email: this.state.email,

@@ -20,13 +20,6 @@ passport.deserializeUser((id, done) => {
 	);
 });
 
-// passport.deserializeUser((id, done) => {
-// 	User.findById(id).exec((err, user) => {
-// 		console.log(`======= DESERIALIZE USER CALLED ======`);
-// 		done(err, user);
-// 	});
-// });
-
 // ==== Register Strategies ====
 passport.use(LocalStrategy);
 
