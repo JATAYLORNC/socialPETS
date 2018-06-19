@@ -75,7 +75,6 @@ class App extends React.Component {
             {this.state.user.Pet.map(pet => (
               <Route exact path={`/profile/${pet._id}`} render={() => <PetProfile _id={pet._id} name={pet.name} />} />
             ))}
-            {/* <Route exact path={`/profile/${this.state.user.Pet[0]._id}`} render={() => <PetProfile _id={this.state.user.Pet[0]._id} />} /> */}
           </div>
         </Router>
       );
