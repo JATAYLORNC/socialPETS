@@ -39,7 +39,7 @@ class PetProfile extends React.Component {
           <div className="col-sm-6">
             <div className="row w-100">
               <div className="col-sm-12">
-                <Post />
+                <Post animal = {this.props.pet}/>
               </div>
             </div>
           </div>
