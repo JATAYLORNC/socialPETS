@@ -2828,6 +2828,12 @@ react-bootstrap@^0.32.1:
     uncontrollable "^4.1.0"
     warning "^3.0.0"
 
+react-firebase-file-uploader@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/react-firebase-file-uploader/-/react-firebase-file-uploader-2.4.1.tgz#ddf4d9f426bc9ab477be3aa754f50dd5defdeb31"
+  dependencies:
+    uuid "^2.0.3"
+
 react-is@^16.3.2:
   version "16.4.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.0.tgz#cc9fdc855ac34d2e7d9d2eb7059bbc240d35ffcf"
@@ -3506,6 +3512,10 @@ util@^0.10.3:
 utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
+
+uuid@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
 
 v8flags@^2.1.1:
   version "2.1.1"
