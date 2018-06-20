@@ -13,7 +13,7 @@ class Post extends Component {
         image: '',
         isUploading: false,
         progress: 0,
-        imageURL: '',
+        imageURL: [],
         redirectTo: null
     }
 
@@ -27,8 +27,10 @@ class Post extends Component {
     }
 
     handleUploadSuccess = (filename) => {
+        console.log(filename);
         this.setState({image: filename, progress: 100, isUploading: false});
-        firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({imageURL: url}));
+        firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({imageURL: [...this.state.imageURL, url]}));
+        console.log(this.state.imageURL);
     };
 
     handleInputChange = event => {
@@ -44,14 +46,14 @@ class Post extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("this.state.text", this.state.text);
-        console.log("this.props.animal on post.js", this.props.animal);
+        console.log(this.state.imageURL);
 
         API.addPost({
         posts: this.state.text,
         imageURL: this.state.imageURL
         })
         .then(response => {
+            this.ssetState({imageURL: []})
             console.log(this.props.animal, response.data._id);
             API.addPetPost(this.props.animal, {posts: response.data._id})
             .then(response => {
@@ -90,6 +92,7 @@ class Post extends Component {
                                                 accept="image/*"
                                                 name="image"
                                                 id="getFile"
+                                                multiple
                                                 randomizeFilename
                                                 storageRef={firebase.storage().ref('images')}
                                                 onUploadStart={this.handleUploadStart}

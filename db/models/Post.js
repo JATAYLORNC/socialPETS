@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   // `body` is of type String
     posts: String,
-    imageURL: String,
+    imageURL: [String],
     comment: [{
         type: Schema.Types.ObjectId,
         ref: "Comment"
