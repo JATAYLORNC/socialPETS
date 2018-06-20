@@ -4,12 +4,15 @@ import "../styles/home.css";
 // import Card from "./Card";
 import Post from "./Post";
 
+
 class Home extends React.Component {
 
 	// state= {
 	// 	posts: ""
 	// }
 
+	
+	
 	getFeedPosts = () => {
 		axios.get('/user/post').then(response => {
 			console.log(response.data)
@@ -19,8 +22,10 @@ class Home extends React.Component {
 		})
 		.catch(err => console.log(err));
 	}
+	
 
 	render () {
+		
 		return (
 
 			<div className="Home">
@@ -29,7 +34,8 @@ class Home extends React.Component {
 					<div className="col-sm-6 d-flex justify-content-center pt-5" id="cardBlock">
 						{/* {this.state.posts.map((post) => <Card id={posts._id} user={posts.name} text={posts.text} src={posts.src} comments={posts.comments} />)} */}
 
-						<Post/>
+						<Post animal = {this.props.pet} />
+							
 
 
 					</div>

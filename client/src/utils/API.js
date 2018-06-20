@@ -24,6 +24,13 @@ export default {
   addUserPet: (id, pet_id) => {
     return axios.post(`/api/user/${id}`, pet_id);
   },
+  addPost: (animal, text) => {
+    
+    console.log("appPost pet ID #", animal);
+    console.log("post :", text);
+    return axios.post(`/api/post/${animal}`, text);
+    
+  },
    //signup
    signup: (userData) => {
     return axios.post('api/signup', userData);

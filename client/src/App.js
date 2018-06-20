@@ -8,10 +8,12 @@ import Home from "./components/Home";
 import AddPet from "./components/AddPet";
 import PetProfile from "./components/PetProfile";
 
+
 class App extends React.Component {
   state = {
     loggedIn: false,
-    user: null
+    user: null,
+  
   };
 
   // w
@@ -57,6 +59,7 @@ class App extends React.Component {
           loggedIn: true,
           user: response.data.user
         });
+        console.log("app.js line 61 -- this.state.user", this.state.user.Pet[0]._id);
       }
     });
   };
@@ -67,12 +70,12 @@ class App extends React.Component {
         <Router>
           <div>
             <NavbarLogout _logout={this._logout} user={this.state.user} />
-            <Route exact path="/" component={Home} />
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/" render={() => <Home pet={this.state.user.Pet[0]._id}  />} />
+            <Route exact path="/home" render={() => <Home pet={this.state.user.Pet[0]._id}  />} />
             <Route exact path="/login" component={Home} />
             <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id} />} />
             {this.state.user.Pet.map(pet => (
-              <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} />} />
+              <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} pet={this.state.user.Pet[0]._id} />} />
             ))}
           </div>
         </Router>
