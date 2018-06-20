@@ -1,14 +1,45 @@
 import React, { Component } from "react";
 import '../styles/post.css';
+import storage from "../firebase";
 
 
 class Post extends Component {
 
-handleSubmit = () => {
-    console.log("handleSubmit fired");
-// {/*upload videos or files*/}
-// {/*axios POST route*/}
+    state = {
+        text: "",
+        file: null
+    }
 
+handleInputChange = event => {
+    event.preventDefault();
+
+
+    const { value } = event.target;
+    this.setState({
+    text: value
+    });
+    console.log(this.state.text);
+
+
+
+};
+
+handleFile = event => {
+    event.preventDefault();
+
+    console.log("handleFile fired");
+    this.setState({file: event.target.files[0]});
+
+
+    console.log("file name: ", this.state.file);
+
+};
+
+handleFormSubmit = event => {
+    event.preventDefault();
+
+    //API route for posting form
+    console.log("handleFormSubmit fired");
 }
 
 render() {
