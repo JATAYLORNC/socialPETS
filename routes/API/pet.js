@@ -7,6 +7,14 @@ import petController from "../../controllers/petController";
 
   router
     .route("/user/:id")
-    .post(petController.addUserPet)
+    .post(petController.addUserPet);
+
+  router
+    .route("/post/")
+    .post(petController.addPost);
+
+  router
+    .route("/pet/:id")
+    .post(petController.addPetPost);
 
   export default router;
