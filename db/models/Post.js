@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import firebase from "../../client/src/firebase";
 
 // Save a reference to the Schema constructor
 const Schema = mongoose.Schema;

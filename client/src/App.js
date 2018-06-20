@@ -14,7 +14,7 @@ class App extends React.Component {
     user: null
   };
 
-  // componentDidMount = () => {
+  // w
   //   API.getUser()
   //     .then(response => {
   //       console.log(response.data);
