@@ -26,6 +26,29 @@ export default {
     .catch(err => res.status(422).json(err));
   },
 
+  addPost: (req, res) => {
+    Post
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
+  addPetPost: (req, res) => {
+    console.log(req.params.id, req.body);
+    Pet.findOneAndUpdate({ _id: req.params.id }, {$push: req.body})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
+
+
+
+
+
+
+
+
+
+
     // addPet: function(req, res) {
     //   let user_id = req.body._id;
     //   Pet

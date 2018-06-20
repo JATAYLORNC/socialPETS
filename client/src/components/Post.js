@@ -3,16 +3,18 @@ import '../styles/post.css';
 import API from "../utils/API";
 import firebase from "../firebase";
 import FileUploader from 'react-firebase-file-uploader';
+import { Redirect } from 'react-router-dom'
 
 
 class Post extends Component {
 
     state = {
         text: "",
-        avatar: '',
+        image: '',
         isUploading: false,
         progress: 0,
-        avatarURL: ''
+        imageURL: '',
+        redirectTo: null
     }
 
     handleUploadStart = () => this.setState({isUploading: true, progress: 0});
@@ -25,8 +27,8 @@ class Post extends Component {
     }
 
     handleUploadSuccess = (filename) => {
-        this.setState({avatar: filename, progress: 100, isUploading: false});
-        firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({avatarURL: url}));
+        this.setState({image: filename, progress: 100, isUploading: false});
+        firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({imageURL: url}));
     };
 
     handleInputChange = event => {
@@ -46,21 +48,20 @@ class Post extends Component {
         console.log("this.props.animal on post.js", this.props.animal);
 
         API.addPost({
-        text: this.state.text,
-        
+        posts: this.state.text,
+        imageURL: this.state.imageURL
         })
         .then(response => {
-        console.log(this);
-        //this.props._id is the pet id , {}
-        API.addPost({pet: this.props.animal}, {post: this.state.text})
-        .then(response => {
-            this.setState({
-            redirectTo: '/home'
-            });
-        }).catch(err => console.log(err));
+            console.log(this.props.animal, response.data._id);
+            API.addPetPost(this.props.animal, {posts: response.data._id})
+            .then(response => {
+                this.setState({
+                redirectTo: '/home'
+                });
+            }).catch(err => console.log(err));
         }).catch(err => console.log(err));
     }
-    
+
 
     render() {
 
@@ -87,7 +88,7 @@ class Post extends Component {
                                             } */}
                                             <FileUploader
                                                 accept="image/*"
-                                                name="avatar"
+                                                name="image"
                                                 id="getFile"
                                                 randomizeFilename
                                                 storageRef={firebase.storage().ref('images')}
@@ -107,7 +108,7 @@ class Post extends Component {
                                 
                         </div>
 
-                        <button type="submit" className="btn btn-primary" onClick={this.handleSubmit} >Submit</button>
+                        <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit} >Submit</button>
                     </form>
                 </div>
             </div>
