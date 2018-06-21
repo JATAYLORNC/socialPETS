@@ -44,6 +44,7 @@ class App extends React.Component {
 
   renderPage = () => {
     if (this.state.loggedIn) {
+      console.log(this.state.user);
       return (
         <Router>
           <div>
