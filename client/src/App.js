@@ -59,7 +59,7 @@ class App extends React.Component {
           loggedIn: true,
           user: response.data.user
         });
-        console.log("app.js line 61 -- this.state.user", this.state.user.Pet[0]._id);
+        // console.log("app.js line 61 -- this.state.user", this.state.user.Pet[0]._id);
       }
     });
   };
