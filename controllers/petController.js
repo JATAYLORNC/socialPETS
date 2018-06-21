@@ -40,6 +40,14 @@ export default {
     .catch(err => res.status(422).json(err));
   },
 
+  getPetPosts: (req, res) => {
+    console.log(req.params.id, req.body);
+    Pet.findOne({ _id: req.params.id })
+    .populate('posts')
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
+
 
 
 

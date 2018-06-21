@@ -6,12 +6,11 @@ const Card = (props) => (
   <div className="container-fluid Card mt-3 p-3">
     <div className="cardHeader pb-3">
       <img src="http://via.placeholder.com/40x40" className="img-responsive rounded-circle petImage" alt="Pet" />
-      <span className="ml-3"><strong>Pet Name</strong></span>
+      <span className="ml-3"><strong>{props.name}</strong></span>
     </div>
     <div className="cardBody">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-        incididunt ut labore et dolore magna aliqua. Gravida arcu ac tortor dignissim 
-        convallis aenean et.
+      <img className="image-responsive cardImage" src={props.imageURL[0]} alt="Posted Photo" />
+      <p>{props.posts}
       </p>
     </div>
     <div className="responseBar row">

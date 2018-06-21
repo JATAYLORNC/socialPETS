@@ -32,6 +32,9 @@ export default {
   addPetPost: (pet_id, post_id) => {
     return axios.post(`/api/pet/${pet_id}`, post_id);
   },
+  getPetPosts: (pet_id) => {
+    return axios.get(`/api/pet/${pet_id}`);
+  },
    //signup
    signup: (userData) => {
     return axios.post('api/signup', userData);

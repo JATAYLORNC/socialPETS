@@ -27,38 +27,33 @@ class Post extends Component {
     }
 
     handleUploadSuccess = (filename) => {
-        console.log(filename);
         this.setState({image: filename, progress: 100, isUploading: false});
         firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({imageURL: [...this.state.imageURL, url]}));
         console.log(this.state.imageURL);
     };
 
     handleInputChange = event => {
-        event.preventDefault();
-        console.log("this.props.animal on post.js", this.props.animal);
-
+        event.preventDefault;
+        // const { name, value } = event.target;
         const { value } = event.target;
         this.setState({
         text: value
         });
-        console.log(this.state.text);
     };
 
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log(this.state.imageURL);
-
         API.addPost({
         posts: this.state.text,
         imageURL: this.state.imageURL
         })
         .then(response => {
-            this.ssetState({imageURL: []})
-            console.log(this.props.animal, response.data._id);
+            console.log(response.data._id);
             API.addPetPost(this.props.animal, {posts: response.data._id})
             .then(response => {
+                // this.setState({imageURL: [], text: '', image: '', progress: 0, redirectTo: '/home'});
                 this.setState({
-                redirectTo: '/home'
+                    redirectTo: '/home/'
                 });
             }).catch(err => console.log(err));
         }).catch(err => console.log(err));
@@ -66,6 +61,10 @@ class Post extends Component {
 
 
     render() {
+
+        if (this.state.redirectTo) {
+			return <Redirect to={{ pathname: this.state.redirectTo }} />
+		}
 
         return (
 
