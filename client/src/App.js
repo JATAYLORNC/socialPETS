@@ -16,28 +16,6 @@ class App extends React.Component {
   
   };
 
-  // w
-  //   API.getUser()
-  //     .then(response => {
-  //       console.log(response.data);
-  //       if (!!response.data.user) {
-  //         console.log("THERE IS A USER");
-  //         this.setState({
-  //           loggedIn: true,
-  //           user: response.data.user
-  //         });
-  //         console.log(`loggedIn: ${this.state.loggedIn}`);
-  //         console.log(`${this.state.user.Pet[0].name}`);
-  //       } else {
-  //         this.setState({
-  //           loggedIn: false,
-  //           user: null
-  //         });
-  //       }
-  //     })
-  //     .catch(err => console.dir(err));
-  // };
-
   _logout = event => {
     event.preventDefault();
 
@@ -70,8 +48,8 @@ class App extends React.Component {
         <Router>
           <div>
             <NavbarLogout _logout={this._logout} user={this.state.user} />
-            <Route exact path="/" render={() => <Home pet={this.state.user.Pet[0]._id}  />} />
-            <Route exact path="/home" render={() => <Home pet={this.state.user.Pet[0]._id}  />} />
+            <Route exact path="/" render={() => <Home pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name}  />} />
+            <Route exact path="/home" render={() => <Home pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name}  />} />
             <Route exact path="/login" component={Home} />
             <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id} />} />
             {this.state.user.Pet.map(pet => (
