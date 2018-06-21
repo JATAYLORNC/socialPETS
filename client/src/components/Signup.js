@@ -35,8 +35,10 @@ class Signup extends React.Component {
 				password: this.state.password
 			})
 			.then(response => {
-				console.log(response)
-				if (!response.data.error) {
+        console.log("response.status", response.status);
+        
+        // IF DATA ERROR IS NULL
+				if (response.status == 200) {
 					console.log('Signup was successful')
 					this.setState({
 						redirectTo: '/login'
