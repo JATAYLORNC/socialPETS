@@ -36,13 +36,27 @@ class Signup extends React.Component {
 			})
 			.then(response => {
 				console.log(response)
-				if (!response.data.errmsg) {
+				if (!response.data.error) {
 					console.log('Signup was successful')
 					this.setState({
 						redirectTo: '/login'
 					});
 				} else {
-					console.log('Sign-up error');
+          console.log('Sign-up error');
+          alert("Sign-up error.  Must be a unique email address.")
+
+          this.setState({
+            email: "",
+            password: "",
+            confirmPassword: ""
+					});
+
+          let form = document.getElementById("myForm");
+          form.reset();
+
+
+
+
 				}
 			}).catch(error => {
         console.log("Sign-up server error: ");
@@ -55,7 +69,7 @@ class Signup extends React.Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		}
 		return (
-			<form className="SignupForm mb-5">
+			<form className="SignupForm mb-5" idName="myForm">
 				<h1 className="text-center pt-5 pb-5">Signup Form</h1>
         <div className="row">
           <div className="col-md-4"></div>
