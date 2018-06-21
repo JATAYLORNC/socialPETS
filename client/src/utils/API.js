@@ -35,6 +35,17 @@ export default {
   getPetPosts: (pet_id) => {
     return axios.get(`/api/pet/${pet_id}`);
   },
+  addComment: (commentData) => {
+    console.log(commentData);
+    return axios.post(`/api/comment/`, commentData);
+  },
+  addPostComment: (post_id, comment_id) => {
+    console.log(`Post ID: ${post_id},  Comment ID: ${comment_id}`);
+    return axios.post(`/api/post/${post_id}`, comment_id);
+  },
+  getPostComments: (post_id) => {
+    return axios.get(`/api/post/${post_id}`);
+  },
    //signup
    signup: (userData) => {
     return axios.post('api/signup', userData);

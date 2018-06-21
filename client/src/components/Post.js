@@ -3,7 +3,7 @@ import '../styles/post.css';
 import API from "../utils/API";
 import firebase from "../firebase";
 import FileUploader from 'react-firebase-file-uploader';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 
 class Post extends Component {
@@ -33,7 +33,7 @@ class Post extends Component {
     };
 
     handleInputChange = event => {
-        event.preventDefault;
+        event.preventDefault();
         // const { name, value } = event.target;
         const { value } = event.target;
         this.setState({
@@ -84,9 +84,6 @@ class Post extends Component {
                                             {this.state.isUploading &&
                                             <p>Progress: {this.state.progress}</p>
                                             }
-                                            {/* {this.state.avatarURL &&
-                                                <img src={this.state.avatarURL} />
-                                            } */}
                                             <FileUploader
                                                 accept="image/*"
                                                 name="image"
@@ -115,7 +112,7 @@ class Post extends Component {
                 </div>
             </div>
 
-        )
+        );
     }
 
 }

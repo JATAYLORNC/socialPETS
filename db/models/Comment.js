@@ -7,6 +7,10 @@ const Schema = mongoose.Schema;
 // This is similar to a Sequelize model
 const CommentSchema = new Schema({
   // `body` is of type String
+
+    pet_name: String,
+
+    pet_id: String, 
    
     Comments: String,
  },

@@ -38,7 +38,7 @@ class Signup extends React.Component {
         console.log("response.status", response.status);
         
         // IF DATA ERROR IS NULL
-				if (response.status == 200) {
+				if (response.status === 200) {
 					console.log('Signup was successful')
 					this.setState({
 						redirectTo: '/login'
@@ -71,7 +71,7 @@ class Signup extends React.Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		}
 		return (
-			<form className="SignupForm mb-5" idName="myForm">
+			<form className="SignupForm mb-5" id="myForm">
 				<h1 className="text-center pt-5 pb-5">Signup Form</h1>
         <div className="row">
           <div className="col-md-4"></div>
