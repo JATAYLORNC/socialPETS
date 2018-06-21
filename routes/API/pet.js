@@ -17,8 +17,20 @@ import petController from "../../controllers/petController";
     .route("/pet/:id")
     .post(petController.addPetPost);
 
-    router
-    .route("/pet/:id")
-    .get(petController.getPetPosts);
+  router
+  .route("/pet/:id")
+  .get(petController.getPetPosts);
+
+  router
+  .route("/comment/")
+  .post(petController.addComment);
+
+  router
+  .route("/comment/:id")
+  .post(petController.addPostComment);
+
+  router
+  .route("/post/:id")
+  .get(petController.getPostComments);
 
   export default router;

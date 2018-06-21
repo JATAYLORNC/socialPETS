@@ -46,8 +46,10 @@ class Home extends React.Component {
 										{this.state.posts.map(post => (
 											<Card key={post._id.toString()}
 												name={this.props.name}
+												pet_id={this.props.pet}
 												posts={post.posts}
 												imageURL={post.imageURL}
+												post_id={post._id}
 											/>
 										))}
 									</CardList>
