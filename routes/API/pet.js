@@ -26,7 +26,7 @@ import petController from "../../controllers/petController";
   .post(petController.addComment);
 
   router
-  .route("/comment/:id")
+  .route("/post/:id")
   .post(petController.addPostComment);
 
   router
