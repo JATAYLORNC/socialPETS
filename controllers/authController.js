@@ -15,6 +15,7 @@ export default {
 
   signup: (req, res) => {
     const { firstname, lastname, email, password } = req.body;
+    console.log("authController.js line 18 fired");
     User
       .findOne({ 'email': email }, (err, userMatch) => {
       if (userMatch) {
