@@ -32,7 +32,7 @@ class Comment extends Component {
   handleInputChange = event => {
       event.preventDefault();
 
-      if(event.keyCode == 13){
+      if(event.keyCode === 13){
         this.onCommentSubmit();
       }
 
