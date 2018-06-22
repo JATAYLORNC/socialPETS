@@ -9,6 +9,7 @@ const PostSchema = new Schema({
   // `body` is of type String
     posts: String,
     imageURL: [String],
+    videoURL: [String],
     comment: [{
         type: Schema.Types.ObjectId,
         ref: "Comment"
