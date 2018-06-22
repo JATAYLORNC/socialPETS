@@ -54,7 +54,7 @@ class App extends React.Component {
             <Route exact path="/login" component={Home} />
             <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id} />} />
             {this.state.user.Pet.map(pet => (
-              <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} pet={this.state.user.Pet[0]._id} />} />
+              <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} />} />
             ))}
           </div>
         </Router>
