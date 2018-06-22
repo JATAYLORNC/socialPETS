@@ -1,7 +1,6 @@
 import React from "react";
 import API from "../utils/API";
 import "../styles/home.css";
-// import Card from "./Card";
 import Post from "./Post";
 import Card from "./Card";
 import CardList from "./CardList";
@@ -49,6 +48,7 @@ class Home extends React.Component {
 												pet_id={this.props.pet}
 												posts={post.posts}
 												imageURL={post.imageURL}
+												videoURL={post.videoURL}
 												post_id={post._id}
 											/>
 										))}

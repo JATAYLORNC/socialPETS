@@ -11,25 +11,38 @@ class Post extends Component {
     state = {
         text: "",
         image: '',
+        video: '',
         isUploading: false,
-        progress: 0,
+        imageProgress: 0,
+        videoProgress: 0,
         imageURL: [],
+        videoURL: [],
         redirectTo: null
     }
 
-    handleUploadStart = () => this.setState({isUploading: true, progress: 0});
+    handleImageUploadStart = () => this.setState({isUploading: true, imageProgress: 0});
 
-    handleProgress = (progress) => this.setState({progress});
+    handleVideoUploadStart = () => this.setState({isUploading: true, videoProgress: 0});
+
+    handleImageProgress = (imageProgress) => this.setState({imageProgress});
+
+    handleVideoProgress = (videoProgress) => this.setState({videoProgress});
 
     handleUploadError = (error) => {
         this.setState({isUploading: false});
         console.error(error);
     }
 
-    handleUploadSuccess = (filename) => {
-        this.setState({image: filename, progress: 100, isUploading: false});
+    handlePhotoUploadSuccess = (filename) => {
+        this.setState({image: filename, imageProgress: 100, isUploading: false});
         firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({imageURL: [...this.state.imageURL, url]}));
         console.log(this.state.imageURL);
+    };
+
+    handleVideoUploadSuccess = (filename) => {
+        this.setState({video: filename, progress: 100, isUploading: false});
+        firebase.storage().ref('video').child(filename).getDownloadURL().then(url => this.setState({videoURL: [...this.state.videoURL, url]}));
+        console.log(this.state.videoURL);
     };
 
     handleInputChange = event => {
@@ -45,7 +58,8 @@ class Post extends Component {
         event.preventDefault();
         API.addPost({
         posts: this.state.text,
-        imageURL: this.state.imageURL
+        imageURL: this.state.imageURL,
+        videoURL: this.state.videoURL
         })
         .then(response => {
             console.log(response.data._id);
@@ -79,26 +93,48 @@ class Post extends Component {
                                 <ul className="nav">
                                     <li className="nav-item" id="upload" >
                                         <div className="file">
-                                            <span className="mr-2">Upload Image or Video</span>
+                                            <span className="mr-2">Add Photo</span>
                                             
                                             {this.state.isUploading &&
-                                            <p>Progress: {this.state.progress}</p>
+                                            <p>Progress: {this.state.imageProgress}</p>
                                             }
                                             <FileUploader
                                                 accept="image/*"
                                                 name="image"
-                                                id="getFile"
+                                                id="getPhoto"
                                                 multiple
                                                 randomizeFilename
                                                 storageRef={firebase.storage().ref('images')}
-                                                onUploadStart={this.handleUploadStart}
+                                                onUploadStart={this.handleImageUploadStart}
                                                 onUploadError={this.handleUploadError}
-                                                onUploadSuccess={this.handleUploadSuccess}
-                                                onProgress={this.handleProgress}
+                                                onUploadSuccess={this.handlePhotoUploadSuccess}
+                                                onProgress={this.handleImageProgress}
                                             />
                                         </div>
                                     </li>
-            
+                                    
+                                    <li className="nav-item" id="upload" >
+                                        <div className="file">
+                                            <span className="mr-2">Add Video</span>
+                                            
+                                            {this.state.isUploading &&
+                                            <p>Progress: {this.state.videoProgress}</p>
+                                            }
+                                            <FileUploader
+                                                accept="video/*"
+                                                name="video"
+                                                id="getVideo"
+                                                multiple
+                                                randomizeFilename
+                                                storageRef={firebase.storage().ref('video')}
+                                                onUploadStart={this.handleVideoUploadStart}
+                                                onUploadError={this.handleUploadError}
+                                                onUploadSuccess={this.handleVideoUploadSuccess}
+                                                onProgress={this.handleVideoProgress}
+                                            />
+                                        </div>
+                                    </li>
+
                                 </ul>
 
                                 <div>
