@@ -1,9 +1,29 @@
 import React from "react";
+import API from "../utils/API";
 import "../styles/petprofile.css";
 import Card from "./Card";
 import Post from "./Post";
+import CardList from "./CardList";
 
 class PetProfile extends React.Component {
+
+  state= {
+    posts: []
+  }
+
+  componentDidMount = () => {
+		this.GetPetPosts();
+	}	
+	
+	GetPetPosts = () => {
+		API.getPetPosts(this.props._id).then(response => {
+			this.setState({
+				posts: response.data.posts
+			});
+		})
+		.catch(err => console.log(err));
+  }
+  
   addProfileImages = () => {
     // needs code to add the main profile image and the background profile image.
   };
@@ -39,26 +59,31 @@ class PetProfile extends React.Component {
           <div className="col-sm-6">
             <div className="row w-100">
               <div className="col-sm-12">
-                <Post animal = {this.props.pet}/>
+                <Post animal = {this.props._id}/>
               </div>
             </div>
+            <div className="row d-flex justify-content-center pb-5">
+							<div className="col-sm-12">
+								{this.state.posts.length ? (
+									<CardList>
+										{this.state.posts.map(post => (
+											<Card key={post._id.toString()}
+												name={this.props.name}
+												pet_id={this.props._id}
+												posts={post.posts}
+												imageURL={post.imageURL}
+												post_id={post._id}
+											/>
+										))}
+									</CardList>
+								) : (
+									<h3>No Results to Display</h3>
+								)}
+							</div>
+						</div>
           </div>
           <div className="col-sm-3" />
         </div>
-
-        {/* <!-- social activity CARDS --> */}
-        <div className="row">
-        <div className="col-sm-3" />
-          <div className="col-sm-6">
-            <div className="row">
-              <div className="col-sm-12"><Card /></div>
-            </div>
-          </div>
-          <div className="col-sm-3" />
-        </div>
-
-        {/* <!-- right column --> */}
-        <div className="col-md-3" />
       </div>
     );
   }
