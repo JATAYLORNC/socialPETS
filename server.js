@@ -6,7 +6,7 @@ import session from "express-session";
 import dbConnection from "./db";
 import passport from "./passport";
 import routes from "./routes";
-require("dotenv").config();
+import "dotenv/config";
 import path from "path";
 import db from "./db/models";
 
