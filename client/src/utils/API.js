@@ -46,6 +46,9 @@ export default {
   getPostComments: (post_id) => {
     return axios.get(`/api/post/${post_id}`);
   },
+  updateLikes: (post_id, likes) => {
+    return axios.post(`/api/likes/${post_id}`, likes);
+  },
    //signup
    signup: (userData) => {
     return axios.post('api/signup', userData);

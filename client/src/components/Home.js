@@ -8,7 +8,7 @@ import CardList from "./CardList";
 class Home extends React.Component {
 
 	state= {
-		posts: []
+		posts: [],
 	}
 
 	componentDidMount = () => {
@@ -18,12 +18,11 @@ class Home extends React.Component {
 	GetPetPosts = () => {
 		API.getPetPosts(this.props.pet).then(response => {
 			this.setState({
-				posts: response.data.posts
+				posts: response.data.posts,
 			});
 		})
 		.catch(err => console.log(err));
-	}
-	
+	}	
 
 	render () {
 		
@@ -50,6 +49,7 @@ class Home extends React.Component {
 												imageURL={post.imageURL}
 												videoURL={post.videoURL}
 												post_id={post._id}
+												likes={post.likes}
 											/>
 										))}
 									</CardList>
