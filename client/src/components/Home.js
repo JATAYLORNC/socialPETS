@@ -12,13 +12,13 @@ class Home extends React.Component {
 	}
 
 	componentDidMount = () => {
-		this.GetPetPosts();
+		this.GetAllPosts();
 	}	
 	
-	GetPetPosts = () => {
-		API.getPetPosts(this.props.pet).then(response => {
+	GetAllPosts = () => {
+		API.getAllPosts().then(response => {
 			this.setState({
-				posts: response.data.posts,
+				posts: response.data,
 			});
 		})
 		.catch(err => console.log(err));
@@ -34,7 +34,7 @@ class Home extends React.Component {
 					<div className="col-sm-6" id="cardBlock">
 						<div className="row d-flex justify-content-center pt-5 pb-5">
 							<div className="col-sm-12">
-								<Post animal = {this.props.pet} />
+								<Post animal = {this.props.pet} name={this.props.name} />
 							</div>
 						</div>
 						<div className="row d-flex justify-content-center pb-5">
@@ -43,7 +43,7 @@ class Home extends React.Component {
 									<CardList>
 										{this.state.posts.map(post => (
 											<Card key={post._id.toString()}
-												name={this.props.name}
+												name={post.petName}
 												pet_id={this.props.pet}
 												posts={post.posts}
 												imageURL={post.imageURL}

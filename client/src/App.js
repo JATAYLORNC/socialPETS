@@ -19,11 +19,9 @@ class App extends React.Component {
 
 	getPets = () => {
 		API.getPets().then(response => {
-      console.log(response.data);
 			this.setState({
 				pets: response.data,
       });
-      console.log(this.state.pets);
 		})
 		.catch(err => console.log(err));
 	}	
@@ -66,7 +64,7 @@ class App extends React.Component {
             <Route exact path="/login" component={Home} />
             <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id} />} />
             {this.state.pets.map(pet => (
-              <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} />} />
+              <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} userPets={this.state.user.Pet} />} />
             ))}
           </div>
         </Router>

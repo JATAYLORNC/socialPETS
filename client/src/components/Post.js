@@ -58,6 +58,7 @@ class Post extends Component {
         event.preventDefault();
         API.addPost({
         posts: this.state.text,
+        petName: this.props.name,
         imageURL: this.state.imageURL,
         videoURL: this.state.videoURL
         })

@@ -8,6 +8,7 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   // `body` is of type String
     posts: String,
+    petName: String,
     imageURL: [String],
     videoURL: [String],
     likes: { type: Number, default: 0 },

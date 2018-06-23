@@ -80,6 +80,13 @@ export default {
       .catch(err => res.status(422).json(err));
   },
 
+  getAllPosts: (req, res) => {
+    Post
+      .find(req.query)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
   updateLikes: (req, res) => {
     Post
     .findOneAndUpdate({ _id: req.params.id }, req.body)
