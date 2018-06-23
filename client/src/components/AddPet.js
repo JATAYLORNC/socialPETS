@@ -17,7 +17,8 @@ class AddPet extends React.Component {
     favoriteToys: "",
     rescue: "",
     specialTalent: "",
-    redirectTo: null
+    redirectTo: null,
+    path: ""
   };
 
   // handle any changes to the input fields
@@ -47,13 +48,26 @@ class AddPet extends React.Component {
       specialTalent: this.state.specialTalent
     })
     .then(response => {
-      console.log(this);
+      console.log("this on line 50 of AddPet.js", this);
+      console.log("this.props._id on line 51 of AddPets.js", this.props._id);
       API.addUserPet(this.props._id, {Pet: response.data._id})
+      // console.log("response.data._id", response.data._id) 
       .then(response => {
-        this.setState({
-          redirectTo: '/home'
-        });
+        
+          // if (err) {
+          //   return done(err)
+          // }
+
+        this.props.getUser();
+
+
+        // this.setState({
+        //   redirectTo: '/home'
+        //   // redirectTo: '/profile/${this.props._id}'
+        // });
       }).catch(err => console.log(err));
+
+
     }).catch(err => console.log(err));
   }
 

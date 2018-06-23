@@ -22,6 +22,11 @@ import petController from "../../controllers/petController";
   .get(petController.getPetPosts);
 
   router
+  .route("/user/:id")
+  .get(petController.getUser);
+
+
+  router
   .route("/comment/")
   .post(petController.addComment);
 
