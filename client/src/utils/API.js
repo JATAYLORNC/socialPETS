@@ -14,7 +14,7 @@ export default {
   },
   // get the user with the given id
   getUser: (id) => {
-    return axios.get('/api/user');
+    return axios.get(`/api/user/${id}`);
   },
 
   getPets: () => {

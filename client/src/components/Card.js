@@ -54,7 +54,7 @@ class Card extends React.Component {
               <img key={image} className="image-responsive cardImage" src={image} alt={this.props.name} />
             ))}            
           </div>
-          
+{/*           
             {this.props.videoURL[0] ? 
               <div align="center" className="embed-responsive embed-responsive-16by9">
                 <video className="embed-responsive-item" controls>
@@ -64,7 +64,7 @@ class Card extends React.Component {
                   Your browser does not support HTML5 video.
                 </video>
               </div>
-            : ''}
+            : ''} */}
           <p>{this.props.posts}
           </p>
         </div>

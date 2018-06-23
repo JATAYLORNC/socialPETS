@@ -34,7 +34,7 @@ const NavbarLogout = props => (
       <div className="col-sm-4 collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav d-flex justify-content-start align-items-center">
           <li className="nav-item mr-2">
-            <Link className="nav-link text-dark menuText" to="/home" id="home">
+            <Link className="nav-link text-dark menuText" id="profile" to="/home" id="home">
               Home
             </Link>
           </li>
@@ -50,6 +50,7 @@ const NavbarLogout = props => (
             </Link>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               {props.user.Pet.map(pet => (
+                console.log("a new link"),
                 <Link key={pet._id.toString()} className="dropdown-item" to={`/profile/${pet._id}`}>
                   {pet.name}
                 </Link>

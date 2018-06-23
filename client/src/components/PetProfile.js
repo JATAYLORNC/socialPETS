@@ -73,7 +73,10 @@ class PetProfile extends React.Component {
           </div>
             {/* <!-- POST component --> */}
           <div className="row">
-            <div className="col-sm-3" />
+            <div className="col-sm-3" id="petProfileLeft">
+              <h3>{this.props.name}</h3>
+              <h5>{this.props.breed}</h5>
+            </div>
             <div className="col-sm-6">
               <div className="row w-100">
                 <div className="col-sm-12">

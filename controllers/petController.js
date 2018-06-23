@@ -18,6 +18,7 @@ export default {
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+      console.log("petController.js req.body line 19", req.body);
   },
 
   addUserPet: (req, res) => {
@@ -71,6 +72,22 @@ export default {
     .populate('comment')
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
+  },
+  
+  getUser: (req, res) => {
+    
+    User.findOne({_id: req.params.id})
+    .populate('Pet')
+    .exec(err, dbModel => { 
+      
+      if (err) {
+				return done(err)
+			}
+          
+      res.json(dbModel)
+    })
+    
+    // .catch(err => res.status(422).json(err));
   },
 
   getPets: (req, res) => {
