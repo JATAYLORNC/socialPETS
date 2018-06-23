@@ -24,6 +24,8 @@ const UserSchema = new Schema({
     type: String,
     required: false
   },
+  friendsId: [Number],
+  pendingFriendsId: [Number],
   // `Pet` is an object that stores a Pet ID
   // The ref property links the ObjectId to the Pet model
   // This allows us to populate the user account with Pet information
