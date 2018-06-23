@@ -36,6 +36,8 @@ class Card extends React.Component {
   }
   
   render () {
+
+    console.log(this.props.pet_id);
 		
 		return (
 

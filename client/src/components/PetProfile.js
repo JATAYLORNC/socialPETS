@@ -64,7 +64,7 @@ class PetProfile extends React.Component {
                   <div className="jumbotron">
                     <h1 className="display-4">{this.props.name}</h1>
                     <img className="img-thumbnail" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
-                    <button className="btn btn-secondary btn-sm FriendRequestAdd" type="button"><i className="fas fa-user-friends mr-1"></i>Add Friend</button>
+                    {/* <button className="btn btn-secondary btn-sm FriendRequestAdd" type="button"><i className="fas fa-user-friends mr-1"></i>Add Friend</button> */}
                   </div>
                 </div>
               </div>
@@ -117,7 +117,16 @@ class PetProfile extends React.Component {
             {/* <!-- Main Content column --> */}
             <div className="col-sm-6">
               {/* <!-- jumbotron for profile header --> */}
-
+              
+              <div className="row">
+                <div className="col-sm-12">
+                  <div className="jumbotron">
+                    <h1 className="display-4">{this.props.name}</h1>
+                    <img className="img-thumbnail" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
+                    {/* <button className="btn btn-secondary btn-sm FriendRequestAdd" type="button"><i className="fas fa-user-friends mr-1"></i>Add Friend</button> */}
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="col-sm-3" />
           </div>
@@ -125,11 +134,6 @@ class PetProfile extends React.Component {
           <div className="row">
             <div className="col-sm-3" />
             <div className="col-sm-6">
-              <div className="row w-100">
-                <div className="col-sm-12">
-                  <Post animal={this.props._id} name={this.props.name} />
-                </div>
-              </div>
               <div className="row d-flex justify-content-center pb-5">
                 <div className="col-sm-12">
                   {this.state.posts.length ? (

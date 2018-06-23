@@ -9,6 +9,7 @@ const PostSchema = new Schema({
   // `body` is of type String
     posts: String,
     petName: String,
+    pet_id: String,
     imageURL: [String],
     videoURL: [String],
     likes: { type: Number, default: 0 },

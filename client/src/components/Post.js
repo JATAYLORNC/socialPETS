@@ -59,6 +59,7 @@ class Post extends Component {
         API.addPost({
         posts: this.state.text,
         petName: this.props.name,
+        pet_id: this.props.animal,
         imageURL: this.state.imageURL,
         videoURL: this.state.videoURL
         })
