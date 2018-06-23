@@ -13,8 +13,20 @@ class App extends React.Component {
   state = {
     loggedIn: false,
     user: null,
-  
+    pets: [] 
   };
+
+
+	getPets = () => {
+		API.getPets().then(response => {
+      console.log(response.data);
+			this.setState({
+				pets: response.data,
+      });
+      console.log(this.state.pets);
+		})
+		.catch(err => console.log(err));
+	}	
 
   _logout = event => {
     event.preventDefault();
@@ -30,6 +42,7 @@ class App extends React.Component {
   };
 
   _login = (email, password) => {
+    this.getPets();
     API.login(email, password).then(response => {
       if (response.status === 200) {
         // update the state
@@ -44,7 +57,6 @@ class App extends React.Component {
 
   renderPage = () => {
     if (this.state.loggedIn) {
-      console.log(this.state.user);
       return (
         <Router>
           <div>
@@ -53,7 +65,7 @@ class App extends React.Component {
             <Route exact path="/home" render={() => <Home pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name}  />} />
             <Route exact path="/login" component={Home} />
             <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id} />} />
-            {this.state.user.Pet.map(pet => (
+            {this.state.pets.map(pet => (
               <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} />} />
             ))}
           </div>

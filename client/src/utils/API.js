@@ -16,6 +16,11 @@ export default {
   getUser: (id) => {
     return axios.get('/api/user');
   },
+
+  getPets: () => {
+    return axios.get('/api/pets');
+  },
+
   //post new pet data
   addPet: (petData) => {
     return axios.post('/api/addpet', petData);
