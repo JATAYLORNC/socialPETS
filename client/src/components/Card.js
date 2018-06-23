@@ -31,6 +31,7 @@ class Card extends React.Component {
             likeCount: response.data.likes
           })
       }).catch(err => console.log(err));
+    }
   }
   
   render () {
