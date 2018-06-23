@@ -6,7 +6,8 @@ import API from "../utils/API";
 class Card extends React.Component {
 
   state= {
-    likeCount: 0
+    likeCount: 0,
+    liked: false
   }
 
   componentDidMount = () => {
@@ -16,17 +17,21 @@ class Card extends React.Component {
 	}	
 
   incrementLikeCount = (post_id, likes) => {
-		let likeCount=likes + 1;
-
-		API.updateLikes(post_id, {
-			likes: likeCount
-			})
-			.then(response => {
+    if(this.state.liked === false) {
+      let likeCount=likes + 1;
+      this.setState({
+        liked: true
+      });
+      API.updateLikes(post_id, {
+        likes: likeCount
+      })
+      .then(response => {
           console.log(response.data);
           this.setState({
             likeCount: response.data.likes
           })
-			}).catch(err => console.log(err));
+      }).catch(err => console.log(err));
+    }
   }
   
   render () {
