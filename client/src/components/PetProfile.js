@@ -64,6 +64,9 @@ class PetProfile extends React.Component {
             </div>
             <div className="row d-flex justify-content-center pb-5">
 							<div className="col-sm-12">
+
+
+
 								{this.state.posts.length ? (
 									<CardList>
 										{this.state.posts.map(post => (
@@ -71,8 +74,10 @@ class PetProfile extends React.Component {
 												name={this.props.name}
 												pet_id={this.props._id}
 												posts={post.posts}
-												imageURL={post.imageURL}
-												post_id={post._id}
+                        imageURL={post.imageURL}
+                        videoURL={post.videoURL}
+                        post_id={post._id}
+                        likes={post.likes}
 											/>
 										))}
 									</CardList>
