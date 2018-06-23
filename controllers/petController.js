@@ -73,6 +73,13 @@ export default {
     .catch(err => res.status(422).json(err));
   },
 
+  getPets: (req, res) => {
+    Pet
+      .find(req.query)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
   updateLikes: (req, res) => {
     Post
     .findOneAndUpdate({ _id: req.params.id }, req.body)

@@ -1,3 +1,4 @@
+
 import express from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
@@ -6,9 +7,11 @@ import session from "express-session";
 import dbConnection from "./db";
 import passport from "./passport";
 import routes from "./routes";
-import "dotenv/config";
+import dotenv from "dotenv";
 import path from "path";
 import db from "./db/models";
+
+dotenv.config();
 
 // Initialize Express
 const app = express();

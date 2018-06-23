@@ -37,4 +37,8 @@ import petController from "../../controllers/petController";
   .route("/likes/:id")
   .post(petController.updateLikes);
 
+  router
+  .route("/pets")
+  .get(petController.getPets);
+
   export default router;

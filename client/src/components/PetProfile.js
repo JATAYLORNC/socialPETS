@@ -47,6 +47,7 @@ class PetProfile extends React.Component {
                 <div className="jumbotron">
                   <h1 className="display-4">{this.props.name}</h1>
                   <img className="img-thumbnail" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
+                  <button className="btn btn-secondary btn-sm FriendRequestAdd" type="button"><i className="fas fa-user-friends mr-1"></i>Add Friend</button>
                 </div>
               </div>
             </div>
