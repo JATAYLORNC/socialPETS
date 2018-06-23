@@ -41,4 +41,8 @@ import petController from "../../controllers/petController";
   .route("/pets")
   .get(petController.getPets);
 
+  router
+  .route("/posts")
+  .get(petController.getAllPosts);
+
   export default router;

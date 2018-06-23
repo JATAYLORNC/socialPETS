@@ -49,7 +49,7 @@ class Card extends React.Component {
         <div className="cardBody">
           <div>
           {this.props.imageURL.map(image => (
-              <img className="image-responsive cardImage" src={image} alt={this.props.name} />
+              <img key={image} className="image-responsive cardImage" src={image} alt={this.props.name} />
             ))}            
           </div>
           

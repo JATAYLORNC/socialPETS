@@ -20,7 +20,9 @@ export default {
   getPets: () => {
     return axios.get('/api/pets');
   },
-
+  getAllPosts: () => {
+    return axios.get('/api/posts');
+  },
   //post new pet data
   addPet: (petData) => {
     return axios.post('/api/addpet', petData);
