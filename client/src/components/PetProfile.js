@@ -13,6 +13,10 @@ class PetProfile extends React.Component {
 
   }
 
+  getPetInfo = () => {
+    console.log("this.props line 17 of PetProfile", this.props);
+  }
+
   componentDidMount = () => {
     this.GetPetPosts();
     this.setUserPetIds();
@@ -49,11 +53,15 @@ class PetProfile extends React.Component {
   render() {
 
     if(this.state.userPetIds.includes(this.props._id)) {
+      // console.log("this.props on line 52 pf PetProfile", this.props)
       return (
         <div className="PetProfile">
           <div className="row">
             {/* <!-- left column --> */}
-            <div className="col-sm-3" />
+            <div className="col-sm-3">
+                
+            </div>
+            
 
             {/* <!-- Main Content column --> */}
             <div className="col-sm-6">
@@ -74,8 +82,8 @@ class PetProfile extends React.Component {
             {/* <!-- POST component --> */}
           <div className="row">
             <div className="col-sm-3" id="petProfileLeft">
-              <h3>{this.props.name}</h3>
-              <h5>{this.props.breed}</h5>
+                    
+              
             </div>
             <div className="col-sm-6">
               <div className="row w-100">
@@ -105,7 +113,13 @@ class PetProfile extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col-sm-3" />
+            <div className="col-sm-3" style={{background: 'pink', width: '200px', height: '300px', position: 'fixed'}}>
+                <h1>{this.props.name}</h1>
+                    <h5>Breed: {this.props.breed}</h5>
+                    <h5>Age: {this.props.age}</h5>
+                    <h5>Gender: {this.props.gender}</h5>
+                    <h5>Favorite Toys: {this.props.toys}</h5>
+            </div>
           </div>
         </div>
       );
