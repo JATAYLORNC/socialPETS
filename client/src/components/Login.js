@@ -37,10 +37,10 @@ class Login extends React.Component {
           <tbody>
             <tr>
               <td>
-                <label htmlFor="inputUsername" className="text-white"><strong>E-Mail:</strong></label>
+                <label htmlFor="inputUsername" className="text-dark"><strong>E-Mail:</strong></label>
               </td>
               <td>
-                <label htmlFor="inputPassword" className="text-white"><strong>Password:</strong></label>
+                <label htmlFor="inputPassword" className="text-dark"><strong>Password:</strong></label>
               </td>
             </tr>
             <tr>

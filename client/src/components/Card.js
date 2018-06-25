@@ -51,7 +51,7 @@ class Card extends React.Component {
         <div className="cardBody">
           <div>
           {this.props.imageURL.map(image => (
-              <img key={image} className="image-responsive cardImage" src={image} alt={this.props.name} />
+              <img key={image} className="image-responsive cardImage mt-3" src={image} alt={this.props.name} />
             ))}            
           </div>
 {/*           
@@ -65,7 +65,7 @@ class Card extends React.Component {
                 </video>
               </div>
             : ''} */}
-          <p>{this.props.posts}
+          <p className="mt-3">{this.props.posts}
           </p>
         </div>
         <div className="responseBar row">

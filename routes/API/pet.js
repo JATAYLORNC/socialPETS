@@ -5,6 +5,10 @@ import petController from "../../controllers/petController";
     .route("/addpet")
     .post(petController.addPet);
 
+    router
+    .route("/finduser")
+    .post(petController.finduser);
+
   router
     .route("/user/:id")
     .post(petController.addUserPet);
@@ -24,7 +28,6 @@ import petController from "../../controllers/petController";
   router
   .route("/user/:id")
   .get(petController.getUser);
-
 
   router
   .route("/comment/")

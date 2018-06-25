@@ -23,6 +23,11 @@ export default {
   getAllPosts: () => {
     return axios.get('/api/posts');
   },
+  findUser: (userData) => {
+    console.log("firstname: ", userData.firstname);
+    console.log("lastname: ", userData.lastname);
+    return axios.post('/api/finduser', userData);
+  },
   //post new pet data
   addPet: (petData) => {
     return axios.post('/api/addpet', petData);
