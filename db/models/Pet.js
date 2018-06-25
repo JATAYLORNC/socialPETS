@@ -26,9 +26,7 @@ const PetSchema = new Schema({
   posts: [{
     type: Schema.Types.ObjectId,
     ref: "Post"
-  }],
-  friendsId: [Number],
-  pendingFriendsId: [Number],
+  }]
 },
   {timestamps: true});
 

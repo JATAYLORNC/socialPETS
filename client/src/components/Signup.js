@@ -29,8 +29,8 @@ class Signup extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault();
    API.signup({
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
+        firstname: this.state.firstname.toLowerCase(),
+        lastname: this.state.lastname.toLowerCase(),
 				email: this.state.email,
 				password: this.state.password
 			})

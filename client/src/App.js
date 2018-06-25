@@ -14,9 +14,9 @@ class App extends React.Component {
   state = {
     loggedIn: false,
     user: null,
-    pets: [] 
+    pets: [], 
+    searchResults: []
   };
-
 
 	getPets = () => {
 		API.getPets().then(response => {
@@ -57,9 +57,11 @@ class App extends React.Component {
 
   getUser = () => {
 		API.getUser(this.state.user._id).then(response => {
+      console.log(response.data);
 			this.setState({
-        user: response.data.user
-			});
+        user: response.data
+      });
+      console.log(this.state.user);
 		})
 		.catch(err => console.log(err));
 	}	
@@ -75,7 +77,7 @@ class App extends React.Component {
             {!this.state.user.Pet[0] ? <Route exact path="/" render={() => <Home />} /> : <Route exact path="/" render={() => <Home pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name}  />} />}
             {!this.state.user.Pet[0] ? <Route exact path="/home" render={() => <Home />} /> : <Route exact path="/home" render={() => <Home pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name}  />} />}
             {!this.state.user.Pet[0] ? <Route exact path="/login" render={() => <Home />} /> : <Route exact path="/login" render={() => <Home pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name}  />} />}
-            <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id}  getUser={this.getUser.bind(isThisWeek)} />} />
+            <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id}  getUser={this.getUser.bind(this)} getPets={this.getPets.bind(this)} />} />
             {this.state.pets.map(pet => (
               <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} breed={pet.breed} age={pet.age} gender={pet.gender} size={pet.size} toys={pet.favoriteToys}  userPets={this.state.user.Pet} />} />
             ))}
