@@ -113,12 +113,12 @@ class PetProfile extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col-sm-3" style={{background: 'pink', width: '200px', height: '300px', position: 'fixed'}}>
-                <h1>{this.props.name}</h1>
-                    <h5>Breed: {this.props.breed}</h5>
-                    <h5>Age: {this.props.age}</h5>
-                    <h5>Gender: {this.props.gender}</h5>
-                    <h5>Favorite Toys: {this.props.toys}</h5>
+            <div className="col-sm-3" style={{background: 'pink', border: '10px solid black', width: '250px', margin: '40px', position: 'fixed'}}>
+                <h4 className="pinkBox">{this.props.name}</h4>
+                    <p>Breed: {this.props.breed}</p>
+                    <p>Age: {this.props.age}</p>
+                    {/* <p>Gender: {this.props.gender}</p> */}
+                    <p>Favorite Toys: {this.props.toys}</p>
             </div>
           </div>
         </div>

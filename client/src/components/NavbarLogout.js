@@ -29,6 +29,7 @@ class NavbarLogout extends React.Component {
 
   // handle any changes to the input fields
   handleInputChange = event => {
+    console.log("this.props", this.props);
     // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
 
@@ -109,10 +110,11 @@ class NavbarLogout extends React.Component {
               </li>
             </ul>
           </div>
-          <div className="col-sm-1">
-            <button className="btn btn-sm btn-dark ml-2 menuButton" onClick={this.props._logout}>
-              Log Out
-            </button>
+          <div className="col-sm-1" style={{text_align: 'center', margin: 'auto'}}>
+            <div>Hello, {this.props.user.firstname}!</div>
+
+            <button className="btn btn-sm btn-dark ml-2 menuButton" onClick={this.props._logout} style={{display: 'block', margin: 'auto'}}>Log Out</button>
+            
           </div>
         </div>
       </nav>
