@@ -5,6 +5,7 @@ import Post from "./Post";
 import Card from "./Card";
 import CardList from "./CardList";
 import HomeRight from "./HomeRight";
+import HomeLeft from "./HomeLeft";
 
 class Home extends React.Component {
 
