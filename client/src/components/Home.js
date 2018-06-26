@@ -26,11 +26,13 @@ class Home extends React.Component {
 
 	render () {
 		
+		
 		return (
 
 			<div className="Home">
 				<div className="row">
-					<div className="col-sm-3"></div>
+					<div className="col-sm-3">
+					</div>
 					<div className="col-sm-6" id="cardBlock">
 						<div className="row d-flex justify-content-center pt-5 pb-5">
 							<div className="col-sm-12">
