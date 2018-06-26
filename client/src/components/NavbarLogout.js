@@ -2,15 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/navbar.css";
 
-class NavbarLogout extends React.Component {
+const NavbarLogout = (props) => (
 
-	// state= {
-  //   search_text: '',
-  // }
-  
-  render ()  {
-
-    return (
       <nav className="navbar navbar-expand-md w-100" id="myNavbar">
         <div className="container-fluid row d-flex align-items-center">
           <div className="col-sm-3">
@@ -37,11 +30,11 @@ class NavbarLogout extends React.Component {
                 id="search" 
                 type="search" 
                 placeholder="Search"
-                value={this.props.search_text}
-                onChange={this.props.handleInputChange} 
+                value={props.search_text}
+                onChange={props.handleInputChange} 
                 aria-label="Search" />
               <div className="input-group-append">
-                <span className="input-group-text btn bg-dark text-white" type="button" onClick={this.props.search}>
+                <span className="input-group-text btn bg-dark text-white" type="button" onClick={props.search}>
                   <i className="fas fa-search" />
                 </span>
               </div>
@@ -65,7 +58,7 @@ class NavbarLogout extends React.Component {
                   Profile
                 </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {this.props.user.Pet.map(pet => (
+                  {props.user.Pet.map(pet => (
                     <Link key={pet._id.toString()} className="dropdown-item" to={`/profile/${pet._id}`}>
                       {pet.name}
                     </Link>
@@ -90,18 +83,22 @@ class NavbarLogout extends React.Component {
           <div className="col-sm-1" style={{text_align: 'center', margin: 'auto', width: '300px'}}>
            
               <div style={{color: 'black', font_weight: 'bold', width: '150px', height: '90px',padding: '20px'}}>
-                    <div style={{textAlign: "center", padding: 'auto', font_size: '25px' }}>Hi, {this.props.user.firstname}!
-                        <button  onClick={this.props._logout} style={{display: 'block', margin: 'auto', float: 'center', background: 'black', color: 'white', width: '80px', height: '30px'}}>Log Out</button>
+                    <div style={{textAlign: "center", padding: 'auto', font_size: '25px' }}>Hi, {props.user.firstname}!
+                        <button  onClick={props._logout} style={{display: 'block', margin: 'auto', float: 'center', background: 'black', color: 'white', width: '80px', height: '30px', cursor: 'pointer'}}>Log Out</button>
 
                     </div>
               </div>
             
-            
+              {/* <div className="col-sm-1" style={{text_align: 'center', margin: 'auto'}}>
+                <div>Hello, {props.user.firstname}!</div>
+
+                <button className="btn btn-sm btn-dark ml-2 menuButton" onClick={props._logout} style={{display: 'block', margin: 'auto'}}>Log Out</button> */}
+
+
+
           </div>
         </div>
       </nav>
     );
-  }
-}
 
 export default NavbarLogout;

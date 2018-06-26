@@ -4,14 +4,14 @@ import "../styles/petprofile.css";
 import Card from "./Card";
 import Post from "./Post";
 import CardList from "./CardList";
+import ProfileLeft from "./ProfileLeft";
+import ProfileRight from "./ProfileRight";
 
 class PetProfile extends React.Component {
 
   state= {
     posts: [],
     userPetIds: []
-    
-
   }
 
   getPetInfo = () => {
@@ -60,10 +60,10 @@ class PetProfile extends React.Component {
           <div className="row">
             {/* <!-- left column --> */}
             <div className="col-sm-3">
-                
+              {/* <!-- pet info --> */}
+              <ProfileLeft name={this.props.name} breed={this.props.breed} age={this.props.age} gender={this.props.gender} toys={this.props.toys} />
             </div>
             
-
             {/* <!-- Main Content column --> */}
             <div className="col-sm-6">
               {/* <!-- jumbotron for profile header --> */}
@@ -77,21 +77,12 @@ class PetProfile extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-sm-3" />
-          </div>
-            {/* <!-- POST component --> */}
-          <div className="row">
-            <div className="col-sm-3" id="petProfileLeft">
-                    
-              
-            </div>
-            <div className="col-sm-6">
-              <div className="row w-100">
+              <div className="row">
                 <div className="col-sm-12">
                   <Post animal={this.props._id} name={this.props.name} />
                 </div>
               </div>
+              {/* <!-- POST component --> */}
               <div className="row d-flex justify-content-center pb-5">
                 <div className="col-sm-12">
                   {this.state.posts.length ? (
@@ -114,12 +105,8 @@ class PetProfile extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col-sm-3" style={{background: 'pink', border: '10px solid black', width: '250px', margin: '40px', position: 'fixed'}}>
-                <h4 className="pinkBox">{this.props.name}</h4>
-                    <p>Breed: {this.props.breed}</p>
-                    <p>Age: {this.props.age}</p>
-                    {/* <p>Gender: {this.props.gender}</p> */}
-                    <p>Favorite Toys: {this.props.toys}</p>
+            <div className="col-sm-3">
+              <ProfileRight />
             </div>
           </div>
         </div>
@@ -130,34 +117,26 @@ class PetProfile extends React.Component {
         <div className="PetProfile">
           <div className="row">
             {/* <!-- left column --> */}
-            <div className="col-sm-3" />
-
+            <div className="col-sm-3">
+              {/* <!-- pet info --> */}
+              <ProfileLeft name={this.props.name} breed={this.props.breed} age={this.props.age} gender={this.props.gender} toys={this.props.toys} />
+            </div>
             {/* <!-- Main Content column --> */}
             <div className="col-sm-6">
               {/* <!-- jumbotron for profile header --> */}
-              
               <div className="row">
                 <div className="col-sm-12">
                   <div className="jumbotron">
                     <h1 className="display-4">{this.props.name}</h1>
-
-
                     <img className="img-thumbnail" type="file" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
-                    
-                   
-
-     
+                    <div className= "d-flex justify-content-end mr5">
+                      <button className="btn btn-secondary btn-sm FriendRequestAdd" type="button"><i className="fas fa-user-friends mr-1"></i>Follow</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-sm-3" />
-          </div>
-            {/* <!-- POST component --> */}
-          <div className="row">
-            <div className="col-sm-3" />
-            <div className="col-sm-6">
               <div className="row d-flex justify-content-center pb-5">
+                {/* <!-- POST component --> */}
                 <div className="col-sm-12">
                   {this.state.posts.length ? (
                     <CardList>
@@ -179,12 +158,8 @@ class PetProfile extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col-sm-3" style={{background: 'pink', width: '200px', height: '300px', position: 'fixed'}}>
-                <h1>{this.props.name}</h1>
-                    <h5>Breed: {this.props.breed}</h5>
-                    <h5>Age: {this.props.age}</h5>
-                    <h5>Gender: {this.props.gender}</h5>
-                    <h5>Favorite Toys: {this.props.toys}</h5>
+            <div className="col-sm-3">
+              <ProfileRight />
             </div>
           </div>
         </div>
