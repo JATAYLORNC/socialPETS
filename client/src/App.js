@@ -9,6 +9,7 @@ import AddPet from "./components/AddPet";
 import PetProfile from "./components/PetProfile";
 import Modal from './components/Modal';
 import { Link } from "react-router-dom";
+import Wrap from "./components/Wrap";
 
 class App extends React.Component {
   state = {
@@ -114,53 +115,55 @@ class App extends React.Component {
     if (this.state.loggedIn) {
       return (
         <Router>
-          <div>
-            <NavbarLogout _logout={this._logout} user={this.state.user} search={this.search.bind(this)} handleInputChange={this.handleInputChange.bind(this)} search_text={this.state.search_text} />
-            <Modal show={this.state.isOpen}
-              onClose={this.toggleModal}>
-                <div>
-                  <div className="row">
-                    <div className= "col-sm-12">
-                      <div>
-                        {this.state.searchResults ? this.state.searchResults.map((user) => {
-                          return (
-                            <div key={user._id} className="modalStyle">
-                              <div className="row">
-                                <div className="col-sm-12 d-flex justify-content-center mt-5">
-                                  <h5>{`${user.firstname} ${user.lastname}`}</h5>
-                                </div>
-                              </div>
-                              {user.Pet.map((pet) => {
-                                return ( 
-                                  <div className="row">
-                                    <div className="col-sm-12 d-flex justify-content-center">
-                                      <Link className="text-dark" key={pet._id} to={`/profile/${pet._id}`} onClick={this.toggleModal}>
-                                        <p>{pet.name}</p>
-                                      </Link>
-                                    </div>
+          <Wrap isOpen={this.state.isOpen}>
+            <div>
+              <NavbarLogout _logout={this._logout} user={this.state.user} search={this.search.bind(this)} handleInputChange={this.handleInputChange.bind(this)} search_text={this.state.search_text} />
+              <Modal show={this.state.isOpen}
+                onClose={this.toggleModal}>
+                  <div>
+                    <div className="row">
+                      <div className= "col-sm-12">
+                        <div>
+                          {this.state.searchResults ? this.state.searchResults.map((user) => {
+                            return (
+                              <div key={user._id} className="modalStyle">
+                                <div className="row">
+                                  <div className="col-sm-12 d-flex justify-content-center mt-5">
+                                    <h5>{`${user.firstname} ${user.lastname}`}</h5>
                                   </div>
-                                )
-                              })}
-                            </div>
-                          )
-                        })
-                          
-                        : 
-                          <h5>Search Results: User does not exist</h5>
-                        }
+                                </div>
+                                {user.Pet.map((pet) => {
+                                  return ( 
+                                    <div className="row">
+                                      <div className="col-sm-12 d-flex justify-content-center">
+                                        <Link className="text-dark" key={pet._id} to={`/profile/${pet._id}`} onClick={this.toggleModal}>
+                                          <p>{pet.name}</p>
+                                        </Link>
+                                      </div>
+                                    </div>
+                                  )
+                                })}
+                              </div>
+                            )
+                          })
+                            
+                          : 
+                            <h5>Search Results: User does not exist</h5>
+                          }
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-            </Modal>
-            {!this.state.user.Pet[0] ? <Route exact path="/" render={() => <Home user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} friendsId={this.state.user.friendsId} />} /> : <Route exact path="/" render={() => <Home myPets={this.state.user.Pet} user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} searchResults={this.state.searchResults} friendsId={this.state.user.friendsId} />} />}
-            {!this.state.user.Pet[0] ? <Route exact path="/home" render={() => <Home user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} friendsId={this.state.user.friendsId} />} /> : <Route exact path="/home" render={() => <Home myPets={this.state.user.Pet} user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} searchResults={this.state.searchResults} friendsId={this.state.user.friendsId} />} />}
-            {!this.state.user.Pet[0] ? <Route exact path="/login" render={() => <Home user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} friendsId={this.state.user.friendsId} />} /> : <Route exact path="/login" render={() => <Home myPets={this.state.user.Pet} user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} searchResults={this.state.searchResults} friendsId={this.state.user.friendsId} />} />}
-            <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id}  getUser={this.getUser.bind(this)} getPets={this.getPets.bind(this)} />} />
-            {this.state.pets.map(pet => (
-              <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} breed={pet.breed} age={pet.age} gender={pet.gender} size={pet.size} toys={pet.favoriteToys}  friends={this.state.user.friendsId} user_id={this.state.user._id} userPets={this.state.user.Pet} />} />
-            ))}
-          </div>
+              </Modal>
+              {!this.state.user.Pet[0] ? <Route exact path="/" render={() => <Home user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} friendsId={this.state.user.friendsId} />} /> : <Route exact path="/" render={() => <Home myPets={this.state.user.Pet} user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} searchResults={this.state.searchResults} friendsId={this.state.user.friendsId} />} />}
+              {!this.state.user.Pet[0] ? <Route exact path="/home" render={() => <Home user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} friendsId={this.state.user.friendsId} />} /> : <Route exact path="/home" render={() => <Home myPets={this.state.user.Pet} user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} searchResults={this.state.searchResults} friendsId={this.state.user.friendsId} />} />}
+              {!this.state.user.Pet[0] ? <Route exact path="/login" render={() => <Home user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} friendsId={this.state.user.friendsId} />} /> : <Route exact path="/login" render={() => <Home myPets={this.state.user.Pet} user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} searchResults={this.state.searchResults} friendsId={this.state.user.friendsId} />} />}
+              <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id}  getUser={this.getUser.bind(this)} getPets={this.getPets.bind(this)} />} />
+              {this.state.pets.map(pet => (
+                <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} breed={pet.breed} age={pet.age} gender={pet.gender} size={pet.size} toys={pet.favoriteToys}  friends={this.state.user.friendsId} user_id={this.state.user._id} userPets={this.state.user.Pet} />} />
+              ))}
+            </div>
+          </Wrap>
         </Router>
       );
     } else {

@@ -56,7 +56,7 @@ class Home extends React.Component {
 			<div className="Home">
 				<div className="row">
 					<div className="col-sm-3">
-						<HomeRight user_firstname={this.props.user_firstname} user_lastname={this.props.user_lastname} friends={this.props.friendsId} />
+					<	HomeLeft />
 					</div>
 					<div className="col-sm-6" id="cardBlock">
 						<div className="row d-flex justify-content-center pt-5 pb-5">
@@ -86,7 +86,9 @@ class Home extends React.Component {
 							</div>
 						</div>
 					</div>
-					<div className="col-sm-3"></div>
+					<div className="col-sm-3">
+						<HomeRight user_firstname={this.props.user_firstname} user_lastname={this.props.user_lastname} friends={this.props.friendsId} />
+					</div>
 				</div>
 			</div>
 		);

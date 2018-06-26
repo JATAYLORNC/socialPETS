@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/homeRight.css";
 
-const ProfileLeft = (props) => (
+const HomeRight = (props) => (
   <div className="row">
     <div className="col-sm-12 text-white" style={{background: '#5245FD', border: '10px solid black', width: '250px', margin: '40px', position: 'fixed'}}>
       <h4 className="blueBox text-white">Following:</h4>
@@ -16,4 +16,4 @@ const ProfileLeft = (props) => (
   </div>
 );
 
-export default ProfileLeft;
+export default HomeRight;
