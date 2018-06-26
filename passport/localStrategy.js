@@ -1,4 +1,5 @@
 import User from "../db/models/User";
+import Pet from "../db/models/Pet";
 const LocalStrategy = require('passport-local').Strategy;
 
 const strategy = new LocalStrategy(
@@ -11,13 +12,16 @@ const strategy = new LocalStrategy(
 			populate: {
 				path: 'Pet',
 				model: 'Pet',
-					populate: {
-						path: 'User',
-						model: 'User'
-					}
 			}
 		})
 		.exec((err, userMatch) => {
+			Pet.populate(userMatch.Pet, {
+				path: "User",
+				model: "User"
+			})
+			.then(data => {
+				userMatch.Pet.User = data;
+			console.log(JSON.stringify(userMatch.friendsId,null,2));
 			if (err) {
 				return done(err)
 			}
@@ -29,6 +33,7 @@ const strategy = new LocalStrategy(
 			}
 			return done(null, userMatch)
 		})
+	})
 	}
 );
 
