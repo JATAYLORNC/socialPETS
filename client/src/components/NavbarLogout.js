@@ -78,7 +78,7 @@ class NavbarLogout extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-sm-4 collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="col-sm-3 collapse navbar-collapse" id="navbarSupportedContent" style={{width: '100px'}}>
             <ul className="navbar-nav d-flex justify-content-start align-items-center">
               <li className="nav-item mr-2">
                 <Link className="nav-link text-dark menuText" to="/home" id="home">
@@ -108,12 +108,25 @@ class NavbarLogout extends React.Component {
                   Add A Pet
                 </Link>
               </li>
+              {/* <li>
+                <div style={{background: 'white', color: 'red', width: '120px', height: '60px', font_size: '20px'}}>
+                    <div style={{textAlign: "center", padding: 'auto' }}>Hi, {this.props.user.firstname}!
+                    </div>
+                </div>
+              </li> */}
+              
+              
             </ul>
           </div>
-          <div className="col-sm-1" style={{text_align: 'center', margin: 'auto'}}>
-            <div>Hello, {this.props.user.firstname}!</div>
+          <div className="col-sm-1" style={{text_align: 'center', margin: 'auto', width: '300px'}}>
+           
+              <div style={{color: 'black', font_weight: 'bold', width: '150px', height: '90px',padding: '20px'}}>
+                    <div style={{textAlign: "center", padding: 'auto', font_size: '25px' }}>Hi, {this.props.user.firstname}!
+                        <button  onClick={this.props._logout} style={{display: 'block', margin: 'auto', float: 'center', background: 'black', color: 'white', width: '80px', height: '30px'}}>Log Out</button>
 
-            <button className="btn btn-sm btn-dark ml-2 menuButton" onClick={this.props._logout} style={{display: 'block', margin: 'auto'}}>Log Out</button>
+                    </div>
+              </div>
+            
             
           </div>
         </div>

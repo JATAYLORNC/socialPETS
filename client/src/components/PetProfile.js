@@ -10,6 +10,7 @@ class PetProfile extends React.Component {
   state= {
     posts: [],
     userPetIds: []
+    
 
   }
 
@@ -73,6 +74,7 @@ class PetProfile extends React.Component {
                     <h1 className="display-4">{this.props.name}</h1>
                     <img className="img-thumbnail" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
                     {/* <button className="btn btn-secondary btn-sm FriendRequestAdd" type="button"><i className="fas fa-user-friends mr-1"></i>Add Friend</button> */}
+                    
                   </div>
                 </div>
               </div>
@@ -139,8 +141,17 @@ class PetProfile extends React.Component {
                 <div className="col-sm-12">
                   <div className="jumbotron">
                     <h1 className="display-4">{this.props.name}</h1>
-                    <img className="img-thumbnail" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
+
+                    {/* <div style="position: relative; border: 1px solid red; width: 50px; height: 30px; line-height: 30px; text-align: center;" > 
+                      Open
+                    <input type="file" style="opacity: 0.0; position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height:100%;" />
+                    </div> */}
+                    {/* <input type="file" style="opacity: 0.0; position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height:100%;" /> */}
+                    <img className="img-thumbnail" type="file" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
                     {/* <button className="btn btn-secondary btn-sm FriendRequestAdd" type="button"><i className="fas fa-user-friends mr-1"></i>Add Friend</button> */}
+                    <label id="getFileLabel" for="getFile">Open File</label>
+                    <input type="file" id="getFile" />
+                  
                   </div>
                 </div>
               </div>
