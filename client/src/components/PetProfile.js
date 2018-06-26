@@ -8,40 +8,40 @@ import ProfileLeft from "./ProfileLeft";
 import ProfileRight from "./ProfileRight";
 
 class PetProfile extends React.Component {
-
-  state= {
+  state = {
     posts: [],
     userPetIds: []
-  }
+  };
 
   getPetInfo = () => {
     console.log("this.props line 17 of PetProfile", this.props);
-  }
+  };
 
   componentDidMount = () => {
     this.GetPetPosts();
     this.setUserPetIds();
-  }	
-  
+  };
+
   setUserPetIds = () => {
     console.log(this.props.userPets);
     console.log(this.props.name);
     let userPetIds = this.props.userPets.map(userPet => userPet._id);
-      
+
     this.setState({
       userPetIds: userPetIds
     });
-  }
-	
-	GetPetPosts = () => {
-		API.getPetPosts(this.props._id).then(response => {
-			this.setState({
-				posts: response.data.posts
-			});
-		})
-		.catch(err => console.log(err));
-  }
-  
+  };
+
+  GetPetPosts = () => {
+    API.getPetPosts(this.props._id)
+      .then(response => {
+        this.setState({
+          posts: response.data.posts
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
   addProfileImages = () => {
     // needs code to add the main profile image and the background profile image.
   };
@@ -51,35 +51,39 @@ class PetProfile extends React.Component {
   };
 
   follow = () => {
-    API.follow(this.props.user_id, {friendsId: this.props._id}).then(response => {
-      console.log(response.data);
-		})
-		.catch(err => console.log(err));
-  }
+    API.follow(this.props.user_id, { friendsId: this.props._id })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
-
-    if(this.state.userPetIds.includes(this.props._id)) {
-
+    if (this.state.userPetIds.includes(this.props._id)) {
       return (
         <div className="PetProfile">
           <div className="row">
             {/* <!-- left column --> */}
             <div className="col-sm-3">
               {/* <!-- pet info --> */}
-              <ProfileLeft name={this.props.name} breed={this.props.breed} age={this.props.age} gender={this.props.gender} toys={this.props.toys} />
+              <ProfileLeft
+                name={this.props.name}
+                breed={this.props.breed}
+                age={this.props.age}
+                gender={this.props.gender}
+                toys={this.props.toys}
+              />
             </div>
-            
+
             {/* <!-- Main Content column --> */}
             <div className="col-sm-6">
               {/* <!-- jumbotron for profile header --> */}
-              
+
               <div className="row">
                 <div className="col-sm-12">
                   <div className="jumbotron">
                     <h1 className="display-4">{this.props.name}</h1>
                     <img className="img-thumbnail" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
-
                   </div>
                 </div>
               </div>
@@ -94,7 +98,8 @@ class PetProfile extends React.Component {
                   {this.state.posts.length ? (
                     <CardList>
                       {this.state.posts.map(post => (
-                        <Card key={post._id.toString()}
+                        <Card
+                          key={post._id.toString()}
                           name={this.props.name}
                           pet_id={this.props._id}
                           posts={post.posts}
@@ -118,14 +123,19 @@ class PetProfile extends React.Component {
         </div>
       );
     } else {
-
       return (
         <div className="PetProfile">
           <div className="row">
             {/* <!-- left column --> */}
             <div className="col-sm-3">
               {/* <!-- pet info --> */}
-              <ProfileLeft name={this.props.name} breed={this.props.breed} age={this.props.age} gender={this.props.gender} toys={this.props.toys} />
+              <ProfileLeft
+                name={this.props.name}
+                breed={this.props.breed}
+                age={this.props.age}
+                gender={this.props.gender}
+                toys={this.props.toys}
+              />
             </div>
             {/* <!-- Main Content column --> */}
             <div className="col-sm-6">
@@ -134,10 +144,22 @@ class PetProfile extends React.Component {
                 <div className="col-sm-12">
                   <div className="jumbotron">
                     <h1 className="display-4">{this.props.name}</h1>
-                    <img className="img-thumbnail" type="file" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
-                    <div className= "d-flex justify-content-end mr5">
-                      {!this.props.friends.includes(this.props._id) ? <button className="btn btn-secondary btn-sm follow" type="button" onClick={this.follow}><i className="fas fa-user-friends mr-1"></i>Follow</button>
-                      : <button className="btn btn-primary btn-sm following"><i className="fas fa-user-friends mr-1"></i>Following</button>}
+                    <img
+                      className="img-thumbnail"
+                      type="file"
+                      src="http://via.placeholder.com/150x150"
+                      alt="PetProfile Name"
+                    />
+                    <div className="d-flex justify-content-end mr5">
+                      {!this.props.friends.includes(this.props._id) ? (
+                        <button className="btn btn-secondary btn-sm follow" type="button" onClick={this.follow}>
+                          <i className="fas fa-user-friends mr-1" />Follow
+                        </button>
+                      ) : (
+                        <button className="btn btn-primary btn-sm following">
+                          <i className="fas fa-user-friends mr-1" />Following
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -148,7 +170,8 @@ class PetProfile extends React.Component {
                   {this.state.posts.length ? (
                     <CardList>
                       {this.state.posts.map(post => (
-                        <Card key={post._id.toString()}
+                        <Card
+                          key={post._id.toString()}
                           name={this.props.name}
                           pet_id={this.props._id}
                           posts={post.posts}
