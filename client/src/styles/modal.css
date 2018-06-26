@@ -1,0 +1,26 @@
+.backdropStyle {
+  position: fixed;
+  top: 10%;
+  bottom: 25%;
+  left: 25%;
+  right: 25%;
+  background-color: gray;
+  padding: 50;
+  z-index: +1000;
+}
+
+.modalStyle {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 5;
+  /* max-width: 95%; */
+  height: 89%; 
+  /* margin: 0 auto; */
+  padding: 30;
+  margin: 0 1rem 1rem 1rem;
+}
+
+/* .footer {
+  top: 1%;
+  right: 1%;
+} */
