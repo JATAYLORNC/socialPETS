@@ -10,6 +10,7 @@ class PetProfile extends React.Component {
   state= {
     posts: [],
     userPetIds: []
+    
 
   }
 
@@ -72,6 +73,7 @@ class PetProfile extends React.Component {
                   <div className="jumbotron">
                     <h1 className="display-4">{this.props.name}</h1>
                     <img className="img-thumbnail" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
+
                   </div>
                 </div>
               </div>
@@ -138,10 +140,13 @@ class PetProfile extends React.Component {
                 <div className="col-sm-12">
                   <div className="jumbotron">
                     <h1 className="display-4">{this.props.name}</h1>
-                    <img className="img-thumbnail" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
-                    <div className= "d-flex justify-content-end mr5">
-                      <button className="btn btn-secondary btn-sm FriendRequestAdd" type="button"><i className="fas fa-user-friends mr-1"></i>Follow</button>
-                    </div>
+
+
+                    <img className="img-thumbnail" type="file" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
+                    
+                   
+
+     
                   </div>
                 </div>
               </div>

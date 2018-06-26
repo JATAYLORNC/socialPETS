@@ -7,3 +7,8 @@
 .pinkBox{
   text-align: center;
 }
+
+
+#getFile {
+  display: none;
+}

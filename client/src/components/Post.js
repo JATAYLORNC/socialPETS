@@ -6,6 +6,7 @@ import FileUploader from 'react-firebase-file-uploader';
 import { Redirect } from 'react-router-dom';
 
 
+
 class Post extends Component {
 
     state = {
@@ -86,6 +87,7 @@ class Post extends Component {
 
             <div className="w-100 ml-2 mr-2">
                 <div className="box">
+                
                     
                     <form className="form">
                     <h1 className="pb-2" >Make a Post</h1>
