@@ -20,12 +20,13 @@ export default {
   getPets: () => {
     return axios.get('/api/pets');
   },
-  getAllPosts: () => {
-    return axios.get('/api/posts');
+  getMyPosts: (petData) => {
+    return axios.post('/api/posts', petData);
+  },
+  getFriendPosts: (petData) => {
+    return axios.post('/api/posts', petData);
   },
   findUser: (userData) => {
-    console.log("firstname: ", userData.firstname);
-    console.log("lastname: ", userData.lastname);
     return axios.post('/api/finduser', userData);
   },
   //post new pet data
@@ -65,5 +66,8 @@ export default {
    signup: (userData) => {
     return axios.post('api/signup', userData);
   },
+  follow: (user_id, followData) => {
+    return axios.post(`/api/user/${user_id}`, followData);
+  }
   
 };
