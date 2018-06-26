@@ -15,12 +15,14 @@ const strategy = new LocalStrategy(
 			}
 		})
 		.exec((err, userMatch) => {
-			Pet.populate(userMatch.Pet, {
+			User.populate(userMatch.friendsId, {
 				path: "User",
-				model: "User"
+				model: "User",
 			})
 			.then(data => {
-				userMatch.Pet.User = data;
+				console.log(Array.isArray(data))
+				// return done(null, data)
+				userMatch.friendsId = data;
 			console.log(JSON.stringify(userMatch.friendsId,null,2));
 			if (err) {
 				return done(err)
