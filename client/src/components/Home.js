@@ -4,6 +4,7 @@ import "../styles/home.css";
 import Post from "./Post";
 import Card from "./Card";
 import CardList from "./CardList";
+import HomeRight from "./HomeRight";
 
 class Home extends React.Component {
 
@@ -12,17 +13,40 @@ class Home extends React.Component {
 	}
 
 	componentDidMount = () => {
-		this.GetAllPosts();
+		this.GetPosts();
 	}	
 	
-	GetAllPosts = () => {
-		API.getAllPosts().then(response => {
-			this.setState({
-				posts: response.data,
+	GetPosts = () => {
+		if(this.props.myPets) {
+			let PetIds=this.props.myPets.map((pet) => {
+				return pet._id
 			});
-		})
-		.catch(err => console.log(err));
-	}	
+			console.log(PetIds);
+			API.getMyPosts({Pets: PetIds}).then(response => {
+				console.log(response.data);
+				this.getFriendPosts();
+				this.setState({
+					posts: response.data,
+				});
+			})
+			.catch(err => console.log(err));
+		}	
+	}
+
+	getFriendPosts = () => {
+		if(this.props.friendsId) {
+			console.log(this.props.friendsId);
+			API.getFriendPosts({Pets: this.props.friendsId}).then(response => {
+				console.log(response.data);
+				let posts= [...this.state.posts, ...response.data];
+				console.log(posts);
+				this.setState({
+					posts: posts
+				});
+			})
+			.catch(err => console.log(err));
+		}
+	}
 
 	render () {
 		
@@ -32,6 +56,7 @@ class Home extends React.Component {
 			<div className="Home">
 				<div className="row">
 					<div className="col-sm-3">
+						<HomeRight user_firstname={this.props.user_firstname} user_lastname={this.props.user_lastname} friends={this.props.friendsId} />
 					</div>
 					<div className="col-sm-6" id="cardBlock">
 						<div className="row d-flex justify-content-center pt-5 pb-5">

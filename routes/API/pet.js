@@ -11,7 +11,7 @@ import petController from "../../controllers/petController";
 
   router
     .route("/user/:id")
-    .post(petController.addUserPet);
+    .post(petController.updateUser);
 
   router
     .route("/post/")
@@ -49,8 +49,12 @@ import petController from "../../controllers/petController";
   .route("/pets")
   .get(petController.getPets);
 
+  // router
+  // .route("/posts")
+  // .get(petController.getAllPosts);
+
   router
-  .route("/posts")
-  .get(petController.getAllPosts);
+  .route('/posts')
+  .post(petController.getPosts);
 
   export default router;

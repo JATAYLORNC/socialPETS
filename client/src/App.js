@@ -27,7 +27,7 @@ class App extends React.Component {
       });
 		})
 		.catch(err => console.log(err));
-	}	
+  }	
 
   _logout = event => {
     event.preventDefault();
@@ -153,12 +153,12 @@ class App extends React.Component {
                   </div>
                 </div>
             </Modal>
-            {!this.state.user.Pet[0] ? <Route exact path="/" render={() => <Home />} /> : <Route exact path="/" render={() => <Home pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} searchResults={this.state.searchResults} />} />}
-            {!this.state.user.Pet[0] ? <Route exact path="/home" render={() => <Home />} /> : <Route exact path="/home" render={() => <Home pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} />} />}
-            {!this.state.user.Pet[0] ? <Route exact path="/login" render={() => <Home />} /> : <Route exact path="/login" render={() => <Home pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} />} />}
+            {!this.state.user.Pet[0] ? <Route exact path="/" render={() => <Home user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} friendsId={this.state.user.friendsId} />} /> : <Route exact path="/" render={() => <Home myPets={this.state.user.Pet} user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} searchResults={this.state.searchResults} friendsId={this.state.user.friendsId} />} />}
+            {!this.state.user.Pet[0] ? <Route exact path="/home" render={() => <Home user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} friendsId={this.state.user.friendsId} />} /> : <Route exact path="/home" render={() => <Home myPets={this.state.user.Pet} user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} searchResults={this.state.searchResults} friendsId={this.state.user.friendsId} />} />}
+            {!this.state.user.Pet[0] ? <Route exact path="/login" render={() => <Home user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} friendsId={this.state.user.friendsId} />} /> : <Route exact path="/login" render={() => <Home myPets={this.state.user.Pet} user_id={this.state.user._id} user_firstname={this.state.user.firstname} user_lastname={this.state.user.lastname} pet={this.state.user.Pet[0]._id} name={this.state.user.Pet[0].name} searchResults={this.state.searchResults} friendsId={this.state.user.friendsId} />} />}
             <Route exact path="/addpet" render={() => <AddPet _id={this.state.user._id}  getUser={this.getUser.bind(this)} getPets={this.getPets.bind(this)} />} />
             {this.state.pets.map(pet => (
-              <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} breed={pet.breed} age={pet.age} gender={pet.gender} size={pet.size} toys={pet.favoriteToys}  userPets={this.state.user.Pet} />} />
+              <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} breed={pet.breed} age={pet.age} gender={pet.gender} size={pet.size} toys={pet.favoriteToys}  friends={this.state.user.friendsId} user_id={this.state.user._id} userPets={this.state.user.Pet} />} />
             ))}
           </div>
         </Router>

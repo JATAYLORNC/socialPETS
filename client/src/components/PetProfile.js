@@ -34,7 +34,6 @@ class PetProfile extends React.Component {
   }
 	
 	GetPetPosts = () => {
-    console.log("Hello!")
 		API.getPetPosts(this.props._id).then(response => {
 			this.setState({
 				posts: response.data.posts
@@ -50,6 +49,13 @@ class PetProfile extends React.Component {
   getProfileImages = () => {
     // needs logic to retrive the images from the database.
   };
+
+  follow = () => {
+    API.follow(this.props.user_id, {friendsId: this.props._id}).then(response => {
+      console.log(response.data);
+		})
+		.catch(err => console.log(err));
+  }
 
   render() {
 
@@ -130,7 +136,8 @@ class PetProfile extends React.Component {
                     <h1 className="display-4">{this.props.name}</h1>
                     <img className="img-thumbnail" type="file" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
                     <div className= "d-flex justify-content-end mr5">
-                      <button className="btn btn-secondary btn-sm FriendRequestAdd" type="button"><i className="fas fa-user-friends mr-1"></i>Follow</button>
+                      {!this.props.friends.includes(this.props._id) ? <button className="btn btn-secondary btn-sm follow" type="button" onClick={this.follow}><i className="fas fa-user-friends mr-1"></i>Follow</button>
+                      : <button className="btn btn-primary btn-sm following"><i className="fas fa-user-friends mr-1"></i>Following</button>}
                     </div>
                   </div>
                 </div>
