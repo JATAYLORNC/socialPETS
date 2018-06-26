@@ -1,44 +1,13 @@
 import React from "react";
-import API from "../utils/API";
 import { Link } from "react-router-dom";
 import "../styles/navbar.css";
 
 class NavbarLogout extends React.Component {
 
-	state= {
-    search_text: '',
-    searchResults: []
-  }
+	// state= {
+  //   search_text: '',
+  // }
   
-  search = (search_text) => {
-    this.inputSearch.value="";
-    let name= this.state.search_text.trim().split(" ");
-    console.log(name);
-    API.findUser({
-      firstname: name[0].toLowerCase(),
-      lastname: name[1].toLowerCase()
-    }).then(response => {
-			this.setState({
-        searchResults: response.data,
-        search_text: ''
-      });
-      console.log(this.state);
-		})
-		.catch(err => console.log(err));
-  }
-
-  // handle any changes to the input fields
-  handleInputChange = event => {
-    console.log("this.props", this.props);
-    // Pull the name and value properties off of the event.target (the element which triggered the event)
-    const { name, value } = event.target;
-
-    // Set the state for the appropriate input field
-    this.setState({
-      [name]: value
-    });
-  };
-
   render ()  {
 
     return (
@@ -68,11 +37,11 @@ class NavbarLogout extends React.Component {
                 id="search" 
                 type="search" 
                 placeholder="Search"
-                value={this.state.search_text}
-                onChange={this.handleInputChange} 
+                value={this.props.search_text}
+                onChange={this.props.handleInputChange} 
                 aria-label="Search" />
               <div className="input-group-append">
-                <span className="input-group-text btn bg-dark text-white" type="button" ref={el => this.inputSearch = el} onClick={this.search}>
+                <span className="input-group-text btn bg-dark text-white" type="button" onClick={this.props.search}>
                   <i className="fas fa-search" />
                 </span>
               </div>
