@@ -97,12 +97,15 @@ class Post extends Component {
                                 <ul className="nav">
                                     <li className="nav-item" id="upload" >
                                         <div className="file">
-                                            <span className="mr-2">Add Photo</span>
+                                            <span className="mr-2" style={{fontWeight: 600}}></span>
                                             
                                             {this.state.isUploading &&
                                             <p>Progress: {this.state.imageProgress}</p>
                                             }
+                                            <label style={{backgroundColor: '#f05c79', color: 'white', fontWeight: 'bold', padding: 10, borderRadius: 4, pointer: 'cursor'}}>
+                                                Add Photo
                                             <FileUploader
+                                                hidden
                                                 accept="image/*"
                                                 name="image"
                                                 id="getPhoto"
@@ -114,17 +117,21 @@ class Post extends Component {
                                                 onUploadSuccess={this.handlePhotoUploadSuccess}
                                                 onProgress={this.handleImageProgress}
                                             />
+                                            </label>
                                         </div>
                                     </li>
                                     
                                     <li className="nav-item" id="upload" >
                                         <div className="file">
-                                            <span className="mr-2">Add Video</span>
+                                            <span className="mr-2" ></span>
                                             
                                             {this.state.isUploading &&
                                             <p>Progress: {this.state.videoProgress}</p>
                                             }
+                                            <label style={{backgroundColor: '#f05c79', color: 'white', fontWeight: 'bold', padding: 10, borderRadius: 4, pointer: 'cursor'}}>
+                                                Add Video
                                             <FileUploader
+                                                hidden
                                                 accept="video/*"
                                                 name="video"
                                                 id="getVideo"
@@ -136,6 +143,7 @@ class Post extends Component {
                                                 onUploadSuccess={this.handleVideoUploadSuccess}
                                                 onProgress={this.handleVideoProgress}
                                             />
+                                            </label>
                                         </div>
                                     </li>
 
