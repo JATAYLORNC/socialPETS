@@ -1,13 +1,15 @@
 .jumbotron {
-  background-image: url("http://via.placeholder.com/600x400");
-}
-.PetProfile {
-  background-color: #C9FFB3;
-}
-.pinkBox{
-  text-align: center;
+  /* background-image: url("http://via.placeholder.com/600x400"); */
+  padding: 32px 32px;
 }
 
+.PetProfile {
+  background-color: #c9ffb3;
+}
+
+.pinkBox {
+  text-align: center;
+}
 
 #getFile {
   display: none;

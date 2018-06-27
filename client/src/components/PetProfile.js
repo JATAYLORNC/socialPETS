@@ -6,6 +6,7 @@ import Post from "./Post";
 import CardList from "./CardList";
 import ProfileLeft from "./ProfileLeft";
 import ProfileRight from "./ProfileRight";
+import ProfileHeader from "./ProfileHeader";
 
 class PetProfile extends React.Component {
   state = {
@@ -42,14 +43,6 @@ class PetProfile extends React.Component {
       .catch(err => console.log(err));
   };
 
-  addProfileImages = () => {
-    // needs code to add the main profile image and the background profile image.
-  };
-
-  getProfileImages = () => {
-    // needs logic to retrive the images from the database.
-  };
-
   follow = () => {
     API.follow(this.props.user_id, { friendsId: this.props._id })
       .then(response => {
@@ -59,6 +52,7 @@ class PetProfile extends React.Component {
   };
 
   render() {
+    console.log(!!this.state.userPetIds.includes(this.props._id));
     if (this.state.userPetIds.includes(this.props._id)) {
       return (
         <div className="PetProfile">
@@ -78,15 +72,8 @@ class PetProfile extends React.Component {
             {/* <!-- Main Content column --> */}
             <div className="col-sm-6">
               {/* <!-- jumbotron for profile header --> */}
+              <ProfileHeader name={this.props.name} petID={this.props._id} />
 
-              <div className="row">
-                <div className="col-sm-12">
-                  <div className="jumbotron">
-                    <h1 className="display-4">{this.props.name}</h1>
-                    <img className="img-thumbnail" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
-                  </div>
-                </div>
-              </div>
               <div className="row">
                 <div className="col-sm-12">
                   <Post animal={this.props._id} name={this.props.name} />
@@ -140,30 +127,7 @@ class PetProfile extends React.Component {
             {/* <!-- Main Content column --> */}
             <div className="col-sm-6">
               {/* <!-- jumbotron for profile header --> */}
-              <div className="row">
-                <div className="col-sm-12">
-                  <div className="jumbotron">
-                    <h1 className="display-4">{this.props.name}</h1>
-                    <img
-                      className="img-thumbnail"
-                      type="file"
-                      src="http://via.placeholder.com/150x150"
-                      alt="PetProfile Name"
-                    />
-                    <div className="d-flex justify-content-end mr5">
-                      {!this.props.friends.includes(this.props._id) ? (
-                        <button className="btn btn-secondary btn-sm follow" type="button" onClick={this.follow}>
-                          <i className="fas fa-user-friends mr-1" />Follow
-                        </button>
-                      ) : (
-                        <button className="btn btn-primary btn-sm following">
-                          <i className="fas fa-user-friends mr-1" />Following
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ProfileHeader />
               <div className="row d-flex justify-content-center pb-5">
                 {/* <!-- POST component --> */}
                 <div className="col-sm-12">
