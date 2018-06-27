@@ -8,52 +8,50 @@ import HomeRight from "./HomeRight";
 import HomeLeft from "./HomeLeft";
 
 class Home extends React.Component {
+  state = {
+    posts: []
+  };
 
-	state= {
-		posts: [],
-	}
+  componentDidMount = () => {
+    this.GetPosts();
+  };
 
-	componentDidMount = () => {
-		this.GetPosts();
-	}	
-	
-	GetPosts = () => {
-		if(this.props.myPets) {
-			let PetIds=this.props.myPets.map((pet) => {
-				return pet._id
-			});
-			console.log(PetIds);
-			API.getMyPosts({Pets: PetIds}).then(response => {
-				console.log(response.data);
-				this.getFriendPosts();
-				this.setState({
-					posts: response.data,
-				});
-			})
-			.catch(err => console.log(err));
-		}	
-	}
+  GetPosts = () => {
+    if (this.props.myPets) {
+      let PetIds = this.props.myPets.map(pet => {
+        return pet._id;
+      });
+      console.log(PetIds);
+      API.getMyPosts({ Pets: PetIds })
+        .then(response => {
+          console.log(response.data);
+          this.getFriendPosts();
+          this.setState({
+            posts: response.data
+          });
+        })
+        .catch(err => console.log(err));
+    }
+  };
 
-	getFriendPosts = () => {
-		if(this.props.friendsId) {
-			console.log(this.props.friendsId);
-			API.getFriendPosts({Pets: this.props.friendsId}).then(response => {
-				console.log(response.data);
-				let posts= [...this.state.posts, ...response.data];
-				console.log(posts);
-				this.setState({
-					posts: posts
-				});
-			})
-			.catch(err => console.log(err));
-		}
-	}
+  getFriendPosts = () => {
+    if (this.props.friendsId) {
+      console.log(this.props.friendsId);
+      API.getFriendPosts({ Pets: this.props.friendsId })
+        .then(response => {
+          console.log(response.data);
+          let posts = [...this.state.posts, ...response.data];
+          console.log(posts);
+          this.setState({
+            posts: posts
+          });
+        })
+        .catch(err => console.log(err));
+    }
+  };
 
-	render () {
-		
-		
-		return (
-
+  render() {
+    return (
 			<div className="Home">
 				<div className="row">
 					<div className="col-sm-3">

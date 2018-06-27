@@ -1,0 +1,9 @@
+.jumbotron {
+  /* background-image: url("http://via.placeholder.com/600x400"); */
+  padding: 32px 32px;
+}
+
+#profileIcon {
+  bottom: 75px;
+  left: 60px;
+}
