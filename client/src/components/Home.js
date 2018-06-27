@@ -88,7 +88,7 @@ class Home extends React.Component {
 						</div>
 					</div>
 					<div className="col-sm-3">
-						<HomeRight user_firstname={this.props.user_firstname} user_lastname={this.props.user_lastname} friends={this.props.friendsId} />
+						<HomeRight friends={this.props.friendsId} />
 					</div>
 				</div>
 			</div>
