@@ -98,9 +98,14 @@ export default {
   },
 
   follow: (req, res) => {
-    User.findOneAndUpdate({ _id: req.params.id }, { $push: req.body })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+
+    User
+    .findOneAndUpdate({ _id: req.params.id }, {$push: req.body})
+    .then(dbModel => {
+      console.log(dbModel);
+      res.json(dbModel)})
+    .catch(err => res.status(422).json(err));
+
   },
 
   getPosts: (req, res) => {

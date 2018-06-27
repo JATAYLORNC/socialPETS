@@ -40,7 +40,7 @@ const NavbarLogout = (props) => (
               </div>
             </div>
           </div>
-          <div className="col-sm-3 collapse navbar-collapse" id="navbarSupportedContent" style={{width: '100px'}}>
+          <div className="col-sm-4 collapse navbar-collapse" id="navbarSupportedContent" style={{width: '100px'}}>
             <ul className="navbar-nav d-flex justify-content-start align-items-center">
               <li className="nav-item mr-2">
                 <Link className="nav-link text-dark menuText" to="/home" id="home">

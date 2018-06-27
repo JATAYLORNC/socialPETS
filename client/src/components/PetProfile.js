@@ -7,6 +7,8 @@ import CardList from "./CardList";
 import ProfileLeft from "./ProfileLeft";
 import ProfileRight from "./ProfileRight";
 import ProfileHeader from "./ProfileHeader";
+import FollowButton from "./FollowButton";
+
 
 class PetProfile extends React.Component {
   state = {
@@ -39,14 +41,6 @@ class PetProfile extends React.Component {
         this.setState({
           posts: response.data.posts
         });
-      })
-      .catch(err => console.log(err));
-  };
-
-  follow = () => {
-    API.follow(this.props.user_id, { friendsId: this.props._id })
-      .then(response => {
-        console.log(response.data);
       })
       .catch(err => console.log(err));
   };
@@ -127,7 +121,23 @@ class PetProfile extends React.Component {
             {/* <!-- Main Content column --> */}
             <div className="col-sm-6">
               {/* <!-- jumbotron for profile header --> */}
+
               <ProfileHeader />
+
+              <div className="row">
+                <div className="col-sm-12">
+                  <div className="jumbotron">
+                    <h1 className="display-4">{this.props.name}</h1>
+                    <img className="img-thumbnail" type="file" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
+                    <div className= "d-flex justify-content-end mr5">
+
+                      <FollowButton friends={this.props.friends} _id={this.props._id} user_id={this.props.user_id} />
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="row d-flex justify-content-center pb-5">
                 {/* <!-- POST component --> */}
                 <div className="col-sm-12">

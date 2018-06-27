@@ -1,10 +1,10 @@
 .backdropStyle {
   position: fixed;
   top: 10%;
-  bottom: 25%;
+  bottom: 35%;
   left: 25%;
-  right: 25%;
-  background-color: gray;
+  right: 40%;
+  background-color: #ffffff;
   padding: 50;
   z-index: +1000;
 }
@@ -14,10 +14,20 @@
   background-color: #ffffff;
   border-radius: 5;
   /* max-width: 95%; */
-  height: 89%; 
+  /* height: 89%;  */
   /* margin: 0 auto; */
   padding: 30;
   margin: 0 1rem 1rem 1rem;
+}
+
+.backgroundCover {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 /* .footer {

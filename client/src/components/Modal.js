@@ -10,12 +10,14 @@ class Modal extends React.Component {
     }
 
     return (
-      <div className="backdropStyle position-fixed">
-        <div className="footer d-flex justify-content-end">
-          <i className="fas fa-times btn " onClick={this.props.onClose}></i>
-        </div>
-        <div className="modalStyle">
-          {this.props.children}
+      <div className="backgroundCover">
+        <div className="backdropStyle position-fixed">
+          <div className="footer d-flex justify-content-end">
+          <i className="fas fa-times fa-2x mt-3 mr-3" onClick={this.props.onClose}></i>
+          </div>
+          <div className="modalStyle">
+            {this.props.children}
+          </div>
         </div>
       </div>
     );

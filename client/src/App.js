@@ -9,7 +9,6 @@ import AddPet from "./components/AddPet";
 import PetProfile from "./components/PetProfile";
 import Modal from './components/Modal';
 import { Link } from "react-router-dom";
-import Wrap from "./components/Wrap";
 
 class App extends React.Component {
   state = {
@@ -44,7 +43,6 @@ class App extends React.Component {
   };
 
   _login = (email, password) => {
-    this.getPets();
     API.login(email, password).then(response => {
       if (response.status === 200) {
         // update the state
@@ -53,6 +51,7 @@ class App extends React.Component {
           user: response.data.user
           //user: resonse.data.user   ALL INFO FROM USER, WHICH INCLUDES HIS PETS AND POSTS
         });
+        this.getPets();
       }
     });
   };
@@ -115,7 +114,6 @@ class App extends React.Component {
     if (this.state.loggedIn) {
       return (
         <Router>
-          <Wrap isOpen={this.state.isOpen}>
             <div>
               <NavbarLogout _logout={this._logout} user={this.state.user} search={this.search.bind(this)} handleInputChange={this.handleInputChange.bind(this)} search_text={this.state.search_text} />
               <Modal show={this.state.isOpen}
@@ -128,13 +126,13 @@ class App extends React.Component {
                             return (
                               <div key={user._id} className="modalStyle">
                                 <div className="row">
-                                  <div className="col-sm-12 d-flex justify-content-center mt-5">
-                                    <h5>{`${user.firstname} ${user.lastname}`}</h5>
+                                  <div className="col-sm-12 d-flex justify-content-center mt-1">
+                                    <h4>{`${user.firstname} ${user.lastname}`}</h4>
                                   </div>
                                 </div>
                                 {user.Pet.map((pet) => {
                                   return ( 
-                                    <div className="row">
+                                    <div className="row" key={pet._id}>
                                       <div className="col-sm-12 d-flex justify-content-center">
                                         <Link className="text-dark" key={pet._id} to={`/profile/${pet._id}`} onClick={this.toggleModal}>
                                           <p>{pet.name}</p>
@@ -163,7 +161,6 @@ class App extends React.Component {
                 <Route exact path={`/profile/${pet._id}`} key={pet._id.toString()} render={() => <PetProfile _id={pet._id} name={pet.name} breed={pet.breed} age={pet.age} gender={pet.gender} size={pet.size} toys={pet.favoriteToys}  friends={this.state.user.friendsId} user_id={this.state.user._id} userPets={this.state.user.Pet} />} />
               ))}
             </div>
-          </Wrap>
         </Router>
       );
     } else {

@@ -52,51 +52,46 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="Home">
-        <div className="row">
-          <div className="col-sm-3">
-            <HomeLeft />
-          </div>
-          <div className="col-sm-6" id="cardBlock">
-            <div className="row d-flex justify-content-center pt-5 pb-5">
-              <div className="col-sm-12">
-                <Post animal={this.props.pet} name={this.props.name} />
-              </div>
-            </div>
-            <div className="row d-flex justify-content-center pb-5">
-              <div className="col-sm-12">
-                {this.state.posts.length ? (
-                  <CardList>
-                    {this.state.posts.map(post => (
-                      <Card
-                        key={post._id.toString()}
-                        name={post.petName}
-                        pet_id={post.pet_id}
-                        posts={post.posts}
-                        imageURL={post.imageURL}
-                        videoURL={post.videoURL}
-                        post_id={post._id}
-                        likes={post.likes}
-                      />
-                    ))}
-                  </CardList>
-                ) : (
-                  <h3>No Results to Display</h3>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-3">
-            <HomeRight
-              user_firstname={this.props.user_firstname}
-              user_lastname={this.props.user_lastname}
-              friends={this.props.friendsId}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+			<div className="Home">
+				<div className="row">
+					<div className="col-sm-3">
+					<	HomeLeft />
+					</div>
+					<div className="col-sm-6">
+						<div className="row d-flex justify-content-center pt-5 pb-5">
+							<div className="col-sm-12">
+								<Post animal = {this.props.pet} name={this.props.name} />
+							</div>
+						</div>
+						<div className="row d-flex justify-content-center pb-5">
+							<div className="col-sm-12">
+								{this.state.posts.length ? (
+									<CardList>
+										{this.state.posts.map(post => (
+											<Card key={post._id.toString()}
+												name={post.petName}
+												pet_id={post.pet_id}
+												posts={post.posts}
+												imageURL={post.imageURL}
+												videoURL={post.videoURL}
+												post_id={post._id}
+												likes={post.likes}
+											/>
+										))}
+									</CardList>
+								) : (
+									<h3>No Results to Display</h3>
+								)}
+							</div>
+						</div>
+					</div>
+					<div className="col-sm-3">
+						<HomeRight friends={this.props.friendsId} />
+					</div>
+				</div>
+			</div>
+		);
+	}
+} 
 
-export default Home;
+export default Home
