@@ -150,7 +150,7 @@ class Post extends Component {
                                 </ul>
 
                                 <div>
-                                    <textarea className="text w-100"  onChange={this.handleInputChange} name="Text1" placeholder="What's on your mind?"></textarea>
+                                    <textarea className="text w-100"  onChange={this.handleInputChange} name="Text1" placeholder={`What's up today ${this.props.name}?`}></textarea>
                                 </div>
                                 
                         </div>

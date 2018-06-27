@@ -43,7 +43,6 @@ class App extends React.Component {
   };
 
   _login = (email, password) => {
-    this.getPets();
     API.login(email, password).then(response => {
       if (response.status === 200) {
         // update the state
@@ -52,6 +51,7 @@ class App extends React.Component {
           user: response.data.user
           //user: resonse.data.user   ALL INFO FROM USER, WHICH INCLUDES HIS PETS AND POSTS
         });
+        this.getPets();
       }
     });
   };
@@ -126,13 +126,13 @@ class App extends React.Component {
                             return (
                               <div key={user._id} className="modalStyle">
                                 <div className="row">
-                                  <div className="col-sm-12 d-flex justify-content-center mt-5">
-                                    <h5>{`${user.firstname} ${user.lastname}`}</h5>
+                                  <div className="col-sm-12 d-flex justify-content-center mt-1">
+                                    <h4>{`${user.firstname} ${user.lastname}`}</h4>
                                   </div>
                                 </div>
                                 {user.Pet.map((pet) => {
                                   return ( 
-                                    <div className="row">
+                                    <div className="row" key={pet._id}>
                                       <div className="col-sm-12 d-flex justify-content-center">
                                         <Link className="text-dark" key={pet._id} to={`/profile/${pet._id}`} onClick={this.toggleModal}>
                                           <p>{pet.name}</p>

@@ -59,7 +59,7 @@ class Home extends React.Component {
 					<div className="col-sm-3">
 					<	HomeLeft />
 					</div>
-					<div className="col-sm-6" id="cardBlock">
+					<div className="col-sm-6">
 						<div className="row d-flex justify-content-center pt-5 pb-5">
 							<div className="col-sm-12">
 								<Post animal = {this.props.pet} name={this.props.name} />
