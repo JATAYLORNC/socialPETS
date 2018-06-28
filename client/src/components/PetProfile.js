@@ -13,7 +13,7 @@ import FollowButton from "./FollowButton";
 class PetProfile extends React.Component {
   state = {
     posts: [],
-    userPetIds: []
+    userPetIds: [],
   };
 
   getPetInfo = () => {
@@ -23,6 +23,7 @@ class PetProfile extends React.Component {
   componentDidMount = () => {
     this.GetPetPosts();
     this.setUserPetIds();
+    
   };
 
   setUserPetIds = () => {
@@ -38,15 +39,16 @@ class PetProfile extends React.Component {
   GetPetPosts = () => {
     API.getPetPosts(this.props._id)
       .then(response => {
+        console.log(response.data);
         this.setState({
           posts: response.data.posts
         });
+        console.log(this.state.posts, this.state.posts[0].liked);
       })
       .catch(err => console.log(err));
   };
 
   render() {
-    console.log(!!this.state.userPetIds.includes(this.props._id));
     if (this.state.userPetIds.includes(this.props._id)) {
       return (
         <div className="PetProfile">
@@ -76,9 +78,9 @@ class PetProfile extends React.Component {
               {/* <!-- POST component --> */}
               <div className="row d-flex justify-content-center pb-5">
                 <div className="col-sm-12">
-                  {this.state.posts.length ? (
+                  {this.state.posts ? (
                     <CardList>
-                      {this.state.posts.map(post => (
+                      {this.state.posts.map((post) => (
                         <Card
                           key={post._id.toString()}
                           name={this.props.name}
@@ -88,6 +90,8 @@ class PetProfile extends React.Component {
                           videoURL={post.videoURL}
                           post_id={post._id}
                           likes={post.likes}
+                          liked={post.liked}
+                          user_id={this.props.user_id}
                         />
                       ))}
                     </CardList>
@@ -153,6 +157,8 @@ class PetProfile extends React.Component {
                           videoURL={post.videoURL}
                           post_id={post._id}
                           likes={post.likes}
+                          liked={post.liked}
+                          user_id={this.props.user_id}
                         />
                       ))}
                     </CardList>

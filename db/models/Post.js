@@ -13,6 +13,10 @@ const PostSchema = new Schema({
     imageURL: [String],
     videoURL: [String],
     likes: { type: Number, default: 0 },
+    liked: [{
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }],
     comment: [{
         type: Schema.Types.ObjectId,
         ref: "Comment"
