@@ -75,7 +75,10 @@ class Home extends React.Component {
 												imageURL={post.imageURL}
 												videoURL={post.videoURL}
 												post_id={post._id}
-												likes={post.likes}
+                        likes={post.likes}
+                        user_id={this.props.user_id}
+                        liked={post.liked}
+                        myPets={this.props.myPets}
 											/>
 										))}
 									</CardList>

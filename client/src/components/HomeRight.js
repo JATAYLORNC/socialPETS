@@ -45,13 +45,13 @@ class HomeRight extends React.Component {
     return (
 
       <div className="row">
-        <div className="col-sm-12" style={{width: '250px', marginLeft: '80px', position: 'fixed', top: '17%', bottom: '0', borderLeft: '1px solid lightgray'}}>
+        <div className="col-sm-12" style={{width: '250px', marginLeft: '80px', position: 'fixed', top: '12%', bottom: '0', borderLeft: '1px solid lightgray'}}>
           <div className="pl-3">
-            <h5 style={{marginTop: '25%', paddingTop: '70px'}}>Following:</h5>       
+            <h4 style={{marginTop: '25%', paddingTop: '70px', paddingBottom: '20px'}}>Following:</h4>       
             {this.state.petFriends.map((friend) => {
               return (
-                <div>
-                  <p key={friend.fullname}><strong>{`${friend.fullName}`}</strong></p>
+                <div key={friend._id}>
+                  <h5 style={{paddingBottom: '20px'}}><strong>{`${friend.fullName}`}</strong></h5>
                   {friend.pet.map(pet => {
                     return (
                     <Link className="text-dark" key={pet._id} to={`/profile/${pet._id}`} >

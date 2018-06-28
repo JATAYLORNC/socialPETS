@@ -3,35 +3,72 @@ import { Link } from "react-router-dom";
 import "../styles/card.css";
 import Comment from "./Comment";
 import API from "../utils/API";
+import LikeCount from "./LikeCount";
 
 class Card extends React.Component {
 
   state= {
     likeCount: 0,
-    liked: false
+    liked: [],
+    userLiked: false,
+    ismyPet: false
   }
 
   componentDidMount = () => {
-		this.setState({
-      likeCount: this.props.likes
-    });
+    console.log(this.props);
+    if(this.props.myPets) {
+      let myPets=this.props.myPets.map((pet) => {
+        return pet._id
+      });
+
+      if(myPets.includes(this.props.pet_id)) {
+        let ismyPet = true;
+        this.setState({
+          ismyPet: true
+        });
+      }
+    } 
+
+    if(this.props.liked) {
+
+      if(this.props.liked.includes(this.props.user_id)) {
+        console.log(this.props.likes);
+        this.setState({
+          likeCount: this.props.likes,
+          liked: this.props.liked,
+          userLiked: true
+        });
+      } else {
+        this.setState({
+          likeCount: this.props.likes,
+          liked: this.props.liked
+        });
+      }
+    }
 	}	
 
-  incrementLikeCount = (post_id, likes) => {
-    if(this.state.liked === false) {
-      let likeCount=likes + 1;
-      this.setState({
-        liked: true
-      });
-      API.updateLikes(post_id, {
-        likes: likeCount
-      })
-      .then(response => {
-          console.log(response.data);
-          this.setState({
-            likeCount: response.data.likes
-          })
-      }).catch(err => console.log(err));
+  incrementLikeCount = () => {
+    if(this.state.ismyPet === false) {
+      console.log(this.state.liked, this.props.user_id);
+      if(!this.state.userLiked) {
+        let likeCount=this.state.likeCount + 1;
+        let liked=this.state.liked
+        liked.push(this.props.user_id);
+        this.setState({liked: liked});
+        console.log(liked);
+        API.updateLikes(this.props.post_id, {
+          likes: likeCount,
+          liked: this.state.liked  
+        })
+        .then(response => {
+            console.log(response.data);
+            this.setState({
+              likeCount: response.data.likes,
+              liked: response.data.liked,
+              userLiked: true
+            })
+        }).catch(err => console.log(err));
+      }
     }
   }
   
@@ -54,7 +91,6 @@ class Card extends React.Component {
               <img key={image} className="image-responsive cardImage mt-3" src={image} alt={this.props.name} />
             ))}            
           </div>
-{/*           
             {this.props.videoURL[0] ? 
               <div align="center" className="embed-responsive embed-responsive-16by9">
                 <video className="embed-responsive-item" controls>
@@ -64,15 +100,23 @@ class Card extends React.Component {
                   Your browser does not support HTML5 video.
                 </video>
               </div>
-            : ''} */}
+            : ''}
           <p className="mt-3">{this.props.posts}
           </p>
         </div>
         <div className="responseBar row">
           <div className="col-sm-2"></div>
           <div className="col-sm-2">
-            <i className="far fa-thumbs-up btn like" onClick={(e) => this.incrementLikeCount(this.props.post_id, this.props.likes)}></i>
-            <span className="ml-1">Like</span>
+            {this.state.userLiked ? 
+            <div>
+              <i className="far fa-thumbs-up btn like" style={{color: 'blue'}} onClick={(e) => this.incrementLikeCount()}></i>
+              <span className="ml-1">Like</span> 
+            </div>
+            : 
+            <div>
+              <i className="far fa-thumbs-up btn like" onClick={(e) => this.incrementLikeCount(this.props.post_id, this.props.likes)}></i>
+              <span className="ml-1">Like</span>
+            </div>}
           </div>
           <div className="col-sm-4"></div>
           <div className="col-sm-3">
@@ -81,11 +125,9 @@ class Card extends React.Component {
           </div>
           <div className="col-sm-1"></div>
         </div>
-        <div className="likeBar">
-          <i className="far fa-thumbs-up likeCount">{this.state.likeCount}</i>
-        </div>
+        <LikeCount Count={this.state.likeCount} />
         <div className="comments">
-          <Comment post_id={this.props.post_id} name={this.props.name} />
+           <Comment post_id={this.props.post_id} name={this.props.name} />
         </div>
       </div>
     );
