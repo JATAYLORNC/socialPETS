@@ -85,7 +85,7 @@ class ProfileHeader extends React.Component {
             <div
               className="modal fade"
               id="coverImageModal"
-              tabindex="-1"
+              tabIndex="-1"
               role="dialog"
               aria-labelledby="coverImageModalLabel"
               aria-hidden="true"

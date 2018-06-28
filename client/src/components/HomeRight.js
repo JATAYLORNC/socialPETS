@@ -21,13 +21,13 @@ class HomeRight extends React.Component {
         users.push(friend.User[0]._id);
         let myfriend={
           fullName: `${friend.User[0].firstname} ${friend.User[0].lastname}`,
+          user_id: friend.User[0]._id,
           pet: [friend]
         }
         petFriends.push(myfriend);
       } else {
-        let fullname=`${friend.User[0].firstname} ${friend.User[0].lastname}`
         petFriends = petFriends.map((userpet) => {
-          if(userpet.fullname) {
+          if(userpet.user_id===friend.User[0]._id) {
             userpet.pet.push(friend);
             return userpet;
           } else {
@@ -51,7 +51,7 @@ class HomeRight extends React.Component {
             {this.state.petFriends.map((friend) => {
               return (
                 <div>
-                  <p><strong>{`${friend.fullName}`}</strong></p>
+                  <p key={friend.fullname}><strong>{`${friend.fullName}`}</strong></p>
                   {friend.pet.map(pet => {
                     return (
                     <Link className="text-dark" key={pet._id} to={`/profile/${pet._id}`} >
