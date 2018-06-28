@@ -13,7 +13,7 @@ export default {
 
   updateUser: (req, res) => {
     // console.log(req.body);
-    User.findOneAndUpdate({ _id: req.params.id }, { $push: req.body })
+    User.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, {new: true})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -25,14 +25,14 @@ export default {
   },
 
   addPetPost: (req, res) => {
-    Pet.findOneAndUpdate({ _id: req.params.id }, { $push: req.body })
+    Pet.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, {new: true})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
   addCoverImage: (req, res) => {
     // console.log(req.body);
-    Post.findOneAndUpdate({ _id: req.params.id }, { $push: req.body })
+    Post.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, {new: true})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -51,7 +51,7 @@ export default {
   },
 
   addPostComment: (req, res) => {
-    Post.findOneAndUpdate({ _id: req.params.id }, { $push: req.body })
+    Post.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, {new: true}, )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -89,7 +89,7 @@ export default {
 
   updateLikes: (req, res) => {
     console.log(req.body);
-    Post.findOneAndUpdate({ _id: req.params.id }, req.body)
+    Post.findOneAndUpdate({ _id: req.params.id }, req.body, {new: true})
       .then(dbModel => {
         console.log(dbModel);
         res.json(dbModel);
@@ -98,7 +98,7 @@ export default {
   },
 
   follow: (req, res) => {
-    User.findOneAndUpdate({ _id: req.params.id }, {$push: req.body})
+    User.findOneAndUpdate({ _id: req.params.id }, {$push: req.body}, {new: true})
     .then(dbModel => {res.json(dbModel)})
     .catch(err => res.status(422).json(err));
   },
