@@ -1,6 +1,6 @@
 import path from "path";
 const router = require("express").Router();
-import apiRoutes from "./api";
+import apiRoutes from "./API";
 
 // API Routes
 router.use("/api", apiRoutes);
