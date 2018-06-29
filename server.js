@@ -53,7 +53,7 @@ app.use(function(err, req, res, next) {
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   console.log(`YOU ARE IN THE PRODUCTION ENV`);
-  app.use(express.static("client/build"));
+  app.use(express.static("./client/build"));
 }
 
 // Start the server
