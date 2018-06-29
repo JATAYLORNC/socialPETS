@@ -17,10 +17,11 @@ class HomeRight extends React.Component {
     let users=[];
     let petFriends=[]
     
-    console.log("", )
+
     if(this.props.friends[0]){
 
     
+
     if(this.props.friends[0].User[0]) {
 
       this.props.friends.forEach(friend => {
