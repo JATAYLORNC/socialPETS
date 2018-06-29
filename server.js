@@ -39,7 +39,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production ") {
+if (process.env.NODE_ENV === "production") {
   console.log(`YOU ARE IN THE PRODUCTION ENV`);
   app.use(express.static("./client/build"));
 }
