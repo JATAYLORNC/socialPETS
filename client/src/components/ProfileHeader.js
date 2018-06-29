@@ -10,9 +10,25 @@ class ProfileHeader extends React.Component {
     image: "",
     isUploading: false,
     imageProgress: 0,
-    imageURL: [],
+    profileImageURL: "",
     coverImage: "",
-    coverImageURL: []
+    coverImageURL: "",
+    jumboStyle: {},
+    propsSet: false
+  };
+
+  static getDerivedStateFromProps = (props, state) => {
+    console.log(state);
+    if (!state.propsSet) {
+      return {
+        propsSet: true,
+        coverImageURL: props.coverImage !== undefined ? props.coverImage : "",
+        profileImageURL: props.profileImage !== undefined ? props.profileImage : ""
+      };
+    }
+    return {
+      ...state
+    };
   };
 
   handleImageUploadStart = () => this.setState({ isUploading: true, imageProgress: 0 });
@@ -24,7 +40,7 @@ class ProfileHeader extends React.Component {
     console.error(error);
   };
 
-  handlePhotoUploadSuccess = filename => {
+  handleCoverUploadSuccess = filename => {
     this.setState({ coverImage: filename, imageProgress: 100, isUploading: false });
     console.log(this.state.coverImage);
     firebase
@@ -35,8 +51,26 @@ class ProfileHeader extends React.Component {
       .then(url => {
         console.log(url);
         this.setState({
-          imageURL: [url],
-          coverImageURL: [url]
+          coverImageURL: url,
+          jumboStyle: { backgroundImage: "url(" + url + ")" }
+        });
+        console.log(this.state.imageURL);
+      });
+  };
+
+  handleProfileUploadSuccess = filename => {
+    this.setState({ coverImage: filename, imageProgress: 100, isUploading: false });
+    console.log(this.state.coverImage);
+    firebase
+      .storage()
+      .ref("profileImage")
+      .child(filename)
+      .getDownloadURL()
+      .then(url => {
+        console.log(url);
+        this.setState({
+          profileImageURL: url,
+          profileStyle: { backgroundImage: "url(" + url + ")" }
         });
         console.log(this.state.imageURL);
       });
@@ -45,11 +79,12 @@ class ProfileHeader extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.imageURL, this.props.petID, this.state.coverImageURL);
-    API.addImage(this.props.petID, {
-      coverImage: this.state.imageURL
+    API.addImage(this.props.petId, {
+      coverImage: this.state.coverImageURL,
+      profileImage: this.state.profileImageURL
     })
       .then(response => {
-        console.log(response.data._id);
+        console.log("Response.data: " + response.data);
         // API.addCoverImage(this.props.animal, { coverImage: this.state.imageURL })
         //   .then(response => {
         //     // this.setState({imageURL: [], text: '', image: '', progress: 0, redirectTo: '/home'});
@@ -61,15 +96,15 @@ class ProfileHeader extends React.Component {
     console.log("imageURL: " + this.state.imageURL);
   };
 
-  jumboStyle = {
-    backgroundImage: "url(" + this.state.imageURL + ")"
-  };
+  // jumboStyle = {
+  //   backgroundImage: "url(" + this.state.imageURL + ")"
+  // };
 
   render() {
     return (
       <div className="row">
         <div className="col-sm-12">
-          <div className="jumbotron" style={this.jumboStyle}>
+          <div className="jumbotron" style={this.state.jumboStyle}>
             {/* <!-- Button trigger modal --> */}
             <button type="button" className="btn btn-light" data-toggle="modal" data-target="#coverImageModal">
               <i
@@ -115,14 +150,14 @@ class ProfileHeader extends React.Component {
                             storageRef={firebase.storage().ref("coverImage")}
                             onUploadStart={this.handleImageUploadStart}
                             onUploadError={this.handleUploadError}
-                            onUploadSuccess={this.handlePhotoUploadSuccess}
+                            onUploadSuccess={this.handleCoverUploadSuccess}
                             onProgress={this.handleImageProgress}
                           />
                         </label>
                       </div>
                     </div>
                     <div className="modal-footer">
-                      <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
+                      <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit.bind(this)}>
                         Save changes
                       </button>
                       <button type="button" className="btn btn-secondary" data-dismiss="modal">

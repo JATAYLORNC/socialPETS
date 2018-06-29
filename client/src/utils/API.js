@@ -71,6 +71,6 @@ export default {
     return axios.post(`/api/user/${user_id}`, followData);
   },
   addImage: (petID, imageData) => {
-    return axios.post(`/api/profile/:id`, imageData);
+    return axios.post(`/api/profile/${petID}`, imageData);
   }
 };
