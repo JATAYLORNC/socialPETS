@@ -9,6 +9,7 @@ const ProfileLeft = (props) => (
         <p>Breed: {props.breed}</p>
         <p>Age: {props.age}</p>
         <p>Gender: {props.gender}</p>
+        <p>FavoriteToys: </p>
         <p>Favorite Toys: {props.toys}</p>
     </div>
   </div>

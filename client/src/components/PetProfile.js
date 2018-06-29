@@ -60,7 +60,7 @@ class PetProfile extends React.Component {
                 breed={this.props.breed}
                 age={this.props.age}
                 gender={this.props.gender}
-                toys={this.props.toys}
+                toys={this.props.favoriteToys}
               />
             </div>
 
@@ -123,7 +123,7 @@ class PetProfile extends React.Component {
                 breed={this.props.breed}
                 age={this.props.age}
                 gender={this.props.gender}
-                toys={this.props.toys}
+                toys={this.props.favoriteToys}
               />
             </div>
             {/* <!-- Main Content column --> */}
