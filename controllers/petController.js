@@ -75,6 +75,42 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
+  // getUser: (req, res) => {
+  //   User.findOne({ _id: req.params.id })
+  //     .populate("Pet")
+  //     .populate({
+  //       path: 'friendsId',
+  //       populate: {
+  //         path: 'Pet',
+  //         model: 'Pet',
+  //       }
+  //     })
+  //     .exec((err, user) => {
+  //       if(user.friendsId) {
+  //         User.populate(user.friendsId, {
+  //           path: "User",
+  //           model: "User",
+  //         })
+  //         .then(data => {
+  //           console.log(Array.isArray(data))
+  //           // return done(null, data)
+  //           user.friendsId = data;
+  //         console.log(JSON.stringify(user.friendsId,null,2));
+  //         if (err) {
+  //           return done(err)
+  //         }
+  //         return done(null, user)
+  //       });
+  //       } else {
+  //         if (err) {
+  //           return done(err)
+  //         }
+  //         return done(null, user)
+  //       }
+
+  //     })
+  // }
+
   finduser: (req, res) => {
     User.find({ lastname: req.body.lastname })
       .populate({ path: "Pet" })

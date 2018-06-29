@@ -20,6 +20,7 @@ class PetProfile extends React.Component {
   };
 
   componentDidMount = () => {
+    console.log(this.props.alreadyFriend);
     this.GetPetPosts();
     this.setUserPetIds();
     console.log(this.props, "Yay props!");
@@ -143,7 +144,7 @@ class PetProfile extends React.Component {
                       alt="PetProfile Name"
                     />
                     <div className="d-flex justify-content-end mr5">
-                      <FollowButton friends={this.props.friends} _id={this.props._id} user_id={this.props.user_id} />
+                      <FollowButton alreadyFriend={this.props.alreadyFriend} isFriend={this.props.isFriend} follow={this.props.follow} friends={this.props.friends} _id={this.props._id} user_id={this.props.user_id} />
                     </div>
                   </div>
                 </div>
