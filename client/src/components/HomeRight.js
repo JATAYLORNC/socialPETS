@@ -14,7 +14,7 @@ class HomeRight extends React.Component {
   invertArray = () => {
     let users = [];
     let petFriends = [];
-    if (this.props.Friends[0])
+    if (this.props.friends[0]) {
       if (this.props.friends[0].User[0]) {
         this.props.friends.forEach(friend => {
           console.log("friend", friend);
@@ -43,6 +43,7 @@ class HomeRight extends React.Component {
           petFriends: petFriends,
         });
       }
+    }
   };
 
   render() {
