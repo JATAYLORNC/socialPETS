@@ -70,13 +70,14 @@ class App extends React.Component {
   };
 
   search = () => {
-    // this.inputSearch.value="";
-    let name = this.state.search_text.trim().split(" ");
-    console.log(name);
-    API.findUser({
-      firstname: name[0].toLowerCase(),
-      lastname: name[1].toLowerCase()
-    })
+    if(this.state.search_text) {
+      // this.inputSearch.value="";
+      let name = this.state.search_text.trim().split(" ");
+      console.log(name);
+      API.findUser({
+        firstname: name[0].toLowerCase(),
+        lastname: name[1].toLowerCase()
+      })
       .then(response => {
         console.log(response.data);
         console.log(this);
@@ -94,6 +95,7 @@ class App extends React.Component {
         console.log(this.state.searchResults);
       })
       .catch(err => console.log(err));
+    }
   };
 
   // handle any changes to the input fields
@@ -278,6 +280,8 @@ class App extends React.Component {
                     friends={this.state.user.friendsId}
                     user_id={this.state.user._id}
                     userPets={this.state.user.Pet}
+                    coverImage={pet.coverImage}
+                    profileImage={pet.profileImage}
                   />
                 )}
               />

@@ -32,7 +32,7 @@ module.exports = {
 
   addCoverImage: (req, res) => {
     console.log(req.body);
-    Post.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+    Pet.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
       .then(dbModel => {
         console.log(req.body);
         res.json(dbModel);
