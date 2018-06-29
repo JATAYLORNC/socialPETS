@@ -9,11 +9,10 @@ import ProfileRight from "./ProfileRight";
 import ProfileHeader from "./ProfileHeader";
 import FollowButton from "./FollowButton";
 
-
 class PetProfile extends React.Component {
   state = {
     posts: [],
-    userPetIds: [],
+    userPetIds: []
   };
 
   getPetInfo = () => {
@@ -23,7 +22,7 @@ class PetProfile extends React.Component {
   componentDidMount = () => {
     this.GetPetPosts();
     this.setUserPetIds();
-    
+    console.log(this.props, "Yay props!");
   };
 
   setUserPetIds = () => {
@@ -68,7 +67,12 @@ class PetProfile extends React.Component {
             {/* <!-- Main Content column --> */}
             <div className="col-sm-6">
               {/* <!-- jumbotron for profile header --> */}
-              <ProfileHeader name={this.props.name} petID={this.props._id} />
+              <ProfileHeader
+                name={this.props.name}
+                petId={this.props._id}
+                coverImage={this.props.coverImage}
+                profileImage={this.props.profileImage}
+              />
 
               <div className="row">
                 <div className="col-sm-12">
@@ -80,7 +84,7 @@ class PetProfile extends React.Component {
                 <div className="col-sm-12">
                   {this.state.posts ? (
                     <CardList>
-                      {this.state.posts.map((post) => (
+                      {this.state.posts.map(post => (
                         <Card
                           key={post._id.toString()}
                           name={this.props.name}
@@ -132,11 +136,14 @@ class PetProfile extends React.Component {
                 <div className="col-sm-12">
                   <div className="jumbotron">
                     <h1 className="display-4">{this.props.name}</h1>
-                    <img className="img-thumbnail" type="file" src="http://via.placeholder.com/150x150" alt="PetProfile Name" />
-                    <div className= "d-flex justify-content-end mr5">
-
+                    <img
+                      className="img-thumbnail"
+                      type="file"
+                      src="http://via.placeholder.com/150x150"
+                      alt="PetProfile Name"
+                    />
+                    <div className="d-flex justify-content-end mr5">
                       <FollowButton friends={this.props.friends} _id={this.props._id} user_id={this.props.user_id} />
-
                     </div>
                   </div>
                 </div>

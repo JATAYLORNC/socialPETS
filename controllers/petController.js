@@ -13,7 +13,7 @@ export default {
 
   updateUser: (req, res) => {
     // console.log(req.body);
-    User.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, {new: true})
+    User.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -25,15 +25,18 @@ export default {
   },
 
   addPetPost: (req, res) => {
-    Pet.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, {new: true})
+    Pet.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
   addCoverImage: (req, res) => {
-    // console.log(req.body);
-    Post.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, {new: true})
-      .then(dbModel => res.json(dbModel))
+    console.log(req.body);
+    Post.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+      .then(dbModel => {
+        console.log(req.body);
+        res.json(dbModel);
+      })
       .catch(err => res.status(422).json(err));
   },
 
@@ -51,7 +54,7 @@ export default {
   },
 
   addPostComment: (req, res) => {
-    Post.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, {new: true}, )
+    Post.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -89,7 +92,7 @@ export default {
 
   updateLikes: (req, res) => {
     console.log(req.body);
-    Post.findOneAndUpdate({ _id: req.params.id }, req.body, {new: true})
+    Post.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
       .then(dbModel => {
         console.log(dbModel);
         res.json(dbModel);
@@ -98,15 +101,19 @@ export default {
   },
 
   follow: (req, res) => {
-    User.findOneAndUpdate({ _id: req.params.id }, {$push: req.body}, {new: true})
-    .then(dbModel => {res.json(dbModel)})
-    .catch(err => res.status(422).json(err));
+    User.findOneAndUpdate({ _id: req.params.id }, { $push: req.body }, { new: true })
+      .then(dbModel => {
+        res.json(dbModel);
+      })
+      .catch(err => res.status(422).json(err));
   },
 
   getPosts: (req, res) => {
     const Pets = req.body.Pets;
-    Post.find({pet_id: { $in: Pets }})
-    .then(dbModel => {res.json(dbModel)})
+    Post.find({ pet_id: { $in: Pets } })
+      .then(dbModel => {
+        res.json(dbModel);
+      })
       .catch(err => res.status(422).json(err));
   }
 
