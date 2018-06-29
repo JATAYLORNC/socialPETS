@@ -17,8 +17,10 @@ class HomeRight extends React.Component {
     let users=[];
     let petFriends=[]
     
-    if(this.props.friends.User[0]) {
+    console.log("", )
+    if(this.props.friends[0].User[0]) {
       this.props.friends.forEach(friend => {
+        console.log("friend", friend)
         if(!users.includes(friend.User[0]._id)) {
           users.push(friend.User[0]._id);
           let myfriend={
