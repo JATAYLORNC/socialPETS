@@ -1,8 +1,8 @@
-import User from "../db/models/User";
-import passport from "../passport";
+const User = require("../db/models/User");
+const passport = require("../passport");
 
 // Defining methods for the authController
-export default {
+module.exports = {
 
   getUser: (req, res) => {
     console.log(`===== user!!======`);

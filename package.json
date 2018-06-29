@@ -5,10 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node --experimental-modules server.js --exec babel-node --presets env,stage-2",
-    "start:dev": "concurrently \"nodemon server.js --exec babel-node --presets env,stage-2 --ignore 'client/*'\" \"npm run client\"",
+    "start:prod": "node server.js ",
+    "start:dev": "concurrently \"npm run start:server'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "server": "nodemon server.js --exec babel-node --presets env,stage-2 --ignore 'client/*'",
+    "start:server": "nodemon server.js  --ignore 'client/*'",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"

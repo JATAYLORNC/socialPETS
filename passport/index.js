@@ -1,6 +1,6 @@
-import passport from "passport";
-import LocalStrategy from "./localStrategy";
-import User from "../db/models/User";
+const passport = require("passport");
+const LocalStrategy = require("./localStrategy");
+const User = require("../db/models/User");
 
 passport.serializeUser((user, done) => {
 	console.log(`=== serialize ... called ===`);
@@ -23,4 +23,4 @@ passport.deserializeUser((id, done) => {
 // ==== Register Strategies ====
 passport.use(LocalStrategy);
 
-export default passport;
+module.exports = passport;

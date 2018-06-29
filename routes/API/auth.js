@@ -1,6 +1,6 @@
 const router = require("express").Router();
-import passport from "../../passport";
-import authController from "../../controllers/authController";
+const passport = require("../../passport");
+const authController = require("../../controllers/authController");
 
   router.post(
     '/login',
@@ -25,4 +25,4 @@ import authController from "../../controllers/authController";
     .route("/signup")
     .post(authController.signup);
 
-  export default router;
+  module.exports = router;

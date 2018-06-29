@@ -1,5 +1,5 @@
-import User from "../db/models/User";
-import Pet from "../db/models/Pet";
+const User = require("../db/models/User");
+const Pet = require("../db/models/Pet");
 const LocalStrategy = require('passport-local').Strategy;
 
 const strategy = new LocalStrategy(
@@ -39,4 +39,4 @@ const strategy = new LocalStrategy(
 	}
 );
 
-export default strategy;
+module.exports = strategy;

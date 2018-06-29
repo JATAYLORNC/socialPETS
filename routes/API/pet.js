@@ -1,5 +1,5 @@
 const router = require("express").Router();
-import petController from "../../controllers/petController";
+const petController = require("../../controllers/petController");
 
 router.route("/addpet").post(petController.addPet);
 
@@ -33,4 +33,4 @@ router.route("/posts").post(petController.getPosts);
 
 router.route("/profile/:id").post(petController.addCoverImage);
 
-export default router;
+module.exports = router;

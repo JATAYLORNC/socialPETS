@@ -1,19 +1,19 @@
 
-import express from "express";
-import bodyParser from "body-parser";
-import morgan from "morgan";
-import session from "express-session";
+const express = require("express");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
+const session = require("express-session");
 // const MongoStore = require('connect-mongo')(session);
-import dbConnection from "./db";
-import passport from "./passport";
-import routes from "./routes";
-import dotenv from "dotenv";
-import path from "path";
-import db from "./db/models";
+const dbConnection = require("./db");
+const passport = require("./passport");
+const routes = require("./routes");
+const dotenv = require("dotenv");
+const path = require("path");
+const db = require("./db/models");
 
 dotenv.config();
 
-// Initialize Express
+// Initialize Expressasdsad
 const app = express();
 const PORT = process.env.PORT || 3001;
 

@@ -1,7 +1,7 @@
 /* Mongo Database
 * - this is where we set up our connection to the mongo database
 */
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 mongoose.Promise = global.Promise
 const MONGO_LOCAL_URL = 'mongodb://localhost/socialPETS'
 
@@ -23,4 +23,4 @@ db.once('open', () => {
 	);
 });
 
-export default db;
+module.exports = db;

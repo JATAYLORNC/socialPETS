@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
 const Schema = mongoose.Schema;
@@ -40,4 +40,4 @@ const PetSchema = new Schema({
 const Pet = mongoose.model("Pet", PetSchema);
 
 // Export the Pet model
-export default Pet;
+module.exports = Pet;

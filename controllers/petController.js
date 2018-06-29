@@ -1,10 +1,10 @@
-import User from "../db/models/User";
-import Pet from "../db/models/Pet";
-import Post from "../db/models/Post";
-import Comment from "../db/models/Comment";
+const User = require("../db/models/User");
+const Pet = require("../db/models/Pet");
+const Post = require("../db/models/Post");
+const Comment = require("../db/models/Comment");
 
 // Defining methods for the apiController
-export default {
+module.exports = {
   addPet: (req, res) => {
     Pet.create(req.body)
       .then(dbModel => res.json(dbModel))

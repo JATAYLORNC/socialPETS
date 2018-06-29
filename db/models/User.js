@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
 const Schema = mongoose.Schema;
 
-import bcrypt from "bcryptjs";
+const bcrypt = require("bcryptjs");
 
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
@@ -63,4 +63,4 @@ UserSchema.pre('save', function(next) {
 const User = mongoose.model("User", UserSchema);
 
 // Export the User model
-export default User;
+module.exports = User;
