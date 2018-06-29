@@ -19,17 +19,15 @@ class ProfileHeader extends React.Component {
 
   static getDerivedStateFromProps = (props, state) => {
     console.log(props.coverImage);
-    this.setState({
-      coverImageURL: props.coverImage,
-      profileImageURL: props.profileImage
-    });
     if (!state.propsSet) {
+      // console.log("State propsSet = false");
       return {
         propsSet: true,
         coverImageURL: props.coverImage !== undefined ? props.coverImage : "",
         profileImageURL: props.profileImage !== undefined ? props.profileImage : "",
       };
     }
+    console.log("Sate propsSet = true", props.coverImage);
     return {
       ...state
     };
@@ -151,7 +149,7 @@ class ProfileHeader extends React.Component {
                             accept="coverImage/*"
                             name="coverImage"
                             id="coverImage"
-                            className="position-realative"
+                            className="position-relative"
                             storageRef={firebase.storage().ref("coverImage")}
                             onUploadStart={this.handleImageUploadStart}
                             onUploadError={this.handleUploadError}

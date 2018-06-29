@@ -25,7 +25,12 @@
 }
 
 #myNavbar {
-  background-color: #7FFF0D
+  background-color: #7FFF0D;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: +500;
 }
 
 #profile{
