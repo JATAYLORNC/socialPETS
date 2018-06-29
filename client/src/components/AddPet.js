@@ -46,6 +46,8 @@ class AddPet extends React.Component {
       favoriteActivities: this.state.favoriteActivities,
       favoriteToys: this.state.favoriteToys,
       specialTalent: this.state.specialTalent,
+      coverImage: "",
+      profileImage: "",
       User: this.props._id
     })
     .then(response => {

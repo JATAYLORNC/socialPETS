@@ -18,12 +18,16 @@ class ProfileHeader extends React.Component {
   };
 
   static getDerivedStateFromProps = (props, state) => {
-    console.log(state);
+    console.log(props.coverImage);
+    this.setState({
+      coverImageURL: props.coverImage,
+      profileImageURL: props.profileImage
+    });
     if (!state.propsSet) {
       return {
         propsSet: true,
         coverImageURL: props.coverImage !== undefined ? props.coverImage : "",
-        profileImageURL: props.profileImage !== undefined ? props.profileImage : ""
+        profileImageURL: props.profileImage !== undefined ? props.profileImage : "",
       };
     }
     return {
@@ -54,7 +58,8 @@ class ProfileHeader extends React.Component {
           coverImageURL: url,
           jumboStyle: { backgroundImage: "url(" + url + ")" }
         });
-        console.log(this.state.imageURL);
+        console.log(this.state.coverImageURL);
+        console.log(this.state.jumboStyle);
       });
   };
 
@@ -78,7 +83,7 @@ class ProfileHeader extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state.imageURL, this.props.petID, this.state.coverImageURL);
+    console.log(this.props.petId, this.state.coverImageURL);
     API.addImage(this.props.petId, {
       coverImage: this.state.coverImageURL,
       profileImage: this.state.profileImageURL
@@ -93,7 +98,6 @@ class ProfileHeader extends React.Component {
         //   .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
-    console.log("imageURL: " + this.state.imageURL);
   };
 
   // jumboStyle = {
@@ -101,6 +105,7 @@ class ProfileHeader extends React.Component {
   // };
 
   render() {
+    console.log(this.state);
     return (
       <div className="row">
         <div className="col-sm-12">
