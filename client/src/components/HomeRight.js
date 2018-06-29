@@ -16,38 +16,33 @@ class HomeRight extends React.Component {
   invertArray = () => {
     let users=[];
     let petFriends=[]
-    
-
-    if(this.props.friends[0]){
-
-    
-
-    if(this.props.friends[0].User[0]) {
-
-      this.props.friends.forEach(friend => {
-        console.log("friend", friend)
-        if(!users.includes(friend.User[0]._id)) {
-          users.push(friend.User[0]._id);
-          let myfriend={
-            fullName: `${friend.User[0].firstname} ${friend.User[0].lastname}`,
-            user_id: friend.User[0]._id,
-            pet: [friend]
-          }
-          petFriends.push(myfriend);
-        } else {
-          petFriends = petFriends.map((userpet) => {
-            if(userpet.user_id===friend.User[0]._id) {
-              userpet.pet.push(friend);
-              return userpet;
-            } else {
-              return userpet;
+    if(this.props.Friends[0])
+      if(this.props.friends[0].User[0]) {
+        this.props.friends.forEach(friend => {
+          console.log("friend", friend)
+          if(!users.includes(friend.User[0]._id)) {
+            users.push(friend.User[0]._id);
+            let myfriend={
+              fullName: `${friend.User[0].firstname} ${friend.User[0].lastname}`,
+              user_id: friend.User[0]._id,
+              pet: [friend]
             }
-          });
-        }
-      });
-      this.setState({
-        petFriends: petFriends
-      });
+            petFriends.push(myfriend);
+          } else {
+            petFriends = petFriends.map((userpet) => {
+              if(userpet.user_id===friend.User[0]._id) {
+                userpet.pet.push(friend);
+                return userpet;
+              } else {
+                return userpet;
+              }
+            });
+          }
+        });
+        this.setState({
+          petFriends: petFriends
+        });
+      }
     }
   }
   }
