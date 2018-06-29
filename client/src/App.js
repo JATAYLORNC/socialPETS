@@ -17,8 +17,18 @@ class App extends React.Component {
     pets: [],
     search_text: "",
     searchResults: null,
-    isOpen: false
+    isOpen: false,
+    alreadyFriend: false,
+    newFriend: false
   };
+
+  componentDidUpdate = () => {
+    if(this.state.newFriend === true) {
+      this.getUser();
+      console.log(this.state.user);
+      this.setState({newFriend: false});
+    }
+  }
 
   getPets = () => {
     API.getPets()
@@ -115,6 +125,25 @@ class App extends React.Component {
     });
   };
 
+  isFriend = (pet_id) => {
+    let friends = this.state.user.friendsId.map((friend) => {return friend._id});
+    console.log(friends);
+    if(friends.includes(pet_id)) {
+      this.setState({alreadyFriend: true});
+    }
+  }
+
+  follow = (friendsId) => {
+    API.follow(this.state.user._id, {friendsId: friendsId}).then(response => {
+      console.log(response.data);
+      this.setState({
+        alreadyFriend: true,
+        newFriend: true,
+      });
+		})
+		.catch(err => console.log(err));
+  }
+
   renderPage = () => {
     if (this.state.loggedIn) {
       return (
@@ -178,6 +207,7 @@ class App extends React.Component {
                     user_firstname={this.state.user.firstname}
                     user_lastname={this.state.user.lastname}
                     friendsId={this.state.user.friendsId}
+                    newFriend={this.state.newFriend}
                   />
                 )}
               />
@@ -195,6 +225,7 @@ class App extends React.Component {
                     name={this.state.user.Pet[0].name}
                     searchResults={this.state.searchResults}
                     friendsId={this.state.user.friendsId}
+                    newFriend={this.state.newFriend}
                   />
                 )}
               />
@@ -209,6 +240,7 @@ class App extends React.Component {
                     user_firstname={this.state.user.firstname}
                     user_lastname={this.state.user.lastname}
                     friendsId={this.state.user.friendsId}
+                    newFriend={this.state.newFriend}
                   />
                 )}
               />
@@ -226,6 +258,7 @@ class App extends React.Component {
                     name={this.state.user.Pet[0].name}
                     searchResults={this.state.searchResults}
                     friendsId={this.state.user.friendsId}
+                    newFriend={this.state.newFriend}
                   />
                 )}
               />
@@ -240,6 +273,7 @@ class App extends React.Component {
                     user_firstname={this.state.user.firstname}
                     user_lastname={this.state.user.lastname}
                     friendsId={this.state.user.friendsId}
+                    newFriend={this.state.newFriend}
                   />
                 )}
               />
@@ -257,6 +291,7 @@ class App extends React.Component {
                     name={this.state.user.Pet[0].name}
                     searchResults={this.state.searchResults}
                     friendsId={this.state.user.friendsId}
+                    newFriend={this.state.newFriend}
                   />
                 )}
               />
@@ -282,6 +317,9 @@ class App extends React.Component {
                     userPets={this.state.user.Pet}
                     coverImage={pet.coverImage}
                     profileImage={pet.profileImage}
+                    alreadyFriend={this.state.alreadyFriend}
+                    isFriend={this.isFriend.bind(this)}
+                    follow={this.follow.bind(this)}
                   />
                 )}
               />

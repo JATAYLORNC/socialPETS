@@ -21,7 +21,7 @@ const ProfileRight = (props) => (
         <div className="col-sm-12">
           <h4>FaceBark</h4>
           <p>Need a Place to Play?</p>
-          <h5><i class="fas fa-paw"></i>FaceBark<i class="fas fa-paw"></i></h5>
+          <h5><i className="fas fa-paw"></i>FaceBark<i class="fas fa-paw"></i></h5>
           <a href="https://facebark1.herokuapp.com/">
           Find a Dog Park Near You!
           </a>

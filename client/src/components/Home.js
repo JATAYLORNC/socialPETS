@@ -9,10 +9,12 @@ import HomeLeft from "./HomeLeft";
 
 class Home extends React.Component {
   state = {
-    posts: []
+    posts: [],
+    newFriend: false
   };
 
   componentDidMount = () => {
+    this.setState({newFriend: this.props.newFriend})
     this.GetPosts();
   };
 
@@ -38,6 +40,17 @@ class Home extends React.Component {
     if (this.props.friendsId) {
       console.log(this.props.friendsId);
       API.getFriendPosts({ Pets: this.props.friendsId })
+      .then(response => {
+        console.log(response.data);
+        let posts = [...this.state.posts, ...response.data];
+        console.log(posts);
+        this.setState({
+          posts: posts
+        });
+      })
+      .catch(err => console.log(err));
+    } else if (this.state.newFriend) {
+        API.getFriendPosts({ Pets: this.props.friendsId })
         .then(response => {
           console.log(response.data);
           let posts = [...this.state.posts, ...response.data];

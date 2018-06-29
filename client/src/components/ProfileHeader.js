@@ -18,19 +18,31 @@ class ProfileHeader extends React.Component {
   };
 
   static getDerivedStateFromProps = (props, state) => {
-    console.log(props.coverImage);
     if (!state.propsSet) {
       // console.log("State propsSet = false");
+      console.log(props.coverImage);
       return {
         propsSet: true,
         coverImageURL: props.coverImage !== undefined ? props.coverImage : "",
         profileImageURL: props.profileImage !== undefined ? props.profileImage : "",
       };
+    } else if (props.coverImage) {
+      return {
+        coverImageURL: props.coverImage, 
+        jumboStyle: {backgroundImage: "url(" + props.coverImage + ")"}
+      };
+   } else if(props.profileImage) {
+     return {
+        profileImageURL: props.profileImage, 
+        profileStyle: {backgroundImage: "url(" + props.profileImage + ")"}
+      };
+
+   } else {
+      console.log("State propsSet = true", props.coverImage);
+      return {
+        ...state
+      };
     }
-    console.log("Sate propsSet = true", props.coverImage);
-    return {
-      ...state
-    };
   };
 
   handleImageUploadStart = () => this.setState({ isUploading: true, imageProgress: 0 });
