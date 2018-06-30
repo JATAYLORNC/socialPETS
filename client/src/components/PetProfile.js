@@ -97,6 +97,7 @@ class PetProfile extends React.Component {
                           likes={post.likes}
                           liked={post.liked}
                           user_id={this.props.user_id}
+                          profileImage={this.props.profileImage}
                         />
                       ))}
                     </CardList>

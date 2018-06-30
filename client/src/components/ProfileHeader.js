@@ -189,18 +189,8 @@ class ProfileHeader extends React.Component {
                 </div>
               </div>
             </div>
-          </div>
-          <h1 className="display-4">{this.props.name}</h1>
-
-
-
-
-
-
-
-
-
-          <div className="jumbotron" style={this.state.profileStyle}>
+            <h1 className="display-4">{this.props.name}</h1>
+            <div className="profile" style={this.state.profileStyle}>
             {/* <!-- Button trigger modal --> */}
             <button type="button" className="btn btn-light" data-toggle="modal" data-target="#profileImageModal">
               <i
@@ -266,6 +256,18 @@ class ProfileHeader extends React.Component {
               </div>
             </div>
           </div>
+          </div>
+          
+
+
+
+
+
+
+
+
+
+
         </div>
         <ReactTooltip id="uploadCoverPhoto">Update Cover Photo</ReactTooltip>
         <ReactTooltip id="uploadProfilePhoto">Update Profile Photo</ReactTooltip>
