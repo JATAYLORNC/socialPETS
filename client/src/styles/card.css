@@ -6,22 +6,23 @@
   height: 50px;
 }
 
-.responseBar, .likeBar {
+.responseBar,
+.likeBar {
   height: 30px;
   padding-top: 5px;
   padding-bottom: 5px;
-  border-top: 1px solid #C9FFB3;
-  border-bottom: 1px solid #C9FFB3;
+  border-top: 1px solid #c9ffb3;
+  border-bottom: 1px solid #c9ffb3;
 }
 
 .textBox {
-  background-color: #C9FFB3;
+  background-color: #c9ffb3;
   border-radius: 25px;
 }
 
 .petImage {
-  min-width: 33px;
-  min-height: 33px;
+  max-width: 33px;
+  max-height: 33px;
 }
 
 .comments {
@@ -37,6 +38,7 @@
   color: blue;
 }
 
-.like, .comment {
+.like,
+.comment {
   color: grey;
 }
