@@ -262,6 +262,10 @@ class ProfileHeader extends React.Component {
               </div>
             </div>
           </div>
+<<<<<<< Updated upstream
+=======
+          </div>
+>>>>>>> Stashed changes
         </div>
         <ReactTooltip id="uploadCoverPhoto">Update Cover Photo</ReactTooltip>
         <ReactTooltip id="uploadProfilePhoto">Update Profile Photo</ReactTooltip>
