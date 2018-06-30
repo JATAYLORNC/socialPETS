@@ -26,7 +26,14 @@ class ProfileHeader extends React.Component {
         coverImageURL: props.coverImage !== undefined ? props.coverImage : "",
         profileImageURL: props.profileImage !== undefined ? props.profileImage : "",
       };
-    } else if (props.coverImage) {
+    } else if(props.coverImage && props.profileImage) {
+      return {
+        coverImageURL: props.coverImage, 
+        jumboStyle: {backgroundImage: "url(" + props.coverImage + ")"},
+        profileImageURL: props.profileImage, 
+        profileStyle: {backgroundImage: "url(" + props.profileImage + ")"}
+      };
+    } else if(props.coverImage) {
       return {
         coverImageURL: props.coverImage, 
         jumboStyle: {backgroundImage: "url(" + props.coverImage + ")"}
@@ -36,7 +43,6 @@ class ProfileHeader extends React.Component {
         profileImageURL: props.profileImage, 
         profileStyle: {backgroundImage: "url(" + props.profileImage + ")"}
       };
-
    } else {
       console.log("State propsSet = true", props.coverImage);
       return {
@@ -74,7 +80,7 @@ class ProfileHeader extends React.Component {
   };
 
   handleProfileUploadSuccess = filename => {
-    this.setState({ coverImage: filename, imageProgress: 100, isUploading: false });
+    this.setState({ profileImage: filename, imageProgress: 100, isUploading: false });
     console.log(this.state.coverImage);
     firebase
       .storage()
@@ -93,7 +99,7 @@ class ProfileHeader extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.props.petId, this.state.coverImageURL);
+    console.log(this.props.petId, this.state.profileImageURL);
     API.addImage(this.props.petId, {
       coverImage: this.state.coverImageURL,
       profileImage: this.state.profileImageURL
@@ -183,30 +189,81 @@ class ProfileHeader extends React.Component {
                 </div>
               </div>
             </div>
-            <h1 className="display-4">{this.props.name}</h1>
-            <div>
-              <label>
-                <i
-                  id="profileIcon"
-                  className="fas fa-camera position-absolute"
-                  data-tip="tooltip"
-                  data-for="uploadProfilePhoto"
-                  data-place="right"
-                  title="Update Profile Photo"
-                />
-                <FileUploader
-                  hidden
-                  accept="image/*"
-                  name="image"
-                  id="profileImage"
-                  className="img-thumbnail position-realative"
-                  storageRef={firebase.storage().ref("images")}
-                  onUploadStart={this.handleImageUploadStart}
-                  onUploadError={this.handleUploadError}
-                  onUploadSuccess={this.handlePhotoUploadSuccess}
-                  onProgress={this.handleImageProgress}
-                />
-              </label>
+          </div>
+          <h1 className="display-4">{this.props.name}</h1>
+
+
+
+
+
+
+
+
+
+          <div className="jumbotron" style={this.state.profileStyle}>
+            {/* <!-- Button trigger modal --> */}
+            <button type="button" className="btn btn-light" data-toggle="modal" data-target="#profileImageModal">
+              <i
+                id="profileIcon"
+                className="fas fa-camera position-absolute"
+                data-tip="tooltip"
+                data-for="uploadProfilePhoto"
+                data-place="right"
+                title="Update Profile Photo"
+              />
+            </button>
+
+            {/* <!-- Modal --> */}
+            <div
+              className="modal fade"
+              id="profileImageModal"
+              tabIndex="-1"
+              role="dialog"
+              aria-labelledby="profileImageModalLabel"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  {/* <!-- start form --> */}
+                  <form className="form">
+                    <div className="form-group">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="profileImageModalLabel">
+                          Update Profile Photo
+                        </h5>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div className="modal-body">
+                        <label className="btn btn-outline-info">
+                          Select Photo
+                          <FileUploader
+                            hidden
+                            accept="profileImage/*"
+                            name="profileImage"
+                            id="profileImage"
+                            className="img-thumbnail position-relative"
+                            storageRef={firebase.storage().ref("profileImage")}
+                            onUploadStart={this.handleImageUploadStart}
+                            onUploadError={this.handleUploadError}
+                            onUploadSuccess={this.handleProfileUploadSuccess}
+                            onProgress={this.handleImageProgress}
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div className="modal-footer">
+                      <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit.bind(this)}>
+                        Save changes
+                      </button>
+                      <button type="button" className="btn btn-secondary" data-dismiss="modal">
+                        Close
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
