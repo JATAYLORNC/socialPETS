@@ -1,0 +1,88 @@
+#faceBark {
+  margin-top: 90px;
+  margin-left: 58px;
+  font-family: Tahoma, Geneva, sans-serif;
+ 
+  position: fixed;
+  color: orange;
+  font-size: 40px;
+ 
+ 
+
+}
+
+#faceBarkLogo {
+  margin-top: 140px;
+  margin-left:37px;
+  position: fixed;
+  color: orange;
+  font-size: 50px;
+}
+
+#faceBarkTwo {
+
+  margin-top: 200px;
+  margin-left: 25px;
+  font-family: Tahoma, Geneva, sans-serif;
+  
+ font-size: 15px;
+  position: fixed;
+  color:black;
+  font-weight: bold;
+
+
+}
+
+#checkIt {
+  margin-top: 60px;
+  margin-left: 26px;
+  position: fixed;
+  
+  color:   #1a53ff;
+  font-size: 25px;
+ 
+
+}
+
+#clickHere {
+
+  margin-top: 246px;
+  margin-left: 66px;
+  
+  font-size: 15px;
+  text-decoration: none;
+  color: blue;
+  position: fixed;
+  font-family: Tahoma, Geneva, sans-serif;
+
+
+
+}
+
+
+
+
+
+
+
+
+#background {
+
+  color: white;
+}
+
+#adopt {
+
+  margin-top: 270px;
+  margin-left: 40px;
+  position: fixed;
+}
+
+#adoptText {
+
+  margin-top: 455px;
+  margin-left: 41px;
+  position: fixed;
+  color: black;
+  font-weight: bold;
+}

@@ -55,6 +55,10 @@ class Signup extends React.Component {
 
           let form = document.getElementById("myForm");
           form.reset();
+
+
+
+
 				}
 			}).catch(error => {
         console.log("Sign-up server error: ");
@@ -67,13 +71,23 @@ class Signup extends React.Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		}
 		return (
+     
 			<form className="SignupForm mb-5" id="myForm">
-				<h1 className="text-center pt-5 pb-5">Signup Form</h1>
+	
+
+       
         <div className="row">
-          <div className="col-md-4"></div>
-          <div className="col-md-4">
+				  <div className="col-md-12">	<h1 className="text-center pt-5 pb-5">Create a profile for your Best Friend today!</h1></div>
+        </div>
+
+        <div className="row">
+        <div className="col-md-1"></div>
+        <div className = "col-md-5" id="leftside"><img src="https://image.ibb.co/haHc7J/socialpets.png" height="450" width="450"/></div>
+        
+          <div className="col-md-5">
+    
             <div className="form-row">
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-5">
                 <label htmlFor="firstname">First Name: </label>
                 <input
                   type="text"
@@ -83,7 +97,7 @@ class Signup extends React.Component {
                   onChange={this.handleInputChange}
                 />
               </div>
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-5">
                 <label htmlFor="lastname">Last Name: </label>
                 <input
                   type="text"
@@ -127,8 +141,8 @@ class Signup extends React.Component {
             <button className="btn btn-dark" onClick={this.handleFormSubmit}>Sign up</button>
           </div>
         </div>
-        <div className="col-md-4"></div>
 			</form>
+      
 		)
 	}
 }
