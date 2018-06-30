@@ -24,26 +24,26 @@ class ProfileHeader extends React.Component {
       return {
         propsSet: true,
         coverImageURL: props.coverImage !== undefined ? props.coverImage : "",
-        profileImageURL: props.profileImage !== undefined ? props.profileImage : "",
+        profileImageURL: props.profileImage !== undefined ? props.profileImage : ""
       };
-    } else if(props.coverImage && props.profileImage) {
+    } else if (props.coverImage && props.profileImage) {
       return {
-        coverImageURL: props.coverImage, 
-        jumboStyle: {backgroundImage: "url(" + props.coverImage + ")"},
-        profileImageURL: props.profileImage, 
-        profileStyle: {backgroundImage: "url(" + props.profileImage + ")"}
+        coverImageURL: props.coverImage,
+        jumboStyle: { backgroundImage: "url(" + props.coverImage + ")" },
+        profileImageURL: props.profileImage,
+        profileStyle: { backgroundImage: "url(" + props.profileImage + ")" }
       };
-    } else if(props.coverImage) {
+    } else if (props.coverImage) {
       return {
-        coverImageURL: props.coverImage, 
-        jumboStyle: {backgroundImage: "url(" + props.coverImage + ")"}
+        coverImageURL: props.coverImage,
+        jumboStyle: { backgroundImage: "url(" + props.coverImage + ")" }
       };
-   } else if(props.profileImage) {
-     return {
-        profileImageURL: props.profileImage, 
-        profileStyle: {backgroundImage: "url(" + props.profileImage + ")"}
+    } else if (props.profileImage) {
+      return {
+        profileImageURL: props.profileImage,
+        profileStyle: { backgroundImage: "url(" + props.profileImage + ")" }
       };
-   } else {
+    } else {
       console.log("State propsSet = true", props.coverImage);
       return {
         ...state
@@ -166,8 +166,7 @@ class ProfileHeader extends React.Component {
                             hidden
                             accept="coverImage/*"
                             name="coverImage"
-                            id="coverImage"
-                            className="position-relative"
+                            id="coverImage" // className="position-relative"
                             storageRef={firebase.storage().ref("coverImage")}
                             onUploadStart={this.handleImageUploadStart}
                             onUploadError={this.handleUploadError}
@@ -191,83 +190,78 @@ class ProfileHeader extends React.Component {
             </div>
             <h1 className="display-4">{this.props.name}</h1>
             <div className="profile" style={this.state.profileStyle}>
-            {/* <!-- Button trigger modal --> */}
-            <button type="button" className="btn btn-light" data-toggle="modal" data-target="#profileImageModal">
-              <i
+              {/* <!-- Button trigger modal --> */}
+              <button
+                type="button"
+                className="btn btn-light"
                 id="profileIcon"
-                className="fas fa-camera position-absolute"
-                data-tip="tooltip"
-                data-for="uploadProfilePhoto"
-                data-place="right"
-                title="Update Profile Photo"
-              />
-            </button>
+                data-toggle="modal"
+                data-target="#profileImageModal"
+              >
+                <i // id="profileIcon"
+                  className="fas fa-camera" // className="position-absolute"
+                  data-tip="tooltip"
+                  data-for="uploadProfilePhoto"
+                  data-place="right"
+                  title="Update Profile Photo"
+                />
+              </button>
 
-            {/* <!-- Modal --> */}
-            <div
-              className="modal fade"
-              id="profileImageModal"
-              tabIndex="-1"
-              role="dialog"
-              aria-labelledby="profileImageModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                  {/* <!-- start form --> */}
-                  <form className="form">
-                    <div className="form-group">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="profileImageModalLabel">
-                          Update Profile Photo
-                        </h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
+              {/* <!-- Modal --> */}
+              <div
+                className="modal fade"
+                id="profileImageModal"
+                tabIndex="-1"
+                role="dialog"
+                aria-labelledby="profileImageModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    {/* <!-- start form --> */}
+                    <form className="form">
+                      <div className="form-group">
+                        <div className="modal-header">
+                          <h5 className="modal-title" id="profileImageModalLabel">
+                            Update Profile Photo
+                          </h5>
+                          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div className="modal-body">
+                          <label className="btn btn-outline-info">
+                            Select Photo
+                            <FileUploader
+                              hidden
+                              accept="profileImage/*"
+                              name="profileImage"
+                              id="profileImage"
+                              className="img-thumbnail"
+                              // className="position-relative"
+                              storageRef={firebase.storage().ref("profileImage")}
+                              onUploadStart={this.handleImageUploadStart}
+                              onUploadError={this.handleUploadError}
+                              onUploadSuccess={this.handleProfileUploadSuccess}
+                              onProgress={this.handleImageProgress}
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div className="modal-footer">
+                        <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit.bind(this)}>
+                          Save changes
+                        </button>
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">
+                          Close
                         </button>
                       </div>
-                      <div className="modal-body">
-                        <label className="btn btn-outline-info">
-                          Select Photo
-                          <FileUploader
-                            hidden
-                            accept="profileImage/*"
-                            name="profileImage"
-                            id="profileImage"
-                            className="img-thumbnail position-relative"
-                            storageRef={firebase.storage().ref("profileImage")}
-                            onUploadStart={this.handleImageUploadStart}
-                            onUploadError={this.handleUploadError}
-                            onUploadSuccess={this.handleProfileUploadSuccess}
-                            onProgress={this.handleImageProgress}
-                          />
-                        </label>
-                      </div>
-                    </div>
-                    <div className="modal-footer">
-                      <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit.bind(this)}>
-                        Save changes
-                      </button>
-                      <button type="button" className="btn btn-secondary" data-dismiss="modal">
-                        Close
-                      </button>
-                    </div>
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          </div>
-          
-
-
-
-
-
-
-
-
-
-
         </div>
         <ReactTooltip id="uploadCoverPhoto">Update Cover Photo</ReactTooltip>
         <ReactTooltip id="uploadProfilePhoto">Update Profile Photo</ReactTooltip>

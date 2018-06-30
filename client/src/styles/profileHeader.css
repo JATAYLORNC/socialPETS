@@ -1,15 +1,23 @@
 .jumbotron {
-  /* background-image: url("http://via.placeholder.com/600x400"); */
   padding: 32px 32px;
+  background-color: #c9ffb3;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #profileIcon {
-  bottom: 75px;
-  left: 60px;
+  position: relative;
+  top: 105px;
+  left: 10px;
 }
 
 .profile {
   width: 150px;
   height: 150px;
   margin-left: 50px;
+  background-size: 150px 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  left: -50px;
 }
