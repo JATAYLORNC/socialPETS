@@ -257,17 +257,6 @@ class ProfileHeader extends React.Component {
             </div>
           </div>
           </div>
-          
-
-
-
-
-
-
-
-
-
-
         </div>
         <ReactTooltip id="uploadCoverPhoto">Update Cover Photo</ReactTooltip>
         <ReactTooltip id="uploadProfilePhoto">Update Profile Photo</ReactTooltip>
