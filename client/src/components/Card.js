@@ -80,7 +80,7 @@ class Card extends React.Component {
 
       <div className="container-fluid Card mt-3 p-3">
         <div className="cardHeader pb-3">
-          <img src="http://via.placeholder.com/40x40" className="img-responsive rounded-circle petImage" alt="Pet" />
+          <img src={this.props.profileImage} className="img-responsive rounded-circle petImage" alt="Pet" />
           <Link className="ml-3" to={`/profile/${this.props.pet_id}`} >
             <span className="ml-3"><strong>{this.props.name}</strong></span>
           </Link>

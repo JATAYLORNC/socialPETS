@@ -55,10 +55,6 @@ class Signup extends React.Component {
 
           let form = document.getElementById("myForm");
           form.reset();
-
-
-
-
 				}
 			}).catch(error => {
         console.log("Sign-up server error: ");

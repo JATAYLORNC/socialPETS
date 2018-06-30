@@ -9,6 +9,7 @@ import AddPet from "./components/AddPet";
 import PetProfile from "./components/PetProfile";
 import Modal from "./components/Modal";
 import { Link } from "react-router-dom";
+import LoginPage from "./components/LoginPage";
 
 class App extends React.Component {
   state = {
@@ -334,6 +335,7 @@ class App extends React.Component {
             <NavbarLogin _login={this._login} />
             <Route exact path="/" component={Signup} />
             <Route exact path="/home" component={Signup} />
+            <Route exact path="/login" component={LoginPage} />
           </div>
         </Router>
       );
